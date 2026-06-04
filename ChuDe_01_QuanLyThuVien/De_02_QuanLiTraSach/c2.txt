@@ -1,0 +1,128 @@
+Câu 2. Trích và vẽ biểu đồ lớp thực thể liên quan của module
+
+Mô tả nghiệp vụ tóm tắt:
+
+Module quản lí việc trả sách cho phép nhân viên quét thẻ bạn đọc, xem danh sách sách đang mượn và đã trả, quét các sách được đem trả, cập nhật ngày trả. Nếu bạn đọc còn sách chưa trả thì hệ thống in phiếu mượn cho các sách còn mượn. Nếu có sách trả muộn thì hệ thống lập phiếu phạt, ghi nhận các sách bị phạt và tổng tiền phạt.
+
+Nhận diện danh từ:
+
+- Nhân viên
+- Bạn đọc
+- Thẻ bạn đọc
+- Sách / đầu sách
+- Phiếu mượn
+- Chi tiết mượn
+- Sách mượn chưa trả
+- Sách đã trả
+- Phiếu phạt
+- Tiền phạt
+- Ngày mượn
+- Ngày phải trả
+- Ngày trả
+
+Sàng lọc lớp thực thể:
+
+- Nhân viên: là tác nhân thực hiện use case, không đưa vào lớp thực thể của module.
+- Thẻ bạn đọc: được biểu diễn bằng thuộc tính `maVach` của `BanDoc`.
+- Bạn đọc: là lớp thực thể, dùng để xác định người trả sách.
+- Đầu sách: là lớp thực thể, chứa thông tin sách và giá bìa để tính phạt.
+- Phiếu mượn: là lớp thực thể, chứa thông tin một lần mượn.
+- Chi tiết mượn: là lớp chi tiết của phiếu mượn, ghi nhận từng sách được mượn, ngày mượn, ngày phải trả, ngày trả và số tiền phạt nếu có.
+- Phiếu phạt: là lớp thực thể phát sinh khi có sách trả muộn, chứa tổng tiền phạt và danh sách các chi tiết mượn bị phạt.
+
+Các lớp thực thể liên quan:
+
+1. BanDoc
+- maBanDoc
+- tenBanDoc
+- ngaySinh
+- diaChi
+- soDienThoai
+- maVach
+
+2. DauSach
+- maDauSach
+- tenSach
+- tacGia
+- namXuatBan
+- giaBia
+- soLuong
+- maVach
+- moTa
+
+3. PhieuMuon
+- maPhieuMuon
+- maVachPhieuMuon
+- ngayLap
+- tongSoSach
+
+4. ChiTietMuon
+- maChiTiet
+- ngayMuon
+- ngayPhaiTra
+- ngayTra
+- soTienPhat
+
+5. PhieuPhat
+- maPhieuPhat
+- tongTienPhat
+
+Biểu đồ lớp thực thể:
+
+```mermaid
+classDiagram
+    class BanDoc {
+        +maBanDoc
+        +tenBanDoc
+        +ngaySinh
+        +diaChi
+        +soDienThoai
+        +maVach
+    }
+
+    class DauSach {
+        +maDauSach
+        +tenSach
+        +tacGia
+        +namXuatBan
+        +giaBia
+        +soLuong
+        +maVach
+        +moTa
+    }
+
+    class PhieuMuon {
+        +maPhieuMuon
+        +maVachPhieuMuon
+        +ngayLap
+        +tongSoSach
+    }
+
+    class ChiTietMuon {
+        +maChiTiet
+        +ngayMuon
+        +ngayPhaiTra
+        +ngayTra
+        +soTienPhat
+    }
+
+    class PhieuPhat {
+        +maPhieuPhat
+        +tongTienPhat
+    }
+
+    BanDoc "1" -- "0..*" PhieuMuon : mượn sách
+    PhieuMuon "1" *-- "1..5" ChiTietMuon : gồm
+    ChiTietMuon "0..*" -- "1" DauSach : đầu sách mượn
+    PhieuPhat "1" -- "1..*" ChiTietMuon : ghi nhận sách trả muộn
+```
+
+Giải thích quan hệ:
+
+- Một bạn đọc có thể có nhiều phiếu mượn.
+- Một phiếu mượn gồm từ 1 đến tối đa 5 chi tiết mượn.
+- Mỗi chi tiết mượn tương ứng với một đầu sách được mượn.
+- Phiếu phạt ghi nhận các chi tiết mượn bị trả muộn.
+- Không cần nối trực tiếp `PhieuPhat` với `PhieuMuon`, vì phiếu mượn có thể suy ra qua đường `PhieuPhat -> ChiTietMuon -> PhieuMuon`.
+- Khi in mã vạch phiếu mượn trên phiếu phạt, hệ thống lấy từ phiếu mượn chứa các chi tiết mượn bị phạt.
+

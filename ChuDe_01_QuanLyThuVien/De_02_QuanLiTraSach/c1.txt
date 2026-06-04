@@ -1,0 +1,42 @@
+Câu 1. Scenario chuẩn cho use case "Quản lí việc trả sách"
+
+Tên use case: Quản lí việc trả sách
+
+Tác nhân chính: Nhân viên thư viện
+
+Mục tiêu: Nhân viên ghi nhận việc trả sách của bạn đọc, cập nhật tình trạng sách đã trả, in lại phiếu mượn nếu còn sách đang mượn và in phiếu phạt nếu có sách trả muộn.
+
+Tiền điều kiện:
+- Nhân viên đã đăng nhập hệ thống.
+- Bạn đọc đã có thẻ bạn đọc.
+- Bạn đọc đang có ít nhất một sách đã mượn trong hệ thống.
+
+Hậu điều kiện:
+- Các sách được trả được cập nhật ngày trả.
+- Danh sách sách đang mượn của bạn đọc được cập nhật.
+- Nếu còn sách chưa trả, hệ thống in phiếu mượn thể hiện các sách còn đang mượn.
+- Nếu có sách trả muộn, hệ thống lập và in phiếu phạt.
+
+Luồng sự kiện chính:
+1. Nhân viên chọn menu trả sách.
+2. Hệ thống hiển thị giao diện trả sách.
+3. Nhân viên quét thẻ bạn đọc.
+4. Hệ thống tìm thông tin bạn đọc theo mã vạch.
+5. Hệ thống hiển thị thông tin chi tiết bạn đọc, danh sách sách mượn chưa trả và danh sách sách đã trả.
+6. Nhân viên quét lần lượt mã vạch các sách bạn đọc đem trả.
+7. Với mỗi sách được quét, hệ thống xác định dòng chi tiết mượn tương ứng đang chưa trả.
+8. Hệ thống cập nhật sách đó vào danh sách sách sẽ trả và rút sách đó khỏi danh sách sách đang mượn trên giao diện.
+9. Nhân viên lặp bước quét sách cho đến khi hết sách bạn đọc đem trả.
+10. Nhân viên click nút submit.
+11. Hệ thống ghi nhận ngày trả cho các sách được trả.
+12. Hệ thống kiểm tra từng sách được trả có quá hạn hay không.
+13. Nếu có sách trả muộn, hệ thống tính tiền phạt bằng 20% giá bìa sách cho từng sách trả muộn và lập phiếu phạt.
+14. Nếu bạn đọc còn sách đang mượn, hệ thống in phiếu mượn mới gồm thông tin bạn đọc, mã vạch phiếu mượn và danh sách sách còn đang mượn.
+15. Nếu có phiếu phạt, hệ thống in phiếu phạt gồm thông tin bạn đọc, mã vạch phiếu mượn, danh sách sách trả muộn và tổng tiền phạt.
+16. Use case kết thúc.
+
+Luồng ngoại lệ:
+- 4a. Nếu không tìm thấy bạn đọc theo mã vạch, hệ thống thông báo không tìm thấy bạn đọc và yêu cầu quét lại.
+- 7a. Nếu sách được quét không thuộc danh sách sách đang mượn của bạn đọc, hệ thống thông báo sách không hợp lệ và không thêm vào danh sách trả.
+- 10a. Nếu nhân viên submit khi chưa chọn sách nào để trả, hệ thống thông báo chưa có sách trả và yêu cầu quét sách.
+

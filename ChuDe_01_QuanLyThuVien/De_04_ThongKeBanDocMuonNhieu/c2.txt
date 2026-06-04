@@ -1,0 +1,71 @@
+Câu 2. Trích và vẽ biểu đồ lớp thực thể liên quan của module
+
+Mô tả nghiệp vụ tóm tắt:
+
+Module thống kê độc giả mượn nhiều cho phép nhân viên nhập khoảng thời gian thống kê. Hệ thống hiển thị danh sách độc giả đã mượn sách trong khoảng thời gian đó, sắp xếp theo tổng số lượng sách mượn giảm dần. Khi nhân viên chọn một độc giả, hệ thống hiển thị chi tiết các phiếu mượn của độc giả đó, gồm ngày mượn và tổng số sách của từng lần mượn.
+
+Nhận diện danh từ:
+
+- Nhân viên
+- Menu thống kê
+- Khoảng thời gian
+- Độc giả / bạn đọc
+- Phiếu mượn
+- Ngày mượn
+- Tổng số sách mượn
+- Danh sách thống kê
+
+Sàng lọc lớp thực thể:
+
+- Nhân viên: là tác nhân, không đưa vào lớp thực thể của module.
+- Menu thống kê, danh sách thống kê, khoảng thời gian: là thành phần giao diện hoặc tham số xử lý, không đưa vào lớp thực thể.
+- Bạn đọc: là lớp thực thể chính cần thống kê.
+- Phiếu mượn: là lớp thực thể dùng để tính tổng số sách mượn và hiển thị chi tiết từng lần mượn.
+- Đầu sách, chi tiết mượn: không cần trong module này vì đề không yêu cầu hiển thị từng sách cụ thể; tổng số sách lấy từ Phiếu mượn.
+
+Các lớp thực thể liên quan:
+
+1. BanDoc
+- maBanDoc
+- tenBanDoc
+- ngaySinh
+- diaChi
+- soDienThoai
+- maVach
+
+2. PhieuMuon
+- maPhieuMuon
+- maVachPhieuMuon
+- ngayLap
+- tongSoSach
+
+Biểu đồ lớp thực thể:
+
+```mermaid
+classDiagram
+    class BanDoc {
+        +maBanDoc
+        +tenBanDoc
+        +ngaySinh
+        +diaChi
+        +soDienThoai
+        +maVach
+    }
+
+    class PhieuMuon {
+        +maPhieuMuon
+        +maVachPhieuMuon
+        +ngayLap
+        +tongSoSach
+    }
+
+    BanDoc "1" -- "0..*" PhieuMuon : mượn sách
+```
+
+Giải thích quan hệ:
+
+- Một bạn đọc có thể có nhiều phiếu mượn.
+- Mỗi phiếu mượn thuộc về đúng một bạn đọc.
+- Tổng số lượng sách đã mượn của bạn đọc được tính bằng tổng `tongSoSach` của các phiếu mượn trong khoảng thời gian thống kê.
+- Khi click vào một bạn đọc, hệ thống lấy các phiếu mượn tương ứng để hiển thị ngày mượn và tổng số sách của từng lần mượn.
+

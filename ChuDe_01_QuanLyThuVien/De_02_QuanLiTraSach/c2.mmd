@@ -47,6 +47,5 @@ classDiagram
     BanDoc "1" -- "0..*" PhieuMuon : mượn sách
     PhieuMuon "1" *-- "1..5" ChiTietMuon : gồm
     ChiTietMuon "0..*" -- "1" DauSach : đầu sách mượn
-    PhieuMuon "1" -- "0..1" PhieuPhat : phát sinh
     PhieuPhat "1" -- "1..*" ChiTietMuon : ghi nhận sách trả muộn
 

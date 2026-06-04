@@ -1,0 +1,33 @@
+Câu 1. Scenario chuẩn cho use case "Thống kê độc giả mượn nhiều"
+
+Tên use case: Thống kê độc giả mượn nhiều
+
+Tác nhân chính: Nhân viên thư viện
+
+Mục tiêu: Nhân viên xem danh sách các độc giả mượn nhiều sách trong một khoảng thời gian và xem chi tiết các phiếu mượn của từng độc giả.
+
+Tiền điều kiện:
+- Nhân viên đã đăng nhập hệ thống.
+- Hệ thống có dữ liệu bạn đọc và phiếu mượn sách.
+
+Hậu điều kiện:
+- Hệ thống hiển thị danh sách độc giả mượn nhiều theo khoảng thời gian đã nhập.
+- Khi chọn một độc giả, hệ thống hiển thị danh sách phiếu mượn tương ứng của độc giả đó.
+
+Luồng sự kiện chính:
+1. Nhân viên chọn menu thống kê.
+2. Nhân viên chọn chức năng thống kê độc giả mượn nhiều.
+3. Hệ thống hiển thị giao diện nhập khoảng thời gian thống kê.
+4. Nhân viên nhập ngày bắt đầu và ngày kết thúc.
+5. Nhân viên click nút thống kê.
+6. Hệ thống kiểm tra tính hợp lệ của khoảng thời gian.
+7. Hệ thống tìm các độc giả có phát sinh phiếu mượn trong khoảng thời gian đã nhập.
+8. Hệ thống tính tổng số lượng sách đã mượn của từng độc giả.
+9. Hệ thống hiển thị danh sách độc giả theo thứ tự tổng số lượng sách mượn giảm dần. Mỗi dòng gồm: mã độc giả, tên độc giả, ngày sinh, địa chỉ, tổng số lượng sách đã mượn.
+10. Nhân viên click chọn một dòng độc giả.
+11. Hệ thống hiển thị danh sách các phiếu mượn của độc giả đó trong khoảng thời gian thống kê. Mỗi dòng gồm: ngày mượn, tổng số sách của từng lần mượn.
+
+Luồng ngoại lệ:
+- 6a. Nếu ngày bắt đầu lớn hơn ngày kết thúc, hệ thống thông báo khoảng thời gian không hợp lệ và yêu cầu nhập lại.
+- 7a. Nếu không có dữ liệu mượn sách trong khoảng thời gian đã nhập, hệ thống hiển thị danh sách rỗng và thông báo không có dữ liệu thống kê.
+
