@@ -1,0 +1,45 @@
+﻿%% De_21 - Thống kê món ăn bán chạy
+classDiagram
+
+    class KhachHang {
+        +maKhachHang
+        +tenKhachHang
+        +soDienThoai
+        +email
+        +diaChi
+    }
+
+
+    class MonAn {
+        +maMon
+        +loai
+        +tenMon
+        +moTa
+        +giaHienTai
+    }
+
+
+    class PhieuGoiMon {
+        +maPhieuGoi
+        +ngayGioGoi
+    }
+
+
+    class ChiTietGoiMon {
+        +donGia
+        +soLuong
+        +thanhTien
+    }
+
+
+    class HoaDon {
+        +maHoaDon
+        +ngayGioThanhToan
+        +tongTien
+    }
+
+    PhieuGoiMon "1" *-- "1..*" ChiTietGoiMon : gồm
+    ChiTietGoiMon "0..*" -- "0..1" MonAn : món ăn
+    PhieuGoiMon "1" -- "0..1" HoaDon : thanh toán
+    KhachHang "0..1" -- "0..*" HoaDon : nhận hóa đơn
+

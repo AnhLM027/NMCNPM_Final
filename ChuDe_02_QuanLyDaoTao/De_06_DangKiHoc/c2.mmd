@@ -1,0 +1,50 @@
+﻿%% De_06 - Nhập điểm theo lớp học phần
+classDiagram
+    class SinhVien {
+        +maSV
+        +matKhau
+        +tenSV
+        +ngaySinh
+        +khoa
+        +queQuan
+        +diaChi
+    }
+
+    class MonHoc {
+        +maMon
+        +tenMon
+        +soTinChi
+    }
+
+    class LopHocPhan {
+        +maLop
+        +tenLop
+        +soSVToiDa
+    }
+
+    class GiangVien {
+        +maGV
+        +tenGV
+    }
+
+    class DangKyHoc {
+        +maDangKy
+        +hocKy
+        +ngayDangKy
+        +tongSoTinChi
+    }
+
+    class Diem {
+        +diemThanhPhan1
+        +diemThanhPhan2
+        +diemThanhPhan3
+        +diemThi
+        +diemCuoiCung
+    }
+
+    MonHoc "1" *-- "0..*" LopHocPhan : mở lớp
+    GiangVien "1" -- "0..*" LopHocPhan : dạy
+    SinhVien "1" -- "0..*" DangKyHoc : đăng ký
+    LopHocPhan "1" -- "0..*" DangKyHoc : được đăng ký
+    DangKyHoc "1" *-- "0..1" Diem : lưu kết quả
+

@@ -1,0 +1,66 @@
+﻿%% De_65 - Thống kê trang phục được mượn nhiều
+classDiagram
+    class KhachHang {
+        +maKhachHang
+        +tenKhachHang
+        +soDienThoai
+        +diaChi
+    }
+
+
+    class ChungLoaiTrangPhuc {
+        +maChungLoai
+        +tenChungLoai
+    }
+
+
+    class TrangPhuc {
+        +maTrangPhuc
+        +tenTrangPhuc
+        +kieu
+        +soLuong
+        +giaTriGoc
+        +giaThue
+    }
+
+
+    class PhieuThue {
+        +maPhieuThue
+        +ngayThue
+        +tienCoc
+    }
+
+
+    class ChiTietThue {
+        +soLuong
+        +soLuongDaTra
+        +donGiaThue
+    }
+
+
+    class PhieuTra {
+        +maPhieuTra
+        +ngayTra
+        +tongTienThue
+        +tongTienPhat
+        +soTienKhachPhaiTra
+        +soTienTraLaiKhach
+    }
+
+
+    class ChiTietTra {
+        +soLuongTra
+        +soNgayThue
+        +tienThue
+        +tinhTrang
+        +tienPhat
+    }
+
+    ChungLoaiTrangPhuc "1" -- "0..*" TrangPhuc : phân loại
+    KhachHang "1" -- "0..*" PhieuThue : thuê
+    KhachHang "1" -- "0..*" PhieuTra : trả đồ
+    PhieuThue "1" *-- "1..*" ChiTietThue : gồm
+    ChiTietThue "0..*" -- "1" TrangPhuc : trang phục
+    PhieuTra "1" *-- "1..*" ChiTietTra : gồm
+    ChiTietTra "0..*" -- "1" ChiTietThue : trả cho dòng thuê
+

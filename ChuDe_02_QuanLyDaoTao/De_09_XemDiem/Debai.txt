@@ -1,0 +1,28 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 09
+Thời gian làm bài: 60 phút
+Khách hàng yêu cầu chúng ta phát triển một phần mềm quản lí kết quả học tập của sinh viên theo
+tín chỉ, được mô tả như sau:
+• Mỗi sinh viên (Mã SV, mật khẩu, tên, ngày sinh, khóa, quê quán, địa chỉ) được phép đăng kí
+tối thiểu 10 tín chỉ/học kì và tối đa 15 tín chỉ/học kì
+• Mỗi sinh viên được đăng kí nhiều môn học (mã môn, tên môn, số tín chỉ)
+• Mỗi môn học có thể có nhiều môn học yêu cầu sinh viên phải hoàn thành trước đó thì mới
+được đăng kí
+• Mỗi môn học có thể có nhiều lớp học phần (mã lớp, tên lớp, số sv tối đa, phòng học, khung
+giờ học cố định trong tuần)
+• Sinh viên không được phép đăng kí học hai lớp có trùng buổi học
+• Với mỗi môn học, một sinh viên chỉ được đăng kí vào 1 lớp xác định
+• Kết quả của sinh viên (điểm thành phần số 1, số 2, số 3, điểm thi, điểm cuối cùng=x% số1+
+y% số2 + z% số3 + w% điểm thi) được lưu theo từng môn học
+• Điểm trung bình của sinh viên trong học kì được tính bằng trung bình có trọng số là số tín
+chỉ từng môn học
+Anh/chị hãy thực hiện modul "Thống kê sinh viên khá giỏi" với các bước sau đây: quản lí đăng
+nhập →  chọn menu thống kê  →  chọn thống kê sinh viên giỏi →  trang kết quả hiện ra  danh sách
+SV: mã SV, tên SV, khóa học, học kì, tổng số tín chỉ đã học trong học kì, điểm trung bình môn cuối
+học kì,  sắp xếp theo điểm trung bình cả học kì, từ cao đến thấp. NV click vào 1 dòng của 1 SV thì
+hiện lên chi tiết bảng điểm từng môn học mà SV đã học trong học kì.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

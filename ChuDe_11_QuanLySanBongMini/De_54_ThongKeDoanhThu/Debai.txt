@@ -1,0 +1,46 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 54
+Thời gian làm bài: 60 phút
+Khách hàng yêu cầu anh/chị phát triển một phần mềm quản lí cho thuê sân bóng mini của một chủ
+sân bóng với mô tả như sau:
+• Sân bóng có nhiều sân con mini cho thuê. Tùy yêu cầu khách hàng mà có thể ghép 2 hay 4
+sân bé liền nhau thành 1 sân lớn cho thuê.
+• Mỗi sân có thể cho nhiều khách hàng (KH) thuê tại nhiều khung giờ khác nhau. Mỗi khách
+hàng có thể thuê nhiều sân khác nhau.
+• Khách hàng có thể thuê sân theo buổi trong tuần hoặc thuê theo tháng (vào một hoặc một số
+buổi cố định trong tuần, trong vòng mấy tháng cụ thể).
+• Khi làm hợp đồng thuê sân, khách hàng nhận được phiếu thuê sân. Trong đó, dòng đầu ghi
+ngày làm hợp đồng, thông tin chủ sân, thông tin của khách hàng. Các dòng tiếp theo, mỗi
+dòng ghi một sân mini với đầy đủ thông tin về sân, giá thuê một buổi, khung giờ thuê trong
+tuần, ngày bắt đầu, ngày kết thúc đợt thuê, tổng tiền thuê dự kiến. Dòng cuối cùng ghi tỏng
+số tiền thuê sân dự kiến
+• Khi đặt sân, khách hàng phải đặt cọc trước cho chủ sân ít nhất 10% tổng tiền thuê dự kiến.
+Và thông tin số tiền đặt cọc này cũng được ghi rõ trong phiếu đặt sân là đã thanh toán bao
+nhiêu tiền, vào ngày nào.
+• Khi khách hàng đến đá bóng tại sân, chủ sân có thể phục vụ nước uống giải khát và đồ ăn
+nhẹ. Mỗi buổi khách hàng dùng các loại mặt hàng nào, mỗi loại bao nhiêu chai (gói), hết
+tổng tiền bao nhiêu đều được cập nhật vào hệ thống. Khách hàng sẽ thanh toán luôn khoản
+chi phí phát sinh này vào cuối đợt thuê sân.
+• Khi thanh toán tiền thuê sân, khách hàng nhận được một hóa đơn ghi chi tiết thông tin thuê
+sân và chi phí thuê sân giống như phiếu đặt sân. Có thể có thêm một số buổi phát sinh hoặc
+phải đổi lịch theo yêu cầu khách hàng. Ngoài ra, phần dưới hóa đơn ghi rõ đồ ăn uống phát
+sinh theo từng buổi, mỗi buổi được liệt kê thành một bảng, trong đó mỗi dòng của bảng mô
+tả một mặt hàng: mã, tên, giá, số lượng dùng, thành tiền. Tổng số tiền từng buổi và tổng số
+tiền cho cả đợt đặt sân.
+• Quản lí sân (QL) phải nhập các mặt hàng (MH) bán kèm từ nhiều nhà cung cấp (mã, tên, địa
+chỉ, email, điện thoại, mô tả) khác nhau. Mỗi lần nhập hàng có hóa đơn nhập ghi rõ thông tin
+nhà cung cấp và danh sách các mặt hàng, mỗi dòng: id, tên, đơn giá, số lượng, thành tiền.
+Dòng cuối là tổng tiền.
+Modul "Thống kê doanh thu" với mô tả chi tiết nghiệp vụ: QL chọn menu thống kê doanh thu theo
+thời gian (tháng, quý, năm) → hệ thống hiện ô chọn thống kê theo tháng, quý, hoặc năm → QL
+click chọn theo tháng → hệ thống hiện lên thống kê doanh thu trong 12 tháng gần nhất dưới dạng
+bảng, mỗi dòng tương ứng với 1 tháng (tương ứng là quý, năm): tên tháng, tổng doanh thu, được
+sắp xếp theo chiều thời gian tháng (tương ứng là quý, năm) gần nhất đến tháng (tương ứng là quý,
+năm) cũ nhất. QL click vào 1 dòng của kết quả → hệ thống hện lên chi tiết các hóa đơn của khách
+hàng trong thờ gian của dòng click, mỗi hóa đơn trên 1 dòng: id, tên khách hàng, tên sân, ngày giờ,
+tổng tiền thanh toán.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

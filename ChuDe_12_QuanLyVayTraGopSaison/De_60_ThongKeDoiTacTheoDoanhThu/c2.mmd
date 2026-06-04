@@ -1,0 +1,60 @@
+﻿%% De_60 - Thống kê đối tác theo doanh số
+classDiagram
+
+    class DoiTac {
+        +maDoiTac
+        +tenDoiTac
+        +diaChiChiNhanh
+    }
+
+
+    class MatHang {
+        +maMatHang
+        +tenMatHang
+        +donViTinh
+        +giaNiemYet
+    }
+
+
+    class HopDongTraGop {
+        +maHopDong
+        +thongTinDaiDienCongTy
+        +ngayKi
+        +tongTien
+        +thoiHanVay
+        +laiSuatNam
+    }
+
+
+    class ChiTietHopDong {
+        +donGia
+        +soLuong
+        +thanhTien
+    }
+
+
+    class HoaDonThanhToanDoiTac {
+        +maHoaDon
+        +daiDienCongTy
+        +daiDienDoiTac
+        +ngayThanhToan
+        +tongTienThanhToan
+    }
+
+
+    class ChiTietThanhToanDoiTac {
+        +tenKhachHang
+        +ngayMua
+        +soLuong
+        +donGia
+        +thanhTien
+    }
+
+    DoiTac "1" -- "0..*" MatHang : bán
+    DoiTac "1" -- "0..*" HopDongTraGop : bán hàng qua
+    HopDongTraGop "1" *-- "1..*" ChiTietHopDong : gồm
+    ChiTietHopDong "0..*" -- "1" MatHang : mặt hàng
+    DoiTac "1" -- "0..*" HoaDonThanhToanDoiTac : nhận thanh toán
+    HoaDonThanhToanDoiTac "1" *-- "1..*" ChiTietThanhToanDoiTac : gồm
+    ChiTietThanhToanDoiTac "0..*" -- "1" MatHang : mặt hàng
+

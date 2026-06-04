@@ -1,0 +1,92 @@
+﻿%% De_09 - Câu 3: MVC Class Diagram cho module Thống kê sinh viên khá giỏi
+classDiagram
+    class FrmMenu {
+        -btnThongKeSinhVienKhaGioi: Button
+        +moFrmThongKeSinhVienKhaGioi(): void
+    }
+
+    class FrmThongKeSinhVienKhaGioi {
+        -controller: ThongKeSinhVienController
+        -cboHocKy: ComboBox
+        -tblSinhVien: Table
+        -tblBangDiemChiTiet: Table
+        -btnThongKe: Button
+        +chonHocKy(): void
+        +clickThongKe(): void
+        +clickChonSinhVien(maSV: String): void
+        +hienThiDanhSachSinhVien(dsSinhVien: List~SinhVien~): void
+        +hienThiBangDiemChiTiet(dsDangKyHoc: List~DangKyHoc~): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class ThongKeSinhVienController {
+        -sinhVienDAO: SinhVienDAO
+        -dangKyHocDAO: DangKyHocDAO
+        +laySinhVienKhaGioi(hocKy: String): List~SinhVien~
+        +layBangDiemChiTiet(maSV: String, hocKy: String): List~DangKyHoc~
+        +tinhDiemTrungBinhHocKy(dsDangKyHoc: List~DangKyHoc~): Double
+        +tinhTongSoTinChi(dsDangKyHoc: List~DangKyHoc~): Integer
+    }
+
+    class SinhVienDAO {
+        +getSinhVienKhaGioiTheoHocKy(hocKy: String): List~SinhVien~
+    }
+
+    class DangKyHocDAO {
+        +getBySinhVienVaHocKy(maSV: String, hocKy: String): List~DangKyHoc~
+    }
+
+    class SinhVien {
+        -maSV: String
+        -matKhau: String
+        -tenSV: String
+        -ngaySinh: Date
+        -khoa: String
+        -queQuan: String
+        -diaChi: String
+    }
+
+    class MonHoc {
+        -maMon: String
+        -tenMon: String
+        -soTinChi: Integer
+    }
+
+    class LopHocPhan {
+        -maLop: String
+        -tenLop: String
+        -soSVToiDa: Integer
+        -monHoc: MonHoc
+    }
+
+    class DangKyHoc {
+        -maDangKy: String
+        -sinhVien: SinhVien
+        -lopHocPhan: LopHocPhan
+        -diem: Diem
+        -hocKy: String
+        -ngayDangKy: Date
+        -tongSoTinChi: Integer
+    }
+
+    class Diem {
+        -diemThanhPhan1: Double
+        -diemThanhPhan2: Double
+        -diemThanhPhan3: Double
+        -diemThi: Double
+        -diemCuoiCung: Double
+    }
+
+    FrmMenu -- FrmThongKeSinhVienKhaGioi : moForm
+
+    FrmThongKeSinhVienKhaGioi o-- ThongKeSinhVienController : controller
+    ThongKeSinhVienController o-- SinhVienDAO : sinhVienDAO
+    ThongKeSinhVienController o-- DangKyHocDAO : dangKyHocDAO
+
+    SinhVienDAO -- SinhVien : traVe
+    DangKyHocDAO -- DangKyHoc : traVe
+
+    SinhVien "1" -- "0..*" DangKyHoc : sinhVien
+    LopHocPhan "1" -- "0..*" DangKyHoc : lopHocPhan
+    DangKyHoc "1" -- "0..1" Diem : diem
+    MonHoc "1" -- "0..*" LopHocPhan : monHoc

@@ -1,0 +1,30 @@
+﻿%% De_16 - Đặt bàn
+classDiagram
+    class Ban {
+        +maBan
+        +tenBan
+        +soLuongKhachToiDa
+        +moTa
+    }
+
+
+    class KhachHang {
+        +maKhachHang
+        +tenKhachHang
+        +soDienThoai
+        +email
+        +diaChi
+    }
+
+
+    class PhieuDatBan {
+        +maPhieuDat
+        +ngayDat
+        +gioDat
+        +soLuongKhach
+    }
+
+    Ban "0..*" -- "0..1" Ban : gộp thành bàn lớn
+    KhachHang "1" -- "0..*" PhieuDatBan : đặt bàn
+    PhieuDatBan "0..*" -- "1" Ban : đặt
+

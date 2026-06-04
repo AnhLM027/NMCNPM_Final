@@ -1,0 +1,45 @@
+﻿%% De_30 - Đăng kí thi đấu
+classDiagram
+    class GiaiDua {
+        +nam
+    }
+
+
+    class ChangDua {
+        +maChang
+        +tenChang
+        +soVongDua
+        +diaDiem
+        +thoiGian
+        +moTa
+    }
+
+
+    class DoiDua {
+        +maDoi
+        +tenDoi
+        +hang
+        +moTa
+    }
+
+
+    class TayDua {
+        +maTayDua
+        +tenTayDua
+        +ngaySinh
+        +quocTich
+        +tieuSu
+    }
+
+
+    class DangKyChangDua {
+        +maDangKy
+    }
+
+    GiaiDua "1" *-- "1..*" ChangDua : gồm
+    GiaiDua "1" -- "1..*" DoiDua : có đội tham gia
+    DoiDua "1" -- "1..*" TayDua : có
+    ChangDua "1" *-- "0..*" DangKyChangDua : nhận đăng ký
+    DangKyChangDua "0..*" -- "1" DoiDua : đội đăng ký
+    DangKyChangDua "0..*" -- "1" TayDua : tay đua
+

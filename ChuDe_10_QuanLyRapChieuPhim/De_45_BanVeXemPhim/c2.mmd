@@ -1,0 +1,75 @@
+﻿%% De_45 - Bán vé xem phim
+classDiagram
+    class RapChieu {
+        +maRap
+        +tenRap
+        +diaChi
+        +gioiThieu
+    }
+
+
+    class PhongChieu {
+        +maPhongChieu
+        +soLuongGhe
+        +dacDiemPhongChieu
+    }
+
+    class Ghe {
+        +maGhe
+        +soGhe
+    }
+
+
+    class Phim {
+        +maPhim
+        +tenPhim
+        +loaiPhim
+        +namSanXuat
+        +moTa
+    }
+
+
+    class SuatChieu {
+        +maSuatChieu
+        +ngayGioChieu
+        +trangThai
+    }
+
+
+    class MucGiaVe {
+        +maMucGia
+        +tenMucGia
+        +giaTien
+    }
+
+
+    class GiaGheTheoSuat {
+        +giaTien
+        +trangThaiGhe
+    }
+
+
+    class Ve {
+        +maVe
+        +uuDai
+        +giaTien
+    }
+
+
+    class HoaDon {
+        +maHoaDon
+        +tenKhachHang
+        +ngayLap
+        +tongSoVe
+        +tongTien
+    }
+
+    RapChieu "1" *-- "1..*" PhongChieu : có
+    PhongChieu "1" *-- "1..*" Ghe : có
+    Phim "1" -- "0..*" SuatChieu : được chiếu
+    PhongChieu "1" -- "0..*" SuatChieu : tổ chức
+    SuatChieu "1" *-- "0..*" GiaGheTheoSuat : định giá ghế
+    Ghe "1" -- "0..*" GiaGheTheoSuat : ghế
+    MucGiaVe "1" -- "0..*" GiaGheTheoSuat : mức giá
+    GiaGheTheoSuat "1" -- "0..1" Ve : được bán thành vé
+    HoaDon "1" *-- "0..*" Ve : gồm vé

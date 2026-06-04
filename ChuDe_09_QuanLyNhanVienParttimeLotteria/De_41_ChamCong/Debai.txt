@@ -1,0 +1,31 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 41
+Thời gian làm bài: 60 phút
+Chuỗi nhà hàng đồ ăn nhanh Lotteria đặt hàng anh chị phát triển một phần mềm giúp họ quản lí
+phân công và chấm công nhân viên làm thêm theo giờ (parttime) tại chuỗi cửa hàng của họ với mô
+tả như sau:
+• Chuỗi nhà hàng có nhiều nhà hàng. Mỗi nhà hàng có nhiều nhân viên làm theo giờ. Mỗi
+ngày làm việc có 2 ca, ca 1 từ 8-16h, ca 2 từ 16-24h. Mức tiền công theo giờ là giống nhau
+cho tất cả nhân viên làm theo giờ.
+• Mỗi nhân viên, sau khi kí hợp đồng, được đăng kí những buổi nào rảnh để có thể đến làm
+việc. Số buổi có thể làm việc trong mỗi tuần mà mỗi nhân viên đăng kí phải đạt ngưỡng tối
+thiểu theo quy định. Thông tin này có thể thay đổi hàng tuần, trước khi lên lịch làm việc cho
+tuần tiếp theo.
+• Quản lí sẽ dựa trên lịch đăng kí của từng nhân viên để lên lịch cho tuần tiếp theo. Đảm bảo
+mỗi ca có đủ N nhân viên làm việc. Nếu có ca nào đó mà số nhân viên đăng kí lớn hơn N,
+thì ưu tiên những nhân viên đang có số giờ làm ít hơn xếp trước. Lịch tuần tiếp theo sẽ được
+thông báo cho toàn bộ nhân viên để tiện chuẩn bị.
+• Khi đến làm việc, nhân viên quét thẻ checkin giờ vào làm, khi về, nhân viên quét thẻ
+checkout để về. 
+• Tiền lương nhân viên tính theo số giờ thực làm của nhân viên và được trả theo tuần. Ca nào
+nhân viên làm quá 8h thì mức tiền công cho phần thời gian đội thêm được tính thêm 20%. ca
+nào nhân viên đến muộn hoặc về sớm thì thời gian vắng mặt sẽ bị trừ tiền đội thêm 50%.
+Anh/chị hãy thực hiện modul "Checkin/Checkout" với các bước sau đây: Checkin và checkout có
+thể do NV quét thẻ, hoặc do QL trực tiếp cập nhật trên máy tính: QL chọn chức năng checkin (hoặc
+checkout) → Giao diện nhập mã NV hiện lên → QL nhập mã NV và click submit → Hệ thống lưu
+và báo thời điểm checkin (checkout) của NV là thời điểm hiện tại.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

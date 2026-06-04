@@ -1,0 +1,28 @@
+﻿%% De_38 - Thống kê doanh thu
+classDiagram
+    class KhachHang {
+        +maKhachHang
+        +tenKhachHang
+        +soCMT
+        +soDienThoai
+        +diaChi
+    }
+
+
+    class PhieuMuon {
+        +maPhieuMuon
+        +ngayMuon
+        +soLuongDauTruyenMuon
+    }
+
+
+    class HoaDonTra {
+        +maHoaDon
+        +ngayThanhToan
+        +tongTienThanhToan
+    }
+
+
+    KhachHang "1" -- "0..*" HoaDonTra : thanh toán
+    KhachHang "1" -- "0..*" PhieuMuon : mượn truyện
+    HoaDonTra "0..*" -- "1" PhieuMuon : thanh toán cho

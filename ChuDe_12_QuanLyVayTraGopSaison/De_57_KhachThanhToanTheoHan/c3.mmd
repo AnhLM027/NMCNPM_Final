@@ -1,0 +1,157 @@
+%% De_57 - Câu 3: MVC Class Diagram cho module Cho khách thanh toán theo hạn
+classDiagram
+    class FrmMenu {
+        -btnNhanThanhToan: Button
+        +moFrmTimHopDong(): void
+    }
+
+    class FrmTimHopDong {
+        -controller: ThanhToanTheoHanController
+        -txtMaHopDong: TextField
+        -btnTim: Button
+        +nhapMaHopDong(maHopDong: String): void
+        +clickTim(): void
+        +moFrmHoaDonThanhToan(hopDong: HopDongTraGop): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class FrmHoaDonThanhToan {
+        -controller: ThanhToanTheoHanController
+        -tblMatHang: Table
+        -tblDotThanhToan: Table
+        -txtSoTienThanhToan: TextField
+        -cboHinhThucThanhToan: ComboBox
+        -lblTongDuNoConLai: Label
+        -btnLapHoaDon: Button
+        -btnXacNhan: Button
+        +hienThiThongTinHopDong(hopDong: HopDongTraGop): void
+        +hienThiLichSuThanhToan(dsHoaDon: List~HoaDonThanhToan~): void
+        +chonDotThanhToan(dsMaDot: List~String~): void
+        +nhapSoTienThanhToan(soTien: Double): void
+        +clickLapHoaDon(): void
+        +hienThiHoaDonThanhToan(hoaDon: HoaDonThanhToan): void
+        +clickXacNhan(): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class ThanhToanTheoHanController {
+        -hopDongTraGopDAO: HopDongTraGopDAO
+        -dotThanhToanDAO: DotThanhToanDAO
+        -hoaDonThanhToanDAO: HoaDonThanhToanDAO
+        -chiTietThanhToanDotDAO: ChiTietThanhToanDotDAO
+        +timHopDong(maHopDong: String): HopDongTraGop
+        +layLichSuThanhToan(maHopDong: String): List~HoaDonThanhToan~
+        +layCacDotChuaHoanThanh(maHopDong: String): List~DotThanhToan~
+        +lapHoaDonThanhToan(maHopDong: String, dsMaDot: List~String~, soTienThanhToan: Double, hinhThucThanhToan: String): HoaDonThanhToan
+        +phanBoTienThanhToan(hoaDon: HoaDonThanhToan, dsDot: List~DotThanhToan~, soTienThanhToan: Double): List~ChiTietThanhToanDot~
+        +capNhatDuNoVaTrangThai(dsDot: List~DotThanhToan~, dsChiTiet: List~ChiTietThanhToanDot~): void
+        +luuHoaDonThanhToan(hoaDon: HoaDonThanhToan): Boolean
+        +inHoaDonThanhToan(hoaDon: HoaDonThanhToan): void
+    }
+
+    class HopDongTraGopDAO {
+        +getById(maHopDong: String): HopDongTraGop
+    }
+
+    class DotThanhToanDAO {
+        +getByHopDong(maHopDong: String): List~DotThanhToan~
+        +getChuaHoanThanh(maHopDong: String): List~DotThanhToan~
+        +updateAll(dsDot: List~DotThanhToan~): void
+    }
+
+    class HoaDonThanhToanDAO {
+        +getByHopDong(maHopDong: String): List~HoaDonThanhToan~
+        +insert(hoaDon: HoaDonThanhToan): void
+    }
+
+    class ChiTietThanhToanDotDAO {
+        +insertAll(dsChiTiet: List~ChiTietThanhToanDot~): void
+    }
+
+    class KhachHang {
+        -maKhachHang: String
+        -tenKhachHang: String
+        -soDienThoai: String
+        -diaChi: String
+    }
+
+    class DoiTac {
+        -maDoiTac: String
+        -tenDoiTac: String
+        -diaChiChiNhanh: String
+    }
+
+    class MatHang {
+        -maMatHang: String
+        -tenMatHang: String
+        -donViTinh: String
+        -giaNiemYet: Double
+    }
+
+    class HopDongTraGop {
+        -maHopDong: String
+        -khachHang: KhachHang
+        -doiTac: DoiTac
+        -thongTinDaiDienCongTy: String
+        -ngayKi: Date
+        -tongTien: Double
+        -thoiHanVay: Integer
+        -laiSuatNam: Double
+        -dsChiTietHopDong: List~ChiTietHopDong~
+        -dsDotThanhToan: List~DotThanhToan~
+    }
+
+    class ChiTietHopDong {
+        -matHang: MatHang
+        -donGia: Double
+        -soLuong: Integer
+        -thanhTien: Double
+    }
+
+    class DotThanhToan {
+        -ngayPhaiThanhToan: Date
+        -tongTienThanhToan: Double
+        -soTienDaThanhToan: Double
+        -tongDuNoConLai: Double
+        -trangThaiThanhToan: String
+    }
+
+    class HoaDonThanhToan {
+        -maHoaDon: String
+        -hopDongTraGop: HopDongTraGop
+        -ngayThanhToan: Date
+        -tongTienThanhToan: Double
+        -tongDuNoConLai: Double
+        -hinhThucThanhToan: String
+        -dsChiTietThanhToanDot: List~ChiTietThanhToanDot~
+    }
+
+    class ChiTietThanhToanDot {
+        -dotThanhToan: DotThanhToan
+        -soTienThanhToan: Double
+    }
+
+    FrmMenu -- FrmTimHopDong
+    FrmTimHopDong -- FrmHoaDonThanhToan
+
+    FrmTimHopDong o-- ThanhToanTheoHanController : controller
+    FrmHoaDonThanhToan o-- ThanhToanTheoHanController : controller
+
+    ThanhToanTheoHanController o-- HopDongTraGopDAO : hopDongTraGopDAO
+    ThanhToanTheoHanController o-- DotThanhToanDAO : dotThanhToanDAO
+    ThanhToanTheoHanController o-- HoaDonThanhToanDAO : hoaDonThanhToanDAO
+    ThanhToanTheoHanController o-- ChiTietThanhToanDotDAO : chiTietThanhToanDotDAO
+
+    HopDongTraGopDAO -- HopDongTraGop : traVe
+    DotThanhToanDAO -- DotThanhToan : traVe
+    HoaDonThanhToanDAO -- HoaDonThanhToan : traVe
+    ChiTietThanhToanDotDAO -- ChiTietThanhToanDot : traVe
+
+    KhachHang "1" -- "0..*" HopDongTraGop : khachHang
+    DoiTac "1" -- "0..*" HopDongTraGop : doiTac
+    HopDongTraGop "1" o-- "1..*" ChiTietHopDong : dsChiTietHopDong
+    MatHang "1" -- "0..*" ChiTietHopDong : matHang
+    HopDongTraGop "1" o-- "1..*" DotThanhToan : dsDotThanhToan
+    HopDongTraGop "1" -- "0..*" HoaDonThanhToan : hoaDonThanhToan
+    HoaDonThanhToan "1" o-- "1..*" ChiTietThanhToanDot : dsChiTietThanhToanDot
+    DotThanhToan "1" -- "0..*" ChiTietThanhToanDot : dotThanhToan

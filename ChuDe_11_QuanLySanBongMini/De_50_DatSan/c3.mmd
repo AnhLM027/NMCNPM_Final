@@ -1,0 +1,173 @@
+%% De_50 - Câu 3: MVC Class Diagram cho module Đặt sân
+classDiagram
+    class FrmMenu {
+        -btnDatSan: Button
+        +moFrmTimSanTrong(): void
+    }
+
+    class FrmTimSanTrong {
+        -controller: DatSanController
+        -txtKhungGio: TextField
+        -cboLoaiSan: ComboBox
+        -tblSanTrong: Table
+        -btnTim: Button
+        -btnChonSan: Button
+        +nhapKhungGio(khungGio: String): void
+        +chonLoaiSan(loaiSan: String): void
+        +clickTim(): void
+        +clickChonSan(maSan: String): void
+        +hienThiDanhSachSanTrong(dsSan: List~SanMini~): void
+        +moFrmTimKhachHang(maSan: String, khungGio: String): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class FrmTimKhachHang {
+        -controller: DatSanController
+        -txtTenKhachHang: TextField
+        -tblKhachHang: Table
+        -btnTim: Button
+        -btnThemMoi: Button
+        -btnChonKhachHang: Button
+        +nhapTenKhachHang(tenKhachHang: String): void
+        +clickTim(): void
+        +clickThemMoi(): void
+        +clickChonKhachHang(maKhachHang: String): void
+        +hienThiDanhSachKhachHang(dsKhachHang: List~KhachHang~): void
+        +moFrmNhapThongTinKhachHang(): void
+        +moFrmNhapDotDatSan(maKhachHang: String): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class FrmNhapThongTinKhachHang {
+        -controller: DatSanController
+        -txtTenKhachHang: TextField
+        -txtSoDienThoai: TextField
+        -btnLuu: Button
+        +nhapThongTinKhachHang(tenKhachHang: String, soDienThoai: String): void
+        +clickLuu(): void
+        +moFrmNhapDotDatSan(maKhachHang: String): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class FrmNhapDotDatSan {
+        -controller: DatSanController
+        -dtNgayBatDau: DatePicker
+        -dtNgayKetThuc: DatePicker
+        -btnXacNhan: Button
+        +chonNgayBatDau(ngayBatDau: Date): void
+        +chonNgayKetThuc(ngayKetThuc: Date): void
+        +clickXacNhan(): void
+        +moFrmPhieuDatSan(phieuDatSan: PhieuDatSan): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class FrmPhieuDatSan {
+        -controller: DatSanController
+        -tblChiTietDatSan: Table
+        -lblThongTinKhachHang: Label
+        -lblThongTinSan: Label
+        -lblTongSoBuoi: Label
+        -lblTongTienDuKien: Label
+        -lblSoTienDatCoc: Label
+        -btnXacNhan: Button
+        +hienThiPhieuDatSan(phieuDatSan: PhieuDatSan): void
+        +clickXacNhan(): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class DatSanController {
+        -sanMiniDAO: SanMiniDAO
+        -khachHangDAO: KhachHangDAO
+        -phieuDatSanDAO: PhieuDatSanDAO
+        -chiTietDatSanDAO: ChiTietDatSanDAO
+        +timSanTrong(khungGio: String, loaiSan: String): List~SanMini~
+        +timKhachHangTheoTen(tenKhachHang: String): List~KhachHang~
+        +themKhachHang(tenKhachHang: String, soDienThoai: String): KhachHang
+        +taoPhieuDatSan(maKhachHang: String, maSan: String, khungGio: String, ngayBatDau: Date, ngayKetThuc: Date): PhieuDatSan
+        +tinhTongSoBuoi(khungGio: String, ngayBatDau: Date, ngayKetThuc: Date): Integer
+        +tinhTongTienDuKien(giaThueMotBuoi: Double, tongSoBuoi: Integer): Double
+        +tinhSoTienDatCoc(tongTienThueDuKien: Double): Double
+        +luuPhieuDatSan(phieuDatSan: PhieuDatSan): Boolean
+        +inPhieuDatSan(phieuDatSan: PhieuDatSan): void
+    }
+
+    class SanMiniDAO {
+        +getSanTrong(khungGio: String, loaiSan: String): List~SanMini~
+        +getById(maSan: String): SanMini
+    }
+
+    class KhachHangDAO {
+        +searchByTen(tenKhachHang: String): List~KhachHang~
+        +getById(maKhachHang: String): KhachHang
+        +insert(khachHang: KhachHang): void
+    }
+
+    class PhieuDatSanDAO {
+        +insert(phieuDatSan: PhieuDatSan): void
+    }
+
+    class ChiTietDatSanDAO {
+        +insertAll(dsChiTiet: List~ChiTietDatSan~): void
+    }
+
+    class SanMini {
+        -maSan: String
+        -tenSan: String
+        -loaiSan: String
+        -giaThueMotBuoi: Double
+    }
+
+    class KhachHang {
+        -maKhachHang: String
+        -tenKhachHang: String
+        -soDienThoai: String
+    }
+
+    class PhieuDatSan {
+        -maPhieuDat: String
+        -khachHang: KhachHang
+        -ngayLamHopDong: Date
+        -thongTinChuSan: String
+        -soTienDatCoc: Double
+        -ngayDatCoc: Date
+        -tongTienThueDuKien: Double
+        -dsChiTietDatSan: List~ChiTietDatSan~
+    }
+
+    class ChiTietDatSan {
+        -sanMini: SanMini
+        -giaThueMotBuoi: Double
+        -khungGioThueTrongTuan: String
+        -ngayBatDau: Date
+        -ngayKetThuc: Date
+        -tongSoBuoi: Integer
+        -tongTienDuKien: Double
+    }
+
+    FrmMenu -- FrmTimSanTrong
+    FrmTimSanTrong -- FrmTimKhachHang
+    FrmTimKhachHang -- FrmNhapThongTinKhachHang
+    FrmTimKhachHang -- FrmNhapDotDatSan
+    FrmNhapThongTinKhachHang -- FrmNhapDotDatSan
+    FrmNhapDotDatSan -- FrmPhieuDatSan
+
+    FrmTimSanTrong o-- DatSanController : controller
+    FrmTimKhachHang o-- DatSanController : controller
+    FrmNhapThongTinKhachHang o-- DatSanController : controller
+    FrmNhapDotDatSan o-- DatSanController : controller
+    FrmPhieuDatSan o-- DatSanController : controller
+
+    DatSanController o-- SanMiniDAO : sanMiniDAO
+    DatSanController o-- KhachHangDAO : khachHangDAO
+    DatSanController o-- PhieuDatSanDAO : phieuDatSanDAO
+    DatSanController o-- ChiTietDatSanDAO : chiTietDatSanDAO
+
+    SanMiniDAO -- SanMini : traVe
+    KhachHangDAO -- KhachHang : traVe
+    PhieuDatSanDAO -- PhieuDatSan : traVe
+    ChiTietDatSanDAO -- ChiTietDatSan : traVe
+
+    SanMini "0..*" -- "0..1" SanMini : sanGhep
+    KhachHang "1" -- "0..*" PhieuDatSan : khachHang
+    PhieuDatSan "1" o-- "1..*" ChiTietDatSan : dsChiTietDatSan
+    SanMini "1" -- "0..*" ChiTietDatSan : sanMini

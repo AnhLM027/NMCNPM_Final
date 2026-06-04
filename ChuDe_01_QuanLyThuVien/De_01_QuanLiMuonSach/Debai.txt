@@ -1,0 +1,27 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 01
+Thời gian làm bài: 60 phút
+Khách hàng yêu cầu chúng ta phát triển một phần mềm quản lí thư viện, được mô tả như sau:
+• Mỗi đầu sách (Mã, tên, tác giả, năm xuất bản, giá bìa, số lượng, mã vạch, mô tả) có thể được
+mượn nhiều lần khác nhau bởi nhiều bạn đọc khác nhau
+• Mỗi bạn đọc có một thẻ bạn đọc chứa mã, tên, ngày sinh, địa chỉ, số điện thoại, mã vạch của
+bạn đọc đó
+• Mỗi lần mượn được mượn tối đa 5 quyển sách, và tổng số sách đang mượn bởi một người
+cũng không được quá 5 quyển
+• Thời gian tối đa mượn 1 quyển sách là 1 tháng kể từ ngày mượn quyển đó, nếu trả sau thời
+hạn này thì sẽ bị phạt 20% giá trị bìa sách.
+• Mỗi lần trả sách có thể trả một phần hoặc toàn bộ số lượng sách đang mượn
+• Khi mượn sách mới, thủ thư vẫn xem được danh sách các sách mà một độc giả đã mượn và
+trả rồi hoặc chưa trả trước đấy.
+Anh/chị hãy thực hiện modul "Quản lí việc mượn sách" với các bước sau đây: Nhân viên chọn
+menu cho mượn sách  →  quét thẻ độc giả để lấy thông tin độc giả →  thông tin chi tiết độc giả hiện
+lên + danh sách các sách mượn chưa trả + danh sách sách mượn đã trả →  nhân viên quét lần lượt
+các sách được chọn mượn →  danh sách sách mượn được bổ sung thêm cho đến khi hết sách chọn
+mượn (hoặc tối đa 5 quyển) thì submit →  in ra phiếu mượn chứa mã, tên, mã vạch độc giả, mã
+vạch phiếu mượn, và danh sách sách còn mượn, mỗi đầu sách trên một dòng: mã, tên sách, tác giả,
+mã vạch, ngày mượn, ngày phải trả và dòng cuối cùng ghi tổng số sách đang mượn.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

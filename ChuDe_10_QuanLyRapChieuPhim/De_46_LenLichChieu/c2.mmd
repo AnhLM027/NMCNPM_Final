@@ -1,0 +1,49 @@
+﻿%% De_46 - Lên lịch chiếu
+classDiagram
+    class PhongChieu {
+        +maPhongChieu
+        +soLuongGhe
+        +dacDiemPhongChieu
+    }
+
+    class Ghe {
+        +maGhe
+        +soGhe
+    }
+
+
+    class Phim {
+        +maPhim
+        +tenPhim
+        +loaiPhim
+        +namSanXuat
+        +moTa
+    }
+
+
+    class SuatChieu {
+        +maSuatChieu
+        +ngayGioChieu
+        +trangThai
+    }
+
+
+    class MucGiaVe {
+        +maMucGia
+        +tenMucGia
+        +giaTien
+    }
+
+
+    class GiaGheTheoSuat {
+        +giaTien
+        +trangThaiGhe
+    }
+
+    PhongChieu "1" *-- "1..*" Ghe : có
+    Phim "1" -- "0..*" SuatChieu : được chiếu
+    PhongChieu "1" -- "0..*" SuatChieu : tổ chức
+    MucGiaVe "1" -- "0..*" SuatChieu : giá mặc định
+    SuatChieu "1" *-- "0..*" GiaGheTheoSuat : định giá ghế
+    Ghe "1" -- "0..*" GiaGheTheoSuat : ghế
+    MucGiaVe "1" -- "0..*" GiaGheTheoSuat : mức giá

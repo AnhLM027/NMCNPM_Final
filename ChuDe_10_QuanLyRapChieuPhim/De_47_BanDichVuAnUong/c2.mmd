@@ -1,0 +1,28 @@
+﻿%% De_47 - Bán vé dịch vụ ăn uống
+classDiagram
+
+    class MatHangAnUong {
+        +maMatHang
+        +tenMatHang
+        +kichCo
+        +donGia
+    }
+
+
+    class HoaDon {
+        +maHoaDon
+        +ngayLap
+        +tongTien
+    }
+
+
+    class ChiTietDichVu {
+        +donGia
+        +soLuong
+        +uuDai
+        +thanhTien
+    }
+
+    HoaDon "1" *-- "0..*" ChiTietDichVu : gồm dịch vụ
+    ChiTietDichVu "0..*" -- "1" MatHangAnUong : mặt hàng
+

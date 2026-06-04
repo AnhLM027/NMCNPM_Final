@@ -1,0 +1,31 @@
+﻿%% De_14 - Thống kê doanh thu theo địa điểm
+classDiagram
+    class Tour {
+        +maTour
+        +tenTour
+        +noiXuatPhat
+        +noiDen
+        +moTa
+    }
+
+
+    class DotXuatPhat {
+        +maDotXuatPhat
+        +ngayGioXuatPhat
+        +giaTour
+        +soChoTrong
+    }
+
+
+    class HoaDonVe {
+        +maHoaDon
+        +ngayLap
+        +soLuongKhach
+        +giaVe
+        +tenKhachDaiDien
+        +tongTienThanhToan
+    }
+
+    Tour "1" *-- "1..*" DotXuatPhat : xuất phát theo ngày
+    DotXuatPhat "1" -- "0..*" HoaDonVe : được mua
+

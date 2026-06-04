@@ -1,0 +1,44 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 56
+Thời gian làm bài: 60 phút
+Hãng cho vay trả góp Saison đặt hàng anh chị phát triển một phần mềm giúp họ quản lí khách hàng
+vay trả góp tại chuỗi cửa hàng của họ với mô tả như sau:
+• Hãng hợp tác với nhiều đối tác - ĐT, là các công ty bán lẻ các mặt hàng - MH với nhiều
+chủng loại từ điện thoại, máy tính, đồ điện tử, điện lạnh, gia dụng, ô tô, bất động sản...
+• Khi khách hàng - KH mua một hay một số MH của ĐT mà có nhu cầu sử dụng dịch vụ trả
+góp, nhân viên sẽ làm thủ tục kí hợp đồng - HĐ vay trả góp cho KH đó. HĐ chứa thông tin
+địa diện công ty, thông tin KH, thông tin ĐT, ngày kí, và danh sách các mặt hàng, mỗi mặt
+hàng trên 1 dòng: mã, tên, đơn vị tính, đơn giá, số lượng, thành tiền. Dòng cuối là tổng tiền
+và thời hạn vay. Tiếp theo là danh sách các thời điểm thanh toán, mỗi đợt trên 1 dòng: ngày
+phải thanh toán, tổng tiền thanh toán, tổng dư nợ còn lại.
+• Mỗi MH có giá niêm yết của ĐT riêng, công ty thanh toán cho ĐT sẽ được chiết khấu giảm
+giá mức 1-5%, công ty thu lại của khách hàng theo lãi suất 1-20%/năm dựa trên giá niêm yết
+của MH.
+• KH có thể thanh toán tiền trả góp cho mỗi HĐ mỗi tháng một lần, trong thời gian tùy chọn
+của hợp đồng.
+• KH có thể thanh toán trước hạn từng tháng nhưng giá trị thanh toán không đổi (không được
+giảm lãi)
+• Nếu KH thanh toán muộn so với thời hạn hàng tháng, thì khoản dư nợ trễ hạn được hình vào
+nợ gốc và tính lãi theo nợ gốc.
+• Công ty có thể thanh toán tiền MH cho ĐT theo từng MH hoặc theo từng đợt trong khoảng
+thời gian 1 tuần, 1 tháng... Mỗi lần thanh toán đều lưu hóa đơn đầy đủ thông tin người đại
+diện công ty, đại diện đối tác, ngày thanh toán, tổng tiền thanh toán và danh sách các MH
+được thanh toán, mỗi MH của một KH trên 1 dòng: mã, tên MH, tên KH, ngày mua, đơn vị
+tính, số lượng, đơn giá, thành tiền.
+Modul “Kí hợp đồng” được mô tả như sau: NV chọn chức năng kí HĐ mới với KH → Giao diện
+tìm KH hiện lên → NV nhập tên KH hoặc một phần tên KH và click tìm → Giao diện hiện lên danh
+sách các KH có tên chứa từ khóa vừa nhập -> NV chọn đúng KH (nếu không có thì snag giao diện
+nhập thông tin KH mới để nhập rồi tiếp tục) → Giao diện tìm ĐT hiện lên → NV nhập tên ĐT hoặc
+một phần tên ĐT và click tìm → Giao diện hiện lên danh sách các ĐT có tên chứa từ khóa vừa nhập
+-> Chọn đúng ĐT -> Lặp lại các bước sau cho hết các MH do KH mua: Giao diện tìm MH hiện lên
+→ NV nhập tên MH hoặc một phần tên MH và click tìm → Giao diện hiện lên danh sách các H có
+tên chứa từ khóa vừa nhập -> Chọn đúng MH và nhập số lượng, đơn giá -> Sau khi xong hết các
+mặt hàng, NV chọn tiếp tục -> Giao diện nhập thời hạn vay và lãi suất vay -> Hệ thống tự động tính
+ra các thời điểm phải thanh toán hàng tháng và số tiền thanh toán dưới dạng bảng, mỗi dòng tương
+ứng: thời điểm phải thanh toán, tổng tiền phải thanh toán, dư nợ còn lại → NV xác nhận lại với KH
+và click lưu → Hệ thống lưu lại và báo thành công, in HĐ ra cho KH.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

@@ -1,0 +1,66 @@
+﻿%% De_52 - Cập nhật các mặt hàng đã dùng của buổi thuê
+classDiagram
+    class SanMini {
+        +maSan
+        +tenSan
+        +loaiSan
+        +giaThueMotBuoi
+    }
+
+
+    class KhachHang {
+        +maKhachHang
+        +tenKhachHang
+        +soDienThoai
+    }
+
+
+    class PhieuDatSan {
+        +maPhieuDat
+        +ngayLamHopDong
+        +thongTinChuSan
+        +soTienDatCoc
+        +ngayDatCoc
+        +tongTienThueDuKien
+    }
+
+
+    class ChiTietDatSan {
+        +giaThueMotBuoi
+        +khungGioThueTrongTuan
+        +ngayBatDau
+        +ngayKetThuc
+        +tongSoBuoi
+        +tongTienDuKien
+    }
+
+
+    class BuoiThueSan {
+        +ngayThue
+        +khungGio
+        +tongTienHang
+    }
+
+
+    class MatHang {
+        +maMatHang
+        +tenMatHang
+        +donGia
+        +soLuongTon
+    }
+
+
+    class ChiTietSuDungHang {
+        +gia
+        +soLuongDung
+        +thanhTien
+    }
+
+    SanMini "0..*" -- "0..1" SanMini : ghép thành sân lớn
+    KhachHang "1" -- "0..*" PhieuDatSan : đặt sân
+    PhieuDatSan "1" *-- "1..*" ChiTietDatSan : gồm
+    ChiTietDatSan "0..*" -- "1" SanMini : sân thuê
+    PhieuDatSan "1" *-- "0..*" BuoiThueSan : phát sinh buổi thuê
+    BuoiThueSan "1" *-- "0..*" ChiTietSuDungHang : dùng hàng
+    ChiTietSuDungHang "0..*" -- "1" MatHang : mặt hàng
+

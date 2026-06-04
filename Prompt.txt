@@ -1,0 +1,45 @@
+Câu 1:
+"Đóng vai là một chuyên gia Phân tích Thiết kế Hệ thống, hãy viết một Kịch bản chuẩn (Scenario) cho Use Case: [Nhập tên Use Case vào đây] dựa trên mô tả nghiệp vụ sau: [Nhập mô tả tóm tắt vào đây].
+Vui lòng trình bày kịch bản theo đúng cấu trúc chuẩn bao gồm:
+Tên Use Case
+Tác nhân (Actors): Liệt kê những người dùng hoặc hệ thống bên ngoài tương tác với chức năng này.
+Điều kiện tiên quyết (Pre-conditions): Trạng thái mà hệ thống phải đáp ứng trước khi kịch bản bắt đầu.
+Đảm bảo kết quả (Post-conditions): Trạng thái của hệ thống sau khi kịch bản kết thúc thành công."
+Kịch bản chính (Main Success Scenario): Liệt kê các bước thực hiện tuần tự khi mọi việc diễn ra thành công. Yêu cầu viết bằng câu chủ động, chỉ rõ "Tác nhân làm gì" và "Hệ thống phản hồi thế nào". Mỗi bước trong scenario nên là một hành động của actor hoặc một phản hồi tổng hợp của hệ thống, không phải từng dòng lệnh xử lý bên trong. Nếu hệ thống làm nhiều việc liên tiếp mà người dùng chỉ thấy một kết quả thì gộp lại.
+Kịch bản ngoại lệ/Rẽ nhánh (Extensions/Exceptions): Mô tả các tình huống lỗi hoặc khi người dùng thay đổi quyết định của nghiệp vụ modul, kèm theo cách hệ thống xử lý.
+Câu 2:
+Theo phương pháp phân tích hướng đối tượng, quá trình trích xuất và vẽ biểu đồ lớp thực thể bằng phương pháp trích xuất danh từ được thực hiện qua các bước sau:
+Mô tả nghiệp vụ: Viết tóm tắt kịch bản của modul thành một đoạn văn duy nhất.
+Nhận diện danh từ: Liệt kê toàn bộ các danh từ xuất hiện trong đoạn văn đó (ví dụ: nhân viên, menu, độc giả, thẻ, sách, phiếu mượn, mã vạch...).
+Sàng lọc và chốt lớp thực thể: Bỏ đi các danh từ nằm ngoài phạm vi hệ thống (nhân viên), các thành phần giao diện (menu), và chuyển các danh từ trừu tượng thành thuộc tính (mã vạch, thông tin, ngày mượn...). Các danh từ cốt lõi còn lại (Độc giả, Sách, Phiếu mượn) chính là các lớp thực thể.
+Vẽ biểu đồ lớp thực thể pha phân tích: Gán các thuộc tính tương ứng cho từng lớp thực thể vừa tìm được, xác định mối quan hệ (multiplicity) giữa chúng và biểu diễn thành một biểu đồ lớp hoàn chỉnh.
+Chỉ vẽ các lớp thực thể liên quan tới modul.
+Thể hiện rõ các quan hệ như aggregation, composition, association.
+Vẽ bằng mermaid.
+Câu 3:
+Phần A: Thiết kế giao diện (UI Mockup)
+- Trước khi vẽ giao diện, hãy xác định module này cần bao nhiêu giao diện/form. Không được chỉ vẽ 1 màn hình nếu luồng nghiệp vụ có nhiều bước khác nhau. Hãy liệt kê rõ tên từng giao diện theo dạng: 
+	+ FrmMenu: giao diện menu chọn chức năng
++ Frm...: giao diện chính xử lý nghiệp vụ
++ Frm...: giao diện tìm kiếm/chọn đối tượng nếu cần
++ Frm...: giao diện xác nhận/in phiếu/hóa đơn/kết quả nếu có
+- Chỉ tạo các giao diện thật sự cần thiết theo luồng nghiệp vụ. Không tách quá nhỏ các bảng/danh sách nếu chúng có thể nằm chung trong một form chính. Ví dụ: danh sách đang mượn, danh sách đã trả, danh sách chọn mượn mới có thể là các bảng trong cùng một form chính, không cần tách thành 3 form riêng.
+- Mỗi màn hình/trạng thái mà người dùng nhìn thấy khác nhau thì thiết kế thành một giao diện riêng. Không vẽ tất cả vào một màn hình vì sẽ rối và không phản ánh đúng luồng thực tế.
+- Vẽ phác thảo giao diện của màn hình chính cho module này bằng các ký tự ASCII (ASCII Art).
+- Giao diện phải thể hiện rõ các thành phần cần thiết đúng như luồng kịch bản đã mô tả (ví dụ: ô text nhập liệu, các nút bấm thao tác, các bảng/danh sách hiển thị dữ liệu).
+- Giao diện phải có tính logic, dễ nhìn, đầy đủ thông tin yêu cầu của đề bài.
+Lưu ý quan trọng:
+Không viết lan man.
+Không thiết kế giao diện quá hiện đại hoặc dùng mô tả UI chung chung.
+Phải vẽ bằng ASCII Art, không chỉ mô tả bằng chữ.
+Các thành phần giao diện phải bám sát đúng luồng kịch bản nghiệp vụ.
+Nếu có bước tìm kiếm/chọn đối tượng như tìm khách hàng, tìm sách, tìm hàng hóa, chọn lớp, chọn tour, chọn bàn, chọn sân... thì phải thể hiện rõ ô tìm kiếm, nút tìm, bảng kết quả và nút chọn.
+Nếu có bảng dữ liệu, phải ghi rõ các cột theo đúng yêu cầu đề bài.
+Phần B: Vẽ biểu đồ lớp theo mô hình MVC (MVC Class Diagram)
+- Vẽ biểu đồ lớp (Class Diagram) mô tả kiến trúc MVC (View - Controller - DAO - Entity) bằng Mermaid.
+- Phải thể hiện rõ 4 tầng:
+  + View (Các form giao diện, các thuộc tính UI và phương thức nhận sự kiện).
+  + Controller (Lớp xử lý logic, gọi xuống DAO, cập nhật View).
+  + DAO (Các lớp giao tiếp cơ sở dữ liệu, có các phương thức truy vấn như get, update, insert...).
+  + Entity (Các lớp thực thể liên quan, có thuộc tính).
+- Vẽ rõ đầy đủ các mũi tên liên kết, gọi phương thức hoặc truyền sự kiện giữa các tầng (View -> Controller -> DAO -> Entity). Chiều mũi tên và các đường nối (1-n, 1-1) ở phần DAO - Entity phải hợp lý. Mỗi DAO phải nối tới 1 Entity. các lớp phải có sự liên kết với nhau.

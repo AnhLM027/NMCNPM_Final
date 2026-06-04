@@ -1,0 +1,99 @@
+﻿%% De_10 - Câu 3: MVC Class Diagram cho module Thống kê môn học theo tỉ lệ sinh viên qua
+classDiagram
+    class FrmMenu {
+        -btnThongKeMonHocQuaMon: Button
+        +moFrmThongKeMonHocQuaMon(): void
+    }
+
+    class FrmThongKeMonHocQuaMon {
+        -controller: ThongKeMonHocController
+        -cboGiangVien: ComboBox
+        -tblMonHoc: Table
+        -tblBangDiemChiTiet: Table
+        -btnThongKe: Button
+        +chonGiangVien(): void
+        +clickThongKe(): void
+        +clickChonMonHoc(maMon: String): void
+        +hienThiDanhSachMonHoc(dsMonHoc: List~MonHoc~): void
+        +hienThiBangDiemChiTiet(dsDangKyHoc: List~DangKyHoc~): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class ThongKeMonHocController {
+        -monHocDAO: MonHocDAO
+        -dangKyHocDAO: DangKyHocDAO
+        +layThongKeMonHoc(maGV: String): List~MonHoc~
+        +layBangDiemTheoMon(maMon: String): List~DangKyHoc~
+        +tinhDiemTrungBinhMon(dsDangKyHoc: List~DangKyHoc~): Double
+        +tinhTiLeSinhVienQuaMon(dsDangKyHoc: List~DangKyHoc~): Double
+    }
+
+    class MonHocDAO {
+        +getThongKeMonHocTheoGiangVien(maGV: String): List~MonHoc~
+    }
+
+    class DangKyHocDAO {
+        +getByMonHoc(maMon: String): List~DangKyHoc~
+    }
+
+    class SinhVien {
+        -maSV: String
+        -matKhau: String
+        -tenSV: String
+        -ngaySinh: Date
+        -khoa: String
+        -queQuan: String
+        -diaChi: String
+    }
+
+    class MonHoc {
+        -maMon: String
+        -tenMon: String
+        -soTinChi: Integer
+    }
+
+    class LopHocPhan {
+        -maLop: String
+        -tenLop: String
+        -soSVToiDa: Integer
+        -monHoc: MonHoc
+        -giangVien: GiangVien
+    }
+
+    class GiangVien {
+        -maGV: String
+        -tenGV: String
+    }
+
+    class DangKyHoc {
+        -maDangKy: String
+        -sinhVien: SinhVien
+        -lopHocPhan: LopHocPhan
+        -diem: Diem
+        -hocKy: String
+        -ngayDangKy: Date
+        -tongSoTinChi: Integer
+    }
+
+    class Diem {
+        -diemThanhPhan1: Double
+        -diemThanhPhan2: Double
+        -diemThanhPhan3: Double
+        -diemThi: Double
+        -diemCuoiCung: Double
+    }
+
+    FrmMenu -- FrmThongKeMonHocQuaMon : moForm
+
+    FrmThongKeMonHocQuaMon o-- ThongKeMonHocController : controller
+    ThongKeMonHocController o-- MonHocDAO : monHocDAO
+    ThongKeMonHocController o-- DangKyHocDAO : dangKyHocDAO
+
+    MonHocDAO -- MonHoc : traVe
+    DangKyHocDAO -- DangKyHoc : traVe
+
+    MonHoc "1" -- "0..*" LopHocPhan : monHoc
+    GiangVien "1" -- "0..*" LopHocPhan : giangVien
+    SinhVien "1" -- "0..*" DangKyHoc : sinhVien
+    LopHocPhan "1" -- "0..*" DangKyHoc : lopHocPhan
+    DangKyHoc "1" -- "0..1" Diem : diem

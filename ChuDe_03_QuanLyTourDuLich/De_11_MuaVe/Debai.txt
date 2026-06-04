@@ -1,0 +1,27 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 11
+Thời gian làm bài: 60 phút
+Khách hàng yêu cầu chúng ta phát triển một phần mềm quản lí đặt tour du lịch, được mô tả như sau:
+• Mỗi tour (Mã tour, tên, nơi xuất phát, nơi đến, mô tả) có thể xuất phát vào nhiều ngày khác
+nhau, tùy vào ngày xuất phát và số lượng người mua tour cho mỗi đoàn sẽ có giá khác nhau.
+• Mỗi khách hàng (Mã, tên, số ID, loại thẻ ID, số ĐT, email, địa chỉ) có thể mua vé nhiều tour
+khác nhau. Mỗi tour có thể mua số lượng vé khác nhau. Mỗi lần mua có xuất hóa đơn ghi rõ
+thông tin tour, ngày xuất phát, giá tour, số lượng khách, tên khách hàng đại diện, tổng số tiền
+thanh toán.
+• Cùng một khách hàng có thể đi cùng một tour nhiều lần, chỉ khác nhau ở ngày xuất phát và
+giá vé.
+• Khách hàng có thể trả vé, nếu trả trước giờ xuất phát trước 7 ngày thì phạt 10%, trước 5
+ngày phạt 20%, trước 3 ngày phạt 50%, trước ít hơn 3 ngày phạt 100% giá ghi trên vé.
+Anh/chị hãy thực hiện modul "Mua vé" với các bước sau đây: Nhân viên chọn chức năng mua vé
+theo yêu cầu của khách →  giao diện tìm tour (theo tên nơi đến) →  NV nhập tên nơi đến và bấm
+tìm →  kết quả hiện ra gồm danh sách các tour còn chỗ trống tương ứng với tiêu chí đã chọn, mỗi
+tour hiển thị đấy đủ thông tin + ngày xuất phát + giá tương ứng tại thời điểm tìm →  NV chọn 1
+tour theo lựa chọn của KH →  hóa đơn (vé) hiện ra chi tiết: tên tour, nơi đi, nơi đến, ngày đi, tên
+khách đại diện đoàn, số ID, kiểu ID, địa chỉ khách, số điện thoại, email, số lượng khách, giá vé →
+NV chọn thanh toán →  khách hàng thanh toán →  hệ thống lưu kết quả vào và in vé cho khách
+hàng.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

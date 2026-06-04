@@ -1,0 +1,119 @@
+%% De_40 - Câu 3: MVC Class Diagram cho module Lên lịch làm việc tuần tới
+classDiagram
+    class FrmMenu {
+        -btnLenLichLamViecTuanToi: Button
+        +moFrmLenLichLamViec(): void
+    }
+
+    class FrmLenLichLamViec {
+        -controller: LenLichLamViecController
+        -tblLichTuan: Table
+        -btnLuu: Button
+        -btnInLich: Button
+        +clickChonCa(ngayLamViec: Date, maCa: String): void
+        +clickLuu(): void
+        +clickInLich(): void
+        +hienThiLichTuan(dsPhanCong: List~PhanCongCa~): void
+        +capNhatDanhSachNhanVien(ngayLamViec: Date, maCa: String, dsNhanVien: List~NhanVienParttime~): void
+        +moFrmChonNhanVienCa(ngayLamViec: Date, maCa: String): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class FrmChonNhanVienCa {
+        -controller: LenLichLamViecController
+        -tblNhanVienDangKi: Table
+        -btnChon: Button
+        +hienThiDanhSachNhanVien(dsNhanVien: List~NhanVienParttime~): void
+        +clickChon(dsMaNhanVien: List~String~): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class LenLichLamViecController {
+        -caLamDAO: CaLamDAO
+        -chiTietDangKiCaLamDAO: ChiTietDangKiCaLamDAO
+        -phanCongCaDAO: PhanCongCaDAO
+        +taoBangLichTuanToi(tuan: String): List~PhanCongCa~
+        +layNhanVienDangKiTheoCa(tuan: String, ngayLamViec: Date, maCa: String): List~NhanVienParttime~
+        +tinhTongGioDaLenLich(maNhanVien: String, tuan: String): Double
+        +themNhanVienVaoCa(dsPhanCong: List~PhanCongCa~, ngayLamViec: Date, maCa: String, dsMaNhanVien: List~String~): void
+        +kiemTraDuSoNhanVienMoiCa(dsPhanCong: List~PhanCongCa~): Boolean
+        +luuLichLamViec(dsPhanCong: List~PhanCongCa~): Boolean
+        +inLichLamViec(dsPhanCong: List~PhanCongCa~): void
+    }
+
+    class CaLamDAO {
+        +getAll(): List~CaLam~
+        +getById(maCa: String): CaLam
+    }
+
+    class ChiTietDangKiCaLamDAO {
+        +getNhanVienDangKiTheoCa(tuan: String, ngayTrongTuan: Integer, maCa: String): List~NhanVienParttime~
+        +getByNhanVienCaVaTuan(maNhanVien: String, tuan: String, ngayTrongTuan: Integer, maCa: String): ChiTietDangKiCaLam
+    }
+
+    class PhanCongCaDAO {
+        +getByTuan(tuan: String): List~PhanCongCa~
+        +getByCa(tuan: String, ngayLamViec: Date, maCa: String): List~PhanCongCa~
+        +getTongGioDaLenLich(maNhanVien: String, tuan: String): Double
+        +insertAll(dsPhanCong: List~PhanCongCa~): void
+        +deleteByTuan(tuan: String): void
+    }
+
+    class NhanVienParttime {
+        -maNhanVien: String
+        -tenNhanVien: String
+        -soDienThoai: String
+        -ngayKiHopDong: Date
+    }
+
+    class CaLam {
+        -maCa: String
+        -tenCa: String
+        -gioBatDau: Time
+        -gioKetThuc: Time
+    }
+
+    class PhieuDangKiTuan {
+        -maPhieuDangKi: String
+        -nhanVien: NhanVienParttime
+        -tuan: String
+        -ngayDangKi: Date
+        -dsChiTietDangKi: List~ChiTietDangKiCaLam~
+    }
+
+    class ChiTietDangKiCaLam {
+        -maChiTietDangKi: String
+        -phieuDangKiTuan: PhieuDangKiTuan
+        -caLam: CaLam
+        -ngayTrongTuan: Integer
+    }
+
+    class PhanCongCa {
+        -maPhanCong: String
+        -chiTietDangKiCaLam: ChiTietDangKiCaLam
+        -nhanVien: NhanVienParttime
+        -caLam: CaLam
+        -ngayLamViec: Date
+    }
+
+    FrmMenu -- FrmLenLichLamViec
+    FrmLenLichLamViec -- FrmChonNhanVienCa
+
+    FrmLenLichLamViec o-- LenLichLamViecController : controller
+    FrmChonNhanVienCa o-- LenLichLamViecController : controller
+
+    LenLichLamViecController o-- CaLamDAO : caLamDAO
+    LenLichLamViecController o-- ChiTietDangKiCaLamDAO : chiTietDangKiCaLamDAO
+    LenLichLamViecController o-- PhanCongCaDAO : phanCongCaDAO
+
+    CaLamDAO -- CaLam : traVe
+    ChiTietDangKiCaLamDAO -- ChiTietDangKiCaLam : traVe
+    ChiTietDangKiCaLamDAO -- NhanVienParttime : traVe
+    PhanCongCaDAO -- PhanCongCa : traVe
+
+    NhanVienParttime "1" -- "0..*" PhieuDangKiTuan : nhanVien
+    PhieuDangKiTuan "1" o-- "1..*" ChiTietDangKiCaLam : dsChiTietDangKi
+    CaLam "1" -- "0..*" ChiTietDangKiCaLam : caLam
+    ChiTietDangKiCaLam "1" -- "0..1" PhanCongCa : chiTietDangKiCaLam
+    NhanVienParttime "1" -- "0..*" PhanCongCa : nhanVien
+    CaLam "1" -- "0..*" PhanCongCa : caLam

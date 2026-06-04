@@ -1,0 +1,35 @@
+﻿%% De_22 - Lập phiếu xuất hàng
+classDiagram
+
+    class DaiLyCon {
+        +maDaiLy
+        +tenDaiLy
+        +diaChi
+        +soDienThoai
+    }
+
+
+    class PhieuXuat {
+        +maPhieuXuat
+        +ngayXuat
+        +tongTien
+    }
+
+
+    class ChiTietXuat {
+        +soLuong
+        +donGia
+        +thanhTien
+    }
+
+    class HangHoa {
+        +maHang
+        +tenHang
+        +moTa
+        +soLuongConTrongKho
+    }
+
+    DaiLyCon "1" -- "0..*" PhieuXuat : nhận hàng
+    PhieuXuat "1" *-- "1..*" ChiTietXuat : gồm
+    ChiTietXuat "0..*" -- "1" HangHoa : hàng xuất
+

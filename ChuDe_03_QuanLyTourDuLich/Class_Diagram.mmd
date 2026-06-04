@@ -1,0 +1,47 @@
+﻿classDiagram
+    class Tour {
+        +maTour
+        +tenTour
+        +noiXuatPhat
+        +noiDen
+        +moTa
+    }
+
+    class DotXuatPhat {
+        +maDotXuatPhat
+        +ngayGioXuatPhat
+        +giaTour
+        +soChoTrong
+    }
+
+    class KhachHang {
+        +maKhachHang
+        +tenKhachHang
+        +soID
+        +loaiTheID
+        +soDienThoai
+        +email
+        +diaChi
+    }
+
+    class HoaDonVe {
+        +maHoaDon
+        +ngayLap
+        +soLuongKhach
+        +giaVe
+        +tenKhachDaiDien
+        +tongTienThanhToan
+    }
+
+    class HoaDonPhat {
+        +maHoaDonPhat
+        +ngayLap
+        +tienPhat
+        +tienHoanLai
+    }
+
+    Tour "1" *-- "1..*" DotXuatPhat : xuất phát theo ngày
+    KhachHang "1" -- "0..*" HoaDonVe : mua vé
+    DotXuatPhat "1" -- "0..*" HoaDonVe : được mua
+    HoaDonVe "1" -- "0..1" HoaDonPhat : hủy vé phát sinh
+

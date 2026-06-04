@@ -1,0 +1,50 @@
+﻿classDiagram
+    class KhachHang {
+        +maKhachHang
+        +tenKhachHang
+        +soCMT
+        +soDienThoai
+        +diaChi
+    }
+
+    class DauTruyen {
+        +maTruyen
+        +tenTruyen
+        +tacGia
+        +nhaXuatBan
+        +namXuatBan
+        +soLuong
+        +giaThueNgay
+    }
+
+    class PhieuMuon {
+        +maPhieuMuon
+        +ngayMuon
+        +soLuongDauTruyenMuon
+    }
+
+    class ChiTietMuon {
+        +giaThueNgay
+    }
+
+    class HoaDonTra {
+        +maHoaDon
+        +ngayThanhToan
+        +tongTienThanhToan
+    }
+
+    class ChiTietTra {
+        +ngayTra
+        +giaThueNgay
+        +tinhTrang
+        +thanhTien
+        +soTienPhat
+    }
+
+    KhachHang "1" -- "0..*" PhieuMuon : mượn truyện
+    PhieuMuon "1" *-- "1..*" ChiTietMuon : gồm
+    ChiTietMuon "0..*" -- "1" DauTruyen : đầu truyện
+    KhachHang "1" -- "0..*" HoaDonTra : thanh toán
+    HoaDonTra "1" *-- "1..*" ChiTietTra : gồm
+    ChiTietTra "0..*" -- "1" ChiTietMuon : trả cho dòng mượn
+

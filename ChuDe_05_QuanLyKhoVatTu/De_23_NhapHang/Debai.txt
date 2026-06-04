@@ -1,0 +1,32 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 23
+Thời gian làm bài: 60 phút
+Khách hàng yêu cầu chúng ta phát triển một phần mềm hỗ trợ quản lí kho vật tư, được mô tả như
+sau:
+• Mỗi hàng hóa (Mã hàng, tên, mô tả) có thể được nhập nhiều lần khác nhau, mỗi lần nhập có
+số lượng khác nhau và giá nhập khác nhau, đến từ một nhà cung cấp (mã NCC, tên NCC,
+địa chỉ, số ĐT) khác nhau
+• Mỗi lần nhập hàng có thể nhập nhiều hàng hóa khác nhau
+• Mỗi lần nhập có một phiếu nhập ghi thông tin nhà cung cấp, tiếp theo là danh sách các mặt
+hàng nhập vào, mỗi mặt hàng có đầy đủ thông tin: mã hàng, tên hàng, số lượng, đơn giá,
+thành tiền (tự động tính) và dòng cuối cùng là tổng tiền của hóa đơn nhập
+• Tương tự, mỗi hàng hóa có thể xuất đi nhiều lần khác nhau, mỗi lần cho các đại lí con (mã
+ĐL, tên ĐL, địa chỉ, số ĐT) khác nhau, với số lượng khác nhau và giá xuất khác nhau
+• Mỗi lần xuất có thể xuất nhiều hàng khác nhau, miễn sao số lượng xuất không vượt quá số
+lượng hàng còn trong kho
+• Mỗi lần xuất có một phiếu xuất ghi thông tin đại lí con, tiếp theo là danh sách các mặt hàng
+xuất đi, mỗi mặt hàng có đầy đủ thông tin: mã hàng, tên hàng, số lượng, đơn giá, thành tiền
+(tự động tính) và dòng cuối cùng là tổng tiền của hóa đơn xuất.
+Anh/chị hãy thực hiện modul "Lập phiếu nhập hàng" với các bước sau đây: Nhân viên chọn menu
+nhập hàng  → trang nhập hàng hiện ra với ô tìm NCC theo tên → NV nhập tên + click tìm → hệ
+thống hiện lên danh sách các NCC chứa tên vừa nhập vào → NV click vào NCC đang nhập (nếu
+NCC mới thì thêm mới) → Lặp các bước sau cho hết hàng nhập: NV click chọn tìm MH theo tên →
+nhập tên + click tìm → hệ thống hiện lên danh sách các MH chứa tên vừa nhập → nhân viên chọn
+tên hàng trong danh sách hàng hóa có sẵn (nếu hàng mới thì chọn nhập mới) + nhập số lượng →
+MH đó sẽ được thêm vào danh sách các MH nhập của hóa đơn → lặp đến khi hết các hàng nhập
+vào thì submit →  báo nhập thành công và in ra hóa đơn nhập như đã mô tả.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

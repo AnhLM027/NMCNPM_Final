@@ -1,0 +1,26 @@
+﻿%% De_17 - Lên menu sẵn dạng combo
+classDiagram
+
+    class MonAn {
+        +maMon
+        +loai
+        +tenMon
+        +moTa
+        +giaHienTai
+    }
+
+
+    class Combo {
+        +maCombo
+        +tenCombo
+        +giaHienTai
+    }
+
+
+    class ChiTietCombo {
+        +soLuong
+    }
+
+    Combo "1" *-- "1..*" ChiTietCombo : gồm
+    ChiTietCombo "0..*" -- "1" MonAn : món ăn
+

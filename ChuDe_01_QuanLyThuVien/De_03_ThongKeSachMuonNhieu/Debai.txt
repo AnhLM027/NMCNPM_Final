@@ -1,0 +1,25 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 03
+Thời gian làm bài: 60 phút
+Khách hàng yêu cầu chúng ta phát triển một phần mềm quản lí thư viện, được mô tả như sau:
+• Mỗi đầu sách (Mã, tên, tác giả, năm xuất bản, giá bìa, số lượng, mã vạch, mô tả) có thể được
+mượn nhiều lần khác nhau bởi nhiều bạn đọc khác nhau
+• Mỗi bạn đọc có một thẻ bạn đọc chứa mã, tên, ngày sinh, địa chỉ, số điện thoại, mã vạch của
+bạn đọc đó
+• Mỗi lần mượn được mượn tối đa 5 quyển sách, và tổng số sách đang mượn bởi một người
+cũng không được quá 5 quyển
+• Thời gian tối đa mượn 1 quyển sách là 1 tháng kể từ ngày mượn quyển đó, nếu trả sau thời
+hạn này thì sẽ bị phạt 20% giá trị bìa sách.
+• Mỗi lần trả sách có thể trả một phần hoặc toàn bộ số lượng sách đang mượn
+• Khi mượn sách mới, thủ thư vẫn xem được danh sách các sách mà một độc giả đã mượn và
+trả rồi hoặc chưa trả trước đấy.
+Anh/chị hãy thực hiện modul "Thống kê sách mượn nhiều" với các bước sau đây: Nhân viên chọn
+menu thống kê  →  chọn thống kê sách mượn nhiều →  nhập khoảng thời gian (bắt đầu - kết thúc)
+→  danh sách sách mượn nhiều nhất được hiển thị theo thứ tự số lượt mượn từ nhiều đến ít, mỗi
+dòng chứa: mã, tên sách, tác giả, mã vạch, tổng số lượt mượn. NV click vào 1 dòng của 1 sách thì
+hiện lên danh sách chi tiết những lần độc giả nào mượn quyển sách đấy.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

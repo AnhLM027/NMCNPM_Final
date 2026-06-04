@@ -1,0 +1,79 @@
+﻿%% De_61 - Thống kê dòng mặt hàng theo doanh thu
+classDiagram
+
+    class DongMatHang {
+        +maDongMatHang
+        +tenDongMatHang
+    }
+
+
+    class MatHang {
+        +maMatHang
+        +tenMatHang
+        +donViTinh
+        +giaNiemYet
+    }
+
+    class KhachHang {
+        +maKhachHang
+        +tenKhachHang
+        +soDienThoai
+        +diaChi
+    }
+
+
+    class DoiTac {
+        +maDoiTac
+        +tenDoiTac
+        +diaChiChiNhanh
+    }
+
+
+    class HopDongTraGop {
+        +maHopDong
+        +thongTinDaiDienCongTy
+        +ngayKi
+        +tongTien
+        +thoiHanVay
+        +laiSuatNam
+    }
+
+
+    class ChiTietHopDong {
+        +donGia
+        +soLuong
+        +thanhTien
+    }
+
+
+    class DotThanhToan {
+        +ngayPhaiThanhToan
+        +tongTienThanhToan
+        +tongDuNoConLai
+    }
+
+
+    class HoaDonThanhToan {
+        +maHoaDon
+        +ngayThanhToan
+        +tongTienThanhToan
+        +tongDuNoConLai
+        +hinhThucThanhToan
+    }
+
+
+    class ChiTietThanhToanDot {
+        +soTienThanhToan
+    }
+
+    DoiTac "1" -- "0..*" MatHang : bán
+    DongMatHang "1" -- "0..*" MatHang : phân loại
+    KhachHang "1" -- "0..*" HopDongTraGop : ký
+    DoiTac "1" -- "0..*" HopDongTraGop : bán hàng qua
+    HopDongTraGop "1" *-- "1..*" ChiTietHopDong : gồm
+    ChiTietHopDong "0..*" -- "1" MatHang : mặt hàng
+    HopDongTraGop "1" *-- "1..*" DotThanhToan : lịch trả góp
+    HopDongTraGop "1" -- "0..*" HoaDonThanhToan : phát sinh hóa đơn
+    HoaDonThanhToan "1" *-- "1..*" ChiTietThanhToanDot : gồm
+    ChiTietThanhToanDot "0..*" -- "1" DotThanhToan : thanh toán cho đợt
+

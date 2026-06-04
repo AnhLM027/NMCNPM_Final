@@ -1,0 +1,32 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 62
+Thời gian làm bài: 60 phút
+Cửa hàng cho thuê trang phục dạ hội, biểu diễn đặt hàng anh chị phát triển một phần mềm giúp họ
+quản lí hoạt động cho thuê trang phục của họ với mô tả như sau:
+• Cửa hàng có nhiều trang phục -TP, thuộc nhiều chủng loại khác nhau, một TP có thể có số
+lượng khác nhau.
+• TP được đặt hàng hoặc nhập sẵn từ các nhà cung cấp - NCC. Mỗi NCC có thể cung cấp
+nhiều loại TP khác nhau. Mỗi lần nhập có thể nhập nhiều loại TP từ cùng NCC, mỗi TP có
+số lượng khác nhau.
+• Khách hàng - KH có thể thuê nhiều lần, mỗi lần thuê nhiều TP khác nhau, mỗi TP có số
+lượng khác nhau. Nếu thuê lần đầu thì phải đặt cọc bằng tổng giá trị gốc của các TP thuê,
+nếu thuê nhiều lần (khách quen) thì tiền cọc do NV làm hóa đơn quyết định.
+• Khi trả, KH có thể trả một phần hoặc trả hết các TP đang thuê trong một lần, mỗi lần trả đều
+có phiếu trả tương ứng với các TP trả. Tiền cọc chỉ được trả lại cho KH khi đã trả hết các TP
+thuê. Trường hợp KH trả một phần TP, sau khi trả xong mà tiền cọc còn lại nhiều hơn giá trị
+gốc các TP thuê thì KH được nhận lại phần dư ra, chỉ giữ lại cọc tối đa bằng giá trị gốc các
+TP đang thuê.
+• Khi trả, nếu TP bị lỗi hỏng hóc, vấy bẩn thì KH phải trả tiền phạt. Một TP có thể dính nhiều
+lỗi đồng thời. Tiền phạt cho mỗi lỗi được ước tính bởi NV thanh toán trả đồ.
+Modul "Nhập trang phục" với mô tả chi tiết nghiệp vụ: NV chọn chức năng nhập TP từ một NCC
+→ Giao diện tìm NCC theo tên hiện lên -> NV nhập tên NCC và tìm -> Hiện danh sách các NCC
+chứa tên vừa nhập -> Click chọn NCC đúng (nếu không có trong danh sách kết quả thì chuyển sang
+giao diện nhập thông tin NCC mới và tiếp tục) → Lặp cho đến khi hết các TP cần mua từ NCC đấy:
+chọn tìm TP theo tên -> chọn và nhập số lượng, đơn giá → NV xác nhận hóa đơn nhập với NCC và
+thanh toán cho NCC, nhận hàng → Hệ thống lưu lại và thông báo thành công, đồng thời in hóa đơn
+ra đề nghị NCC kí để lưu.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

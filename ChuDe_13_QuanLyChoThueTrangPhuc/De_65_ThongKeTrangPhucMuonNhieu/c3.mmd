@@ -1,0 +1,136 @@
+%% De_65 - Câu 3: MVC Class Diagram cho module Thống kê trang phục được mượn nhiều
+classDiagram
+    class FrmMenu {
+        -btnThongKeTrangPhucMuonNhieu: Button
+        +moFrmThongKeTrangPhucMuonNhieu(): void
+    }
+
+    class FrmThongKeTrangPhucMuonNhieu {
+        -controller: ThongKeTrangPhucMuonNhieuController
+        -dtNgayBatDau: DatePicker
+        -dtNgayKetThuc: DatePicker
+        -tblTrangPhuc: Table
+        -tblHoaDonChiTiet: Table
+        -btnThongKe: Button
+        +chonNgayBatDau(ngayBatDau: Date): void
+        +chonNgayKetThuc(ngayKetThuc: Date): void
+        +clickThongKe(): void
+        +clickChonTrangPhuc(maTrangPhuc: String): void
+        +hienThiBangTrangPhuc(dsThongKe: List~ThongKeTrangPhucDTO~): void
+        +hienThiChiTietHoaDon(dsHoaDon: List~HoaDonTrangPhucDTO~): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class ThongKeTrangPhucMuonNhieuController {
+        -chiTietThueDAO: ChiTietThueDAO
+        -chiTietTraDAO: ChiTietTraDAO
+        +layThongKeTrangPhucMuonNhieu(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeTrangPhucDTO~
+        +layHoaDonTheoTrangPhuc(maTrangPhuc: String, ngayBatDau: Date, ngayKetThuc: Date): List~HoaDonTrangPhucDTO~
+        +tinhTongSoLuotMuon(dsChiTietThue: List~ChiTietThue~): Integer
+        +tinhTongTienThuDuoc(dsChiTietTra: List~ChiTietTra~): Double
+    }
+
+    class ChiTietThueDAO {
+        +getThongKeTrangPhucMuonNhieu(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeTrangPhucDTO~
+        +getHoaDonTheoTrangPhuc(maTrangPhuc: String, ngayBatDau: Date, ngayKetThuc: Date): List~HoaDonTrangPhucDTO~
+        +getByTrangPhuc(maTrangPhuc: String, ngayBatDau: Date, ngayKetThuc: Date): List~ChiTietThue~
+    }
+
+    class ChiTietTraDAO {
+        +getByTrangPhuc(maTrangPhuc: String, ngayBatDau: Date, ngayKetThuc: Date): List~ChiTietTra~
+    }
+
+    class ThongKeTrangPhucDTO {
+        -maTrangPhuc: String
+        -tenTrangPhuc: String
+        -kieu: String
+        -tenChungLoai: String
+        -tongSoLuotMuon: Integer
+        -tongTienThuDuoc: Double
+    }
+
+    class HoaDonTrangPhucDTO {
+        -maHoaDon: String
+        -tenKhachHang: String
+        -ngayGioMuon: Date
+        -ngayGioTra: Date
+        -tongTien: Double
+    }
+
+    class KhachHang {
+        -maKhachHang: String
+        -tenKhachHang: String
+        -soDienThoai: String
+        -diaChi: String
+    }
+
+    class ChungLoaiTrangPhuc {
+        -maChungLoai: String
+        -tenChungLoai: String
+    }
+
+    class TrangPhuc {
+        -maTrangPhuc: String
+        -tenTrangPhuc: String
+        -kieu: String
+        -soLuong: Integer
+        -giaTriGoc: Double
+        -giaThue: Double
+        -chungLoai: ChungLoaiTrangPhuc
+    }
+
+    class PhieuThue {
+        -maPhieuThue: String
+        -khachHang: KhachHang
+        -ngayThue: Date
+        -tienCoc: Double
+        -dsChiTietThue: List~ChiTietThue~
+    }
+
+    class ChiTietThue {
+        -trangPhuc: TrangPhuc
+        -soLuong: Integer
+        -soLuongDaTra: Integer
+        -donGiaThue: Double
+    }
+
+    class PhieuTra {
+        -maPhieuTra: String
+        -khachHang: KhachHang
+        -ngayTra: Date
+        -tongTienThue: Double
+        -tongTienPhat: Double
+        -soTienKhachPhaiTra: Double
+        -soTienTraLaiKhach: Double
+        -dsChiTietTra: List~ChiTietTra~
+    }
+
+    class ChiTietTra {
+        -chiTietThue: ChiTietThue
+        -soLuongTra: Integer
+        -soNgayThue: Integer
+        -tienThue: Double
+        -tinhTrang: String
+        -tienPhat: Double
+    }
+
+    FrmMenu -- FrmThongKeTrangPhucMuonNhieu
+
+    FrmThongKeTrangPhucMuonNhieu o-- ThongKeTrangPhucMuonNhieuController : controller
+    ThongKeTrangPhucMuonNhieuController o-- ChiTietThueDAO : chiTietThueDAO
+    ThongKeTrangPhucMuonNhieuController o-- ChiTietTraDAO : chiTietTraDAO
+
+    ChiTietThueDAO -- ChiTietThue : traVe
+    ChiTietThueDAO -- ThongKeTrangPhucDTO : traVe
+    ChiTietThueDAO -- HoaDonTrangPhucDTO : traVe
+    ChiTietTraDAO -- ChiTietTra : traVe
+    ThongKeTrangPhucMuonNhieuController -- ThongKeTrangPhucDTO : tao
+    ThongKeTrangPhucMuonNhieuController -- HoaDonTrangPhucDTO : tao
+
+    ChungLoaiTrangPhuc "1" -- "0..*" TrangPhuc : chungLoai
+    KhachHang "1" -- "0..*" PhieuThue : khachHang
+    KhachHang "1" -- "0..*" PhieuTra : khachHang
+    PhieuThue "1" o-- "1..*" ChiTietThue : dsChiTietThue
+    TrangPhuc "1" -- "0..*" ChiTietThue : trangPhuc
+    PhieuTra "1" o-- "1..*" ChiTietTra : dsChiTietTra
+    ChiTietThue "1" -- "0..*" ChiTietTra : chiTietThue

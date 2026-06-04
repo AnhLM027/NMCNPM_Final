@@ -1,0 +1,110 @@
+%% De_39 - Câu 3: MVC Class Diagram cho module Đăng kí ca làm tuần tới
+classDiagram
+    class FrmMenu {
+        -btnDangKiCaLamTuanToi: Button
+        +moFrmTimNhanVien(): void
+    }
+
+    class FrmTimNhanVien {
+        -controller: DangKiCaLamController
+        -txtTenNhanVien: TextField
+        -tblNhanVien: Table
+        -btnTim: Button
+        -btnChonNhanVien: Button
+        +nhapTenNhanVien(): void
+        +clickTim(): void
+        +clickChonNhanVien(maNhanVien: String): void
+        +hienThiDanhSachNhanVien(dsNhanVien: List~NhanVienParttime~): void
+        +moFrmDangKiCaLam(maNhanVien: String): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class FrmDangKiCaLam {
+        -controller: DangKiCaLamController
+        -tblLichTuan: Table
+        -btnLuu: Button
+        +chonCaLam(ngayTrongTuan: Integer, maCa: String): void
+        +clickLuu(): void
+        +hienThiThongTinNhanVien(nhanVien: NhanVienParttime): void
+        +hienThiLichDangKi(phieuDangKi: PhieuDangKiTuan): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class DangKiCaLamController {
+        -nhanVienDAO: NhanVienParttimeDAO
+        -caLamDAO: CaLamDAO
+        -phieuDangKiTuanDAO: PhieuDangKiTuanDAO
+        -chiTietDangKiCaLamDAO: ChiTietDangKiCaLamDAO
+        +timNhanVienTheoTen(tuKhoa: String): List~NhanVienParttime~
+        +layDanhSachCaLam(): List~CaLam~
+        +layPhieuDangKiTuanToi(maNhanVien: String, tuan: String): PhieuDangKiTuan
+        +luuPhieuDangKi(maNhanVien: String, tuan: String, dsChiTiet: List~ChiTietDangKiCaLam~): Boolean
+    }
+
+    class NhanVienParttimeDAO {
+        +searchByTen(tuKhoa: String): List~NhanVienParttime~
+        +getById(maNhanVien: String): NhanVienParttime
+    }
+
+    class CaLamDAO {
+        +getAll(): List~CaLam~
+    }
+
+    class PhieuDangKiTuanDAO {
+        +getByNhanVienVaTuan(maNhanVien: String, tuan: String): PhieuDangKiTuan
+        +insert(phieuDangKi: PhieuDangKiTuan): void
+        +deleteByNhanVienVaTuan(maNhanVien: String, tuan: String): void
+    }
+
+    class ChiTietDangKiCaLamDAO {
+        +getByPhieu(maPhieuDangKi: String): List~ChiTietDangKiCaLam~
+        +insertAll(dsChiTiet: List~ChiTietDangKiCaLam~): void
+    }
+
+    class NhanVienParttime {
+        -maNhanVien: String
+        -tenNhanVien: String
+        -soDienThoai: String
+        -ngayKiHopDong: Date
+    }
+
+    class CaLam {
+        -maCa: String
+        -tenCa: String
+        -gioBatDau: Time
+        -gioKetThuc: Time
+    }
+
+    class PhieuDangKiTuan {
+        -maPhieuDangKi: String
+        -nhanVien: NhanVienParttime
+        -tuan: String
+        -ngayDangKi: Date
+        -dsChiTietDangKi: List~ChiTietDangKiCaLam~
+    }
+
+    class ChiTietDangKiCaLam {
+        -maChiTietDangKi: String
+        -phieuDangKiTuan: PhieuDangKiTuan
+        -caLam: CaLam
+        -ngayTrongTuan: Integer
+    }
+
+    FrmMenu -- FrmTimNhanVien
+    FrmTimNhanVien -- FrmDangKiCaLam
+
+    FrmTimNhanVien o-- DangKiCaLamController : controller
+    FrmDangKiCaLam o-- DangKiCaLamController : controller
+    DangKiCaLamController o-- NhanVienParttimeDAO : nhanVienDAO
+    DangKiCaLamController o-- CaLamDAO : caLamDAO
+    DangKiCaLamController o-- PhieuDangKiTuanDAO : phieuDangKiTuanDAO
+    DangKiCaLamController o-- ChiTietDangKiCaLamDAO : chiTietDangKiCaLamDAO
+
+    NhanVienParttimeDAO -- NhanVienParttime : traVe
+    CaLamDAO -- CaLam : traVe
+    PhieuDangKiTuanDAO -- PhieuDangKiTuan : traVe
+    ChiTietDangKiCaLamDAO -- ChiTietDangKiCaLam : traVe
+
+    NhanVienParttime "1" -- "0..*" PhieuDangKiTuan : nhanVien
+    PhieuDangKiTuan "1" o-- "1..*" ChiTietDangKiCaLam : dsChiTietDangKi
+    CaLam "1" -- "0..*" ChiTietDangKiCaLam : caLam

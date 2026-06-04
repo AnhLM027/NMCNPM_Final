@@ -1,0 +1,35 @@
+﻿%% De_05 - Lên lịch học cho lớp học phần
+classDiagram
+    class MonHoc {
+        +maMon
+        +tenMon
+        +soTinChi
+    }
+
+    class LopHocPhan {
+        +maLop
+        +tenLop
+        +soSVToiDa
+    }
+
+    class PhongHoc {
+        +maPhong
+        +tenPhong
+    }
+
+    class KhungGio {
+        +maKhungGio
+        +thuTrongTuan
+        +kipHoc
+        +khungGioHoc
+    }
+
+    class LichHoc {
+        +maLichHoc
+    }
+
+    MonHoc "1" *-- "0..*" LopHocPhan : mở lớp
+    LopHocPhan "1" *-- "0..1" LichHoc : được lên lịch
+    PhongHoc "1" -- "0..*" LichHoc : dùng cho
+    KhungGio "1" -- "0..*" LichHoc : áp dụng
+

@@ -1,0 +1,126 @@
+﻿%% De_11 - Câu 3: MVC Class Diagram cho module Mua vé
+classDiagram
+    class FrmMenu {
+        -btnMuaVe: Button
+        +moFrmTimTour(): void
+    }
+
+    class FrmTimTour {
+        -controller: MuaVeController
+        -txtNoiDen: TextField
+        -tblTourConCho: Table
+        -btnTim: Button
+        -btnChonTour: Button
+        +nhapNoiDen(): void
+        +clickTim(): void
+        +clickChonTour(maDotXuatPhat: String): void
+        +hienThiDanhSachTour(dsDotXuatPhat: List~DotXuatPhat~): void
+        +moFrmHoaDonVe(dotXuatPhat: DotXuatPhat): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class FrmHoaDonVe {
+        -controller: MuaVeController
+        -txtTenKhachDaiDien: TextField
+        -txtSoID: TextField
+        -txtLoaiTheID: TextField
+        -txtDiaChi: TextField
+        -txtSoDienThoai: TextField
+        -txtEmail: TextField
+        -txtSoLuongKhach: TextField
+        -lblGiaVe: Label
+        -lblTongTien: Label
+        -btnThanhToan: Button
+        +nhapThongTinKhachHang(): void
+        +clickThanhToan(): void
+        +hienThiHoaDonTam(dotXuatPhat: DotXuatPhat, khachHang: KhachHang): void
+        +hienThiHoaDonVe(hoaDonVe: HoaDonVe): void
+        +inVe(hoaDonVe: HoaDonVe): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class MuaVeController {
+        -tourDAO: TourDAO
+        -dotXuatPhatDAO: DotXuatPhatDAO
+        -khachHangDAO: KhachHangDAO
+        -hoaDonVeDAO: HoaDonVeDAO
+        +timTourConCho(noiDen: String): List~DotXuatPhat~
+        +taoHoacCapNhatKhachHang(khachHang: KhachHang): KhachHang
+        +lapHoaDonVe(dotXuatPhat: DotXuatPhat, khachHang: KhachHang, soLuongKhach: Integer): HoaDonVe
+        +thanhToan(hoaDonVe: HoaDonVe): Boolean
+        +inVe(hoaDonVe: HoaDonVe): void
+    }
+
+    class TourDAO {
+        +getByNoiDen(noiDen: String): List~Tour~
+    }
+
+    class DotXuatPhatDAO {
+        +getConChoByNoiDen(noiDen: String): List~DotXuatPhat~
+        +updateSoChoTrong(dotXuatPhat: DotXuatPhat): void
+    }
+
+    class KhachHangDAO {
+        +getBySoID(soID: String): KhachHang
+        +insertOrUpdate(khachHang: KhachHang): KhachHang
+    }
+
+    class HoaDonVeDAO {
+        +insert(hoaDonVe: HoaDonVe): void
+    }
+
+    class Tour {
+        -maTour: String
+        -tenTour: String
+        -noiXuatPhat: String
+        -noiDen: String
+        -moTa: String
+    }
+
+    class DotXuatPhat {
+        -maDotXuatPhat: String
+        -tour: Tour
+        -ngayGioXuatPhat: Date
+        -giaTour: Double
+        -soChoTrong: Integer
+    }
+
+    class KhachHang {
+        -maKhachHang: String
+        -tenKhachHang: String
+        -soID: String
+        -loaiTheID: String
+        -soDienThoai: String
+        -email: String
+        -diaChi: String
+    }
+
+    class HoaDonVe {
+        -maHoaDon: String
+        -khachHang: KhachHang
+        -dotXuatPhat: DotXuatPhat
+        -ngayLap: Date
+        -soLuongKhach: Integer
+        -giaVe: Double
+        -tenKhachDaiDien: String
+        -tongTienThanhToan: Double
+    }
+
+    FrmMenu -- FrmTimTour : moForm
+    FrmTimTour -- FrmHoaDonVe : moForm
+
+    FrmTimTour o-- MuaVeController : controller
+    FrmHoaDonVe o-- MuaVeController : controller
+    MuaVeController o-- TourDAO : tourDAO
+    MuaVeController o-- DotXuatPhatDAO : dotXuatPhatDAO
+    MuaVeController o-- KhachHangDAO : khachHangDAO
+    MuaVeController o-- HoaDonVeDAO : hoaDonVeDAO
+
+    TourDAO -- Tour : traVe
+    DotXuatPhatDAO -- DotXuatPhat : traVe
+    KhachHangDAO -- KhachHang : traVe
+    HoaDonVeDAO -- HoaDonVe : traVe
+
+    Tour "1" -- "1..*" DotXuatPhat : tour
+    KhachHang "1" -- "0..*" HoaDonVe : khachHang
+    DotXuatPhat "1" -- "0..*" HoaDonVe : dotXuatPhat

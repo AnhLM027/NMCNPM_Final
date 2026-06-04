@@ -1,0 +1,25 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 30
+Thời gian làm bài: 60 phút
+Ban tổ chức đưa xe công thức 1 (F1) đặt hàng anh/chị phát triển một phần mềm quản lí kết quả giải
+đua với mô tả như sau:
+• Mỗi năm có một giải. Một giải bao gồm nhiều chặng đua diễn ra trên khắp thế giới (Mã
+chặng, tên, số vòng đua, địa điểm, thời gian, mô tả). 
+• Mỗi giải có nhiều đội đua tham gia (Mã, tên, hãng, mô tả).
+• Mỗi đội đua có nhiều tay đua (mã, tên, ngày sinh, quốc tịch, tiểu sử). Nhưng ở mỗi chặng
+đua, mỗi đội chỉ được phép cho tối đa 2 tay đua tham dự.
+• Mỗi chặng đua, kết quả xếp theo thứ tự về đích (thời gian) và điểm số chỉ được tính cho top
+10 người về đích sớm nhất, lần lượt theo các thứ tự về đích là 25, 18, 15, 12, 10, 8, 6, 4, 2, 1.
+• Nếu tay đua nằm trong top 10 nhưng không về đích do bỏ cuộc hoặc tai nạn thì 0 điểm.
+• Điểm số và thời gian của từng tay đua sẽ được cộng dồn giữa các chặng để quyết định giải
+cá nhân và giải đồng đội của mùa giải.
+Anh/chị hãy thực hiện modul "Đăng kí thi đấu" với các bước sau đây: Ban tổ chức (BTC) chọn
+chức năng đăng kí tay đua →  giao diện đăng kí tay đua cho mỗi chặng đấu hiện ra → BTC chọn
+chặng đua từ danh sách sổ xuống + chọn đội đua từ danh sách sổ xuống →  danh sách các tay đua
+của đội đua đã chọn hiện ra, xếp theo abc của họ tên →  BTC tích chọn đúng 2 tay đua theo yêu cầu
+của đội + click Đăng kí → Hệ thống lưu thông tin và thông báo thành công. 
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

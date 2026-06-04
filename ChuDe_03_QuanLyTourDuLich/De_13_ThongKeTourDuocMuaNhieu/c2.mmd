@@ -1,0 +1,43 @@
+﻿%% De_13 - Thống kê tour theo doanh thu
+classDiagram
+    class Tour {
+        +maTour
+        +tenTour
+        +noiXuatPhat
+        +noiDen
+        +moTa
+    }
+
+
+    class DotXuatPhat {
+        +maDotXuatPhat
+        +ngayGioXuatPhat
+        +giaTour
+        +soChoTrong
+    }
+
+
+    class KhachHang {
+        +maKhachHang
+        +tenKhachHang
+        +soID
+        +loaiTheID
+        +soDienThoai
+        +email
+        +diaChi
+    }
+
+
+    class HoaDonVe {
+        +maHoaDon
+        +ngayLap
+        +soLuongKhach
+        +giaVe
+        +tenKhachDaiDien
+        +tongTienThanhToan
+    }
+
+    Tour "1" *-- "1..*" DotXuatPhat : xuất phát theo ngày
+    KhachHang "1" -- "0..*" HoaDonVe : mua vé
+    DotXuatPhat "1" -- "0..*" HoaDonVe : được mua
+

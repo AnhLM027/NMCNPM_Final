@@ -1,0 +1,122 @@
+%% De_17 - Câu 3: MVC Class Diagram cho module Lên menu sẵn dạng combo
+classDiagram
+    class FrmMenu {
+        -btnQuanLiCombo: Button
+        +moFrmQuanLiCombo(): void
+    }
+
+    class FrmQuanLiCombo {
+        -controller: QuanLiComboController
+        -tblCombo: Table
+        -btnThemCombo: Button
+        -btnSuaCombo: Button
+        -btnXoaCombo: Button
+        +clickThemCombo(): void
+        +clickSuaCombo(maCombo: String): void
+        +clickXoaCombo(maCombo: String): void
+        +hienThiDanhSachCombo(dsCombo: List~Combo~): void
+        +moFrmThemCombo(combo: Combo): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class FrmThemCombo {
+        -controller: QuanLiComboController
+        -txtTenCombo: TextField
+        -txtGiaHienTai: TextField
+        -tblMonAnTrongCombo: Table
+        -btnThemMonAn: Button
+        -btnCapNhat: Button
+        -combo: Combo
+        +nhapTenCombo(tenCombo: String): void
+        +nhapGiaHienTai(giaHienTai: Double): void
+        +clickThemMonAn(): void
+        +chonMonAn(monAn: MonAn): void
+        +nhapSoLuong(maMon: String, soLuong: Integer): void
+        +clickCapNhat(): void
+        +hienThiCombo(combo: Combo): void
+        +hienThiDanhSachMonAn(dsChiTiet: List~ChiTietCombo~): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class FrmTimMonAn {
+        -controller: QuanLiComboController
+        -txtTenMonAn: TextField
+        -tblMonAn: Table
+        -btnTimKiem: Button
+        -btnChon: Button
+        +nhapTenMonAn(tenMonAn: String): void
+        +clickTimKiem(): void
+        +clickChonMonAn(maMon: String): void
+        +hienThiDanhSachMonAn(dsMonAn: List~MonAn~): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class QuanLiComboController {
+        -comboDAO: ComboDAO
+        -chiTietComboDAO: ChiTietComboDAO
+        -monAnDAO: MonAnDAO
+        +layDanhSachCombo(): List~Combo~
+        +timMonAnTheoTen(tenMonAn: String): List~MonAn~
+        +layMonAn(maMon: String): MonAn
+        +themMonAnVaoCombo(combo: Combo, monAn: MonAn, soLuong: Integer): Combo
+        +luuCombo(combo: Combo): Boolean
+        +xoaCombo(maCombo: String): Boolean
+    }
+
+    class ComboDAO {
+        +getAll(): List~Combo~
+        +getById(maCombo: String): Combo
+        +insert(combo: Combo): void
+        +update(combo: Combo): void
+        +delete(maCombo: String): void
+    }
+
+    class ChiTietComboDAO {
+        +getByCombo(maCombo: String): List~ChiTietCombo~
+        +insertAll(dsChiTiet: List~ChiTietCombo~): void
+        +deleteByCombo(maCombo: String): void
+    }
+
+    class MonAnDAO {
+        +searchByTen(tenMonAn: String): List~MonAn~
+        +getById(maMon: String): MonAn
+    }
+
+    class MonAn {
+        -maMon: String
+        -loai: String
+        -tenMon: String
+        -moTa: String
+        -giaHienTai: Double
+    }
+
+    class Combo {
+        -maCombo: String
+        -tenCombo: String
+        -giaHienTai: Double
+        -dsChiTietCombo: List~ChiTietCombo~
+    }
+
+    class ChiTietCombo {
+        -monAn: MonAn
+        -soLuong: Integer
+    }
+
+    FrmMenu -- FrmQuanLiCombo
+    FrmQuanLiCombo -- FrmThemCombo
+    FrmThemCombo -- FrmTimMonAn
+
+    FrmQuanLiCombo o-- QuanLiComboController : controller
+    FrmThemCombo o-- QuanLiComboController : controller
+    FrmTimMonAn o-- QuanLiComboController : controller
+
+    QuanLiComboController o-- ComboDAO : comboDAO
+    QuanLiComboController o-- ChiTietComboDAO : chiTietComboDAO
+    QuanLiComboController o-- MonAnDAO : monAnDAO
+
+    ComboDAO -- Combo : traVe
+    ChiTietComboDAO -- ChiTietCombo : traVe
+    MonAnDAO -- MonAn : traVe
+
+    Combo "1" o-- "1..*" ChiTietCombo : dsChiTietCombo
+    ChiTietCombo "0..*" -- "1" MonAn : monAn

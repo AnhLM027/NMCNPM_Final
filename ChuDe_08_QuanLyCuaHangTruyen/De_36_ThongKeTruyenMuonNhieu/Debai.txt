@@ -1,0 +1,29 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 36
+Thời gian làm bài: 60 phút
+Khách hàng yêu cầu anh/chị phát triển một phần mềm quản lí cho thuê truyện ở một cửa hàng
+chuyên cho thuê truyện với mô tả như sau:
+• Cửa hàng có nhiều đầu truyện khác nhau. Mỗi đầu truyện có số lượng khác nhau và giá thuê
+khác nhau (giá thuê theo ngày).
+• Mỗi đầu truyện có thể được mượn bởi nhiều khách hàng khác nhau. Mỗi khách hàng mỗi lần
+mượn được mượn nhiều đầu truyện khác nhau.
+• Mỗi lần mượn, khách hàng được nhận một phiếu mượn. Trong đó, dòng đầu ghi tên khách
+hàng và ngày mượn. Thông tin mỗi đầu truyện mượn được ghi trên một dòng: tên, tác giả,
+nhà xuất bản, năm xuất bản, giá thuê. Dòng cuối cùng ghi số lượng đầu truyện mượn.
+• Khi trả truyện, khách hàng được nhận hóa đơn trả. Trong đó, dòng đầu ghi tên khách hàng
+và ngày thanh toán. Thông tin mỗi đầu truyện trả được ghi trên một dòng: tên, tác giả, nhà
+xuất bản, năm xuất bản, ngày mượn, ngày trả, giá thuê, thành tiền. Nếu bị phạt thì có thêm
+cột số tiền phạt. Dòng cuối cùng ghi tổng số tiền thanh toán.
+Anh/chị hãy thực hiện modul "Thống kê truyện được mượn nhiều" với các bước sau đây: QL chọn
+menu thống kê đầu truyện được mượn nhiều → Nhập khoảng thời gian (ngày bắt đầu – kết thúc)
+thống kê → Hệ thống hiển thị danh sách các đầu truyện được mượn nhiều theo dạng bảng, mỗi
+dòng tương ứng với một đầu truyện với đầy đủ thông tin: mã, tên, tác giả, NXB, năm XB, cột tổng
+số lượt được mượn, cột tổng số tiền thu được. Xếp theo thứ tự giảm dần của cột tổng số lượt mượn,
+tiếp theo là giảm dần của cột tổng số tiền thu được. NV click vào 1 dòng của 1 truyện → hệ thống
+hiện lên chi tiết hóa đơn có truyện đó đã mượn, mỗi hóa đơn trên 1 dòng: id, tên khách mượn, ngày
+giờ mượn, ngày giờ trả, tổng số tiền.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

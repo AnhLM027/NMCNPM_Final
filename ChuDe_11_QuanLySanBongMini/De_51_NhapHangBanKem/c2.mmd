@@ -1,0 +1,38 @@
+﻿%% De_51 - Quản lí nhập hàng
+classDiagram
+
+    class NhaCungCap {
+        +maNCC
+        +tenNCC
+        +diaChi
+        +email
+        +dienThoai
+        +moTa
+    }
+
+
+    class MatHang {
+        +maMatHang
+        +tenMatHang
+        +donGia
+        +soLuongTon
+    }
+
+
+    class HoaDonNhap {
+        +maHoaDonNhap
+        +ngayNhap
+        +tongTien
+    }
+
+
+    class ChiTietNhap {
+        +donGia
+        +soLuong
+        +thanhTien
+    }
+
+    NhaCungCap "1" -- "0..*" HoaDonNhap : cung cấp
+    HoaDonNhap "1" *-- "1..*" ChiTietNhap : gồm
+    ChiTietNhap "0..*" -- "1" MatHang : nhập
+

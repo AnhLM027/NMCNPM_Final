@@ -1,0 +1,106 @@
+%% De_55 - Câu 3: MVC Class Diagram cho module Thống kê khung giờ được thuê nhiều
+classDiagram
+    class FrmMenu {
+        -btnThongKeKhungGioThueNhieu: Button
+        +moFrmThongKeKhungGioThueNhieu(): void
+    }
+
+    class FrmThongKeKhungGioThueNhieu {
+        -controller: ThongKeKhungGioController
+        -dtNgayBatDau: DatePicker
+        -dtNgayKetThuc: DatePicker
+        -tblKhungGio: Table
+        -tblChiTietDatSan: Table
+        -btnThongKe: Button
+        +chonNgayBatDau(ngayBatDau: Date): void
+        +chonNgayKetThuc(ngayKetThuc: Date): void
+        +clickThongKe(): void
+        +clickChonKhungGio(khungGio: String, ngay: Date): void
+        +hienThiBangKhungGio(dsThongKe: List~ThongKeKhungGioDTO~): void
+        +hienThiChiTietDatSan(dsChiTiet: List~ChiTietDatSan~): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class ThongKeKhungGioController {
+        -chiTietDatSanDAO: ChiTietDatSanDAO
+        +layThongKeKhungGio(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeKhungGioDTO~
+        +layChiTietTheoKhungGio(khungGio: String, ngay: Date): List~ChiTietDatSan~
+        +tinhTongSoLuotThue(dsChiTiet: List~ChiTietDatSan~): Integer
+        +tinhTongTienThuDuoc(dsChiTiet: List~ChiTietDatSan~): Double
+    }
+
+    class ChiTietDatSanDAO {
+        +getThongKeKhungGio(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeKhungGioDTO~
+        +getByKhungGioVaNgay(khungGio: String, ngay: Date): List~ChiTietDatSan~
+    }
+
+    class ThongKeKhungGioDTO {
+        -khungGio: String
+        -ngay: Date
+        -tongSoLuotThue: Integer
+        -tongTienThuDuoc: Double
+    }
+
+    class SanMini {
+        -maSan: String
+        -tenSan: String
+        -loaiSan: String
+        -giaThueMotBuoi: Double
+    }
+
+    class KhachHang {
+        -maKhachHang: String
+        -tenKhachHang: String
+        -soDienThoai: String
+    }
+
+    class PhieuDatSan {
+        -maPhieuDat: String
+        -khachHang: KhachHang
+        -ngayLamHopDong: Date
+        -thongTinChuSan: String
+        -soTienDatCoc: Double
+        -ngayDatCoc: Date
+        -tongTienThueDuKien: Double
+        -dsChiTietDatSan: List~ChiTietDatSan~
+    }
+
+    class ChiTietDatSan {
+        -sanMini: SanMini
+        -giaThueMotBuoi: Double
+        -khungGioThueTrongTuan: String
+        -ngayBatDau: Date
+        -ngayKetThuc: Date
+        -tongSoBuoi: Integer
+        -tongTienDuKien: Double
+    }
+
+    class BuoiThueSan {
+        -ngayThue: Date
+        -khungGio: String
+        -tongTienHang: Double
+    }
+
+    class HoaDonThanhToan {
+        -maHoaDon: String
+        -phieuDatSan: PhieuDatSan
+        -ngayThanhToan: Date
+        -tongTienSan: Double
+        -tongTienHang: Double
+        -tongTienThanhToan: Double
+    }
+
+    FrmMenu -- FrmThongKeKhungGioThueNhieu
+
+    FrmThongKeKhungGioThueNhieu o-- ThongKeKhungGioController : controller
+    ThongKeKhungGioController o-- ChiTietDatSanDAO : chiTietDatSanDAO
+
+    ChiTietDatSanDAO -- ChiTietDatSan : traVe
+    ChiTietDatSanDAO -- ThongKeKhungGioDTO : traVe
+
+    SanMini "0..*" -- "0..1" SanMini : sanGhep
+    KhachHang "1" -- "0..*" PhieuDatSan : khachHang
+    PhieuDatSan "1" o-- "1..*" ChiTietDatSan : dsChiTietDatSan
+    SanMini "1" -- "0..*" ChiTietDatSan : sanMini
+    PhieuDatSan "1" o-- "0..*" BuoiThueSan : dsBuoiThueSan
+    PhieuDatSan "1" o-- "0..1" HoaDonThanhToan : hoaDonThanhToan

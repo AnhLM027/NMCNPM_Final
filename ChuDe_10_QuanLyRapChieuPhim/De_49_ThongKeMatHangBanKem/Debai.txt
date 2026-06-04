@@ -1,0 +1,38 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 49
+Thời gian làm bài: 60 phút
+Khách hàng yêu cầu anh/chị phát triển một phần mềm quản lí chuỗi rạp chiếu phim với mô tả như
+sau:
+• Hãng có một chuỗi rạp chiếu phim (Mã rạp, tên rạp, địa chỉ, giới thiệu).
+• Mỗi rạp chiếu phim có nhiều phòng chiếu khác nhau (Mã phòng chiếu, số lượng ghế, đặc
+điểm phòng chiếu)
+• Mỗi phim (Mã phim, tên phim, loại phim, năm sản xuất, mô tả) có thể được chiếu tại  nhiều
+phòng chiếu khác nhau vào nhiều thời điểm khác nhau
+• Mỗi phòng chiếu có thể chiếu nhiều phim khác nhau tại nhiều thời điểm khác nhau
+• Mỗi một thời điểm nhất định, trong một phòng chiếu chỉ có duy nhất một phim được chiếu,
+và bán với một giá vé xác định.
+• Cùng một phim, chiếu tại cùng 1 phòng chiếu nhưng nếu ở các khung giờ và ngày khác
+nhau có thể có giá vé khác nhau.
+• Cùng một suất chiếu, ghế ngồi chỗ khác nhau có thể có giá vé khác nhau.
+• Nhân viên chỉ bán vé cho khách hàng khi phòng chiếu tại giờ chiếu mà khách hàng yêu cầu
+vẫn còn đủ số lượng ghế trống cho khách hàng.
+• Khi mua vé, khách hàng được xuất hóa đơn ghi rõ các vé đã mua. Mỗi vé trên một dòng: tên
+phim, phòng chiếu, giờ chiếu, số ghế, ưu đãi, giá tiền. Bên dưới là tổng tiền.
+• Rạp chiếu có bán kèm các dịch vụ ăn uống nhẹ (như bỏng ngô, nước uống...). Khách hàng
+có thể mua kèm với vé xem phim (khi đó, hóa đơn sẽ bao gồm các dịch vụ này), hoặc mua
+riêng lẻ. Nếu mua riêng lẻ thì xuất hóa đơn riêng, mỗi dòng là một mặt hàng: mã, tên, đơn
+giá, số lượng, ưu đãi, thành tiền. Dưới cùng là tổng tiền.
+Modul "Thống kê các mặt hàng bán kèm theo doanh thu" cho phép nhân viên (NV) rạp thống kê
+doanh thu bán các mặt hàng đi kèm theo doanh thu với mô tả chi tiết nghiệp vụ: NV chọn menu
+thống kê →  chọn thống kê các mặt hàng bán kèm theo doanh thu →  nhập thời gian bắt đầu và kết
+thúc thống kê →  danh sách các mặt hàng bán kèm hiện ra, mỗi dòng cho 1 mặt hàng: Mã, tên, tổng
+số lượng bán ra, tổng doanh thu thu được, sắp xếp theo chiều giảm dần tổng doanh thu. NV click
+vào một dòng của một mặt hàng thì hiện lên chi tiết các lần bán mặt hàng đấy, mỗi dòng tương ứng
+các thông tin: ngày bán, đơn giá, số lượng, tổng tiền được sắp xếp theo thứ tự thời gian bán hàng từ
+cũ đến mới. Đối với mặt hàng được đổi điểm thì khi thống kê vẫn quy ra tiền như thông thường để
+thống kê.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

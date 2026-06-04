@@ -1,0 +1,53 @@
+﻿classDiagram
+    class HangHoa {
+        +maHang
+        +tenHang
+        +moTa
+        +soLuongConTrongKho
+    }
+
+    class NhaCungCap {
+        +maNCC
+        +tenNCC
+        +diaChi
+        +soDienThoai
+    }
+
+    class DaiLyCon {
+        +maDaiLy
+        +tenDaiLy
+        +diaChi
+        +soDienThoai
+    }
+
+    class PhieuNhap {
+        +maPhieuNhap
+        +ngayNhap
+        +tongTien
+    }
+
+    class ChiTietNhap {
+        +soLuong
+        +donGia
+        +thanhTien
+    }
+
+    class PhieuXuat {
+        +maPhieuXuat
+        +ngayXuat
+        +tongTien
+    }
+
+    class ChiTietXuat {
+        +soLuong
+        +donGia
+        +thanhTien
+    }
+
+    NhaCungCap "1" -- "0..*" PhieuNhap : cung cấp hàng
+    PhieuNhap "1" *-- "1..*" ChiTietNhap : gồm
+    ChiTietNhap "0..*" -- "1" HangHoa : hàng nhập
+    DaiLyCon "1" -- "0..*" PhieuXuat : nhận hàng
+    PhieuXuat "1" *-- "1..*" ChiTietXuat : gồm
+    ChiTietXuat "0..*" -- "1" HangHoa : hàng xuất
+

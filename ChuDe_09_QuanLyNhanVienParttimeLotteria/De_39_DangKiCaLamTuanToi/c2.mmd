@@ -1,0 +1,34 @@
+﻿%% De_39 - Đăng kí ca làm tuần tới
+classDiagram
+    class NhanVienParttime {
+        +maNhanVien
+        +tenNhanVien
+        +soDienThoai
+        +ngayKiHopDong
+    }
+
+
+    class CaLam {
+        +maCa
+        +tenCa
+        +gioBatDau
+        +gioKetThuc
+    }
+
+
+    class PhieuDangKiTuan {
+        +maPhieuDangKi
+        +tuan
+        +ngayDangKi
+    }
+
+
+    class ChiTietDangKiCaLam {
+        +maChiTietDangKi
+        +ngayTrongTuan
+    }
+
+    NhanVienParttime "1" -- "0..*" PhieuDangKiTuan : đăng ký tuần
+    PhieuDangKiTuan "1" *-- "1..*" ChiTietDangKiCaLam : gồm
+    CaLam "1" -- "0..*" ChiTietDangKiCaLam : ca đăng ký
+

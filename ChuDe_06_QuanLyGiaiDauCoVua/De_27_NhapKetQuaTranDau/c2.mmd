@@ -1,0 +1,49 @@
+﻿%% De_27 - Xem bảng xếp hạng
+classDiagram
+    class GiaiDau {
+        +maGiaiDau
+        +tenGiaiDau
+        +nam
+        +lanToChuc
+        +diaDiem
+        +moTa
+    }
+
+
+    class CoThu {
+        +maCoThu
+        +tenCoThu
+        +namSinh
+        +quocTich
+        +heSoElo
+        +ghiChu
+    }
+
+
+    class ThamGiaGiai {
+        +tongDiem
+        +tongDiemDoiThuDaGap
+        +heSoEloSauCapNhat
+    }
+
+
+    class VongDau {
+        +soVong
+    }
+
+
+    class TranDau {
+        +maTran
+        +diemCoThu1
+        +diemCoThu2
+        +eloThayDoiCoThu1
+        +eloThayDoiCoThu2
+    }
+
+    GiaiDau "1" -- "0..*" ThamGiaGiai : có cờ thủ tham gia
+    CoThu "1" -- "0..*" ThamGiaGiai : tham gia
+    GiaiDau "1" *-- "11" VongDau : gồm
+    VongDau "1" *-- "0..*" TranDau : gồm cặp đấu
+    TranDau "0..*" -- "1" CoThu : cờ thủ 1
+    TranDau "0..*" -- "1" CoThu : cờ thủ 2
+

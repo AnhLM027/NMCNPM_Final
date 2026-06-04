@@ -1,0 +1,31 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 34
+Thời gian làm bài: 60 phút
+Khách hàng yêu cầu anh/chị phát triển một phần mềm quản lí cho thuê truyện ở một cửa hàng
+chuyên cho thuê truyện với mô tả như sau:
+• Cửa hàng có nhiều đầu truyện khác nhau. Mỗi đầu truyện có số lượng khác nhau và giá thuê
+khác nhau (giá thuê theo ngày).
+• Mỗi đầu truyện có thể được mượn bởi nhiều khách hàng khác nhau. Mỗi khách hàng mỗi
+lần mượn được mượn nhiều đầu truyện khác nhau.
+• Mỗi lần mượn, khách hàng được nhận một phiếu mượn. Trong đó, dòng đầu ghi tên khách
+hàng và ngày mượn. Thông tin mỗi đầu truyện mượn được ghi trên một dòng: tên, tác giả,
+nhà xuất bản, năm xuất bản, giá thuê. Dòng cuối cùng ghi số lượng đầu truyện mượn.
+• Khi trả truyện, khách hàng được nhận hóa đơn trả. Trong đó, dòng đầu ghi tên khách hàng
+và ngày thanh toán. Thông tin mỗi đầu truyện trả được ghi trên một dòng: tên, tác giả, nhà
+xuất bản, năm xuất bản, ngày mượn, ngày trả, giá thuê, thành tiền. Nếu bị phạt thì có thêm
+cột số tiền phạt. Dòng cuối cùng ghi tổng số tiền thanh toán.
+Anh/chị hãy thực hiện modul "Cho thuê truyện" với các bước sau đây: Sau khi chọn được các
+truyện để thuê mượn, khách hàng (KH) cầm đến quầy nhân viên (NV) thu ngân làm phiếu mượn.
+NV nhập tên KH và tìm kiếm → Hệ thống trả về danh sách các KH có tên vừa nhập → NV click
+chọn tên KH trong danh sách (nếu KH mượn lần đầu thì nhập mới) → Hệ thống hiện giao diện
+thêm truyện mượn vào phiếu: Với mỗi đầu truyện, NV click chọn tìm truyện theo tên → nhập tên
+truyện + click tìm → hệ thống hiện lên danh sách các đầu truyện có tên vừa nhập → NV click chọn
+dòng đúng với quyển truyện do KH chọn thuê → Hệ thống thêm 1 dòng tương ứng với đầu truyện
+đó vào phiếu thuê mượn như mô tả. Khi hết các đầu truyện do KH chọn thuê, NV click tạo phiếu
+mượn → Hệ thống lưu vào CSDL và hiển thị phiếu mượn lên màn hình → NV click in ra → Hệ
+thống in phiếu mượn ra cho KH.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

@@ -1,0 +1,43 @@
+﻿%% De_40 - Lên lịch làm việc tuần tới
+classDiagram
+    class NhanVienParttime {
+        +maNhanVien
+        +tenNhanVien
+        +soDienThoai
+        +ngayKiHopDong
+    }
+
+
+    class CaLam {
+        +maCa
+        +tenCa
+        +gioBatDau
+        +gioKetThuc
+    }
+
+
+    class PhieuDangKiTuan {
+        +maPhieuDangKi
+        +tuan
+        +ngayDangKi
+    }
+
+
+    class ChiTietDangKiCaLam {
+        +maChiTietDangKi
+        +ngayTrongTuan
+    }
+
+
+    class PhanCongCa {
+        +maPhanCong
+        +ngayLamViec
+    }
+
+    NhanVienParttime "1" -- "0..*" PhieuDangKiTuan : đăng ký tuần
+    PhieuDangKiTuan "1" *-- "1..*" ChiTietDangKiCaLam : gồm
+    CaLam "1" -- "0..*" ChiTietDangKiCaLam : ca đăng ký
+    ChiTietDangKiCaLam "1" -- "0..1" PhanCongCa : căn cứ xếp lịch
+    PhanCongCa "0..*" -- "1" NhanVienParttime : nhân viên
+    PhanCongCa "0..*" -- "1" CaLam : ca làm
+

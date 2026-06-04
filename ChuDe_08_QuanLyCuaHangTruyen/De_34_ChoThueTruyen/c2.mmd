@@ -1,0 +1,37 @@
+﻿%% De_34 - Cho thuê truyện
+classDiagram
+    class KhachHang {
+        +maKhachHang
+        +tenKhachHang
+        +soCMT
+        +soDienThoai
+        +diaChi
+    }
+
+
+    class DauTruyen {
+        +maTruyen
+        +tenTruyen
+        +tacGia
+        +nhaXuatBan
+        +namXuatBan
+        +soLuong
+        +giaThueNgay
+    }
+
+
+    class PhieuMuon {
+        +maPhieuMuon
+        +ngayMuon
+        +soLuongDauTruyenMuon
+    }
+
+
+    class ChiTietMuon {
+        +giaThueNgay
+    }
+
+    KhachHang "1" -- "0..*" PhieuMuon : mượn truyện
+    PhieuMuon "1" *-- "1..*" ChiTietMuon : gồm
+    ChiTietMuon "0..*" -- "1" DauTruyen : đầu truyện
+

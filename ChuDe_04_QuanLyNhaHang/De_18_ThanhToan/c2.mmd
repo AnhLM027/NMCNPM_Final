@@ -1,0 +1,76 @@
+﻿%% De_18 - Thanh toán
+classDiagram
+    class Ban {
+        +maBan
+        +tenBan
+        +soLuongKhachToiDa
+        +moTa
+    }
+
+
+    class KhachHang {
+        +maKhachHang
+        +tenKhachHang
+        +soDienThoai
+        +email
+        +diaChi
+    }
+
+
+    class MonAn {
+        +maMon
+        +loai
+        +tenMon
+        +moTa
+        +giaHienTai
+    }
+
+
+    class Combo {
+        +maCombo
+        +tenCombo
+        +giaHienTai
+    }
+
+
+    class ChiTietGoiMon {
+        +donGia
+        +soLuong
+        +thanhTien
+    }
+
+
+    class PhieuGoiMon {
+        +maPhieuGoi
+        +ngayGioGoi
+    }
+
+
+    class NhanVien {
+        +maNhanVien
+        +tenNhanVien
+    }
+
+
+    class PhieuGiamGia {
+        +maPhieuGiamGia
+        +soTienGiam
+    }
+
+
+    class HoaDon {
+        +maHoaDon
+        +ngayGioThanhToan
+        +tongTien
+    }
+
+    Ban "0..*" -- "0..1" Ban : gộp thành bàn lớn
+    Ban "1" -- "0..*" PhieuGoiMon : phát sinh
+    PhieuGoiMon "1" *-- "1..*" ChiTietGoiMon : gồm
+    ChiTietGoiMon "0..*" -- "0..1" MonAn : món ăn
+    ChiTietGoiMon "0..*" -- "0..1" Combo : combo
+    PhieuGoiMon "1" -- "0..1" HoaDon : thanh toán
+    NhanVien "1" -- "0..*" HoaDon : thanh toán
+    KhachHang "0..1" -- "0..*" HoaDon : nhận hóa đơn
+    HoaDon "0..1" -- "0..1" PhieuGiamGia : áp dụng
+

@@ -1,0 +1,44 @@
+﻿%% De_04 - Thống kê độc giả mượn nhiều
+classDiagram
+    class BanDoc {
+        +maBanDoc
+        +tenBanDoc
+        +ngaySinh
+        +diaChi
+        +soDienThoai
+        +maVach
+    }
+
+
+    class DauSach {
+        +maDauSach
+        +tenSach
+        +tacGia
+        +namXuatBan
+        +giaBia
+        +soLuong
+        +maVach
+        +moTa
+    }
+
+
+    class PhieuMuon {
+        +maPhieuMuon
+        +maVachPhieuMuon
+        +ngayLap
+        +tongSoSach
+    }
+
+
+    class ChiTietMuon {
+        +maChiTiet
+        +ngayMuon
+        +ngayPhaiTra
+        +ngayTra
+        +soTienPhat
+    }
+
+    BanDoc "1" -- "0..*" PhieuMuon : mượn sách
+    PhieuMuon "1" *-- "1..5" ChiTietMuon : gồm
+    ChiTietMuon "0..*" -- "1" DauSach : đầu sách mượn
+

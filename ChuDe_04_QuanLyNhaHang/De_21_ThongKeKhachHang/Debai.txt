@@ -1,0 +1,28 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 21
+Thời gian làm bài: 60 phút
+Khách hàng yêu cầu chúng ta phát triển một phần mềm quản lí việc gọi món trong một nhà hàng,
+được mô tả như sau:
+• Nhà hàng có nhiều bàn (Mã bàn, tên, số lượng khách tối đa, mô tả). Nhiều bàn nhỏ có thể
+gộp lại thành một bàn lớn khi có yêu cầu từ đoàn khách có số lượng lớn.
+• Mỗi bàn, có thể bị đặt nhiều lần khác nhau trong ngày, hoặc khác ngày.
+• Mỗi khách hàng (Mã, tên, số ĐT, email, địa chỉ) có thể đặt bàn nhiều lần, mỗi lần có thể đặt
+nhiều bàn (trường hợp này sẽ bị gộp thành đặt 1 bàn)
+• Nhà hàng có thể lên combo dạng kết hợp sẵn một số món ăn đủ cho 1 bữa ăn cho một người
+ăn. Khách hàng có thể gọi combo có sẵn như thế này.
+• Khách hàng ở mỗi bàn có thể gọi nhiều món ăn (Mã, loại, tên, mô tả, giá hiện tại) hoặc
+combo. Mỗi món ăn (combo) có có thể bị gọi với số lượng khác nhau. 
+• Khi thanh toán, hóa đơn ghi đầy đủ thông tin: mã bàn, tên và mã nhân viên thanh toán, tên
+khách hàng nếu có, sau đó là một bảng, mỗi dòng chứa thông tin một món (combo) đã dùng:
+id, tên, đơn giá, sơ lượng, thành tiền. Dòng cuối cùng ghi tổng số tiền của hóa đơn.
+Anh/chị hãy thực hiện modul "Thống kê món ăn bán chạy" với các bước sau đây: Quản lí chọn
+chức năng thống kê món ăn bán chạy  →  giao diện chọn thời gian thống kê (ngày bắt đầu - kết
+thúc) hiện ra →  quản lí chọn xong bấm thống kê →  kết quả hiện ra gồm danh sách các món ăn chi
+tiết: mã, loại, tên,  tổng số lượt bán, tổng doanh thu. Sắp xếp theo tổng doanh thu, xếp từ cao đến
+thấp. NV click vào 1 dòng của 1 món ăn, hệ thống hiện lên chi tiết danh sách các lần món ăn được
+gọi: id, tên khách, ngày giờ, số lượng, thành tiền.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

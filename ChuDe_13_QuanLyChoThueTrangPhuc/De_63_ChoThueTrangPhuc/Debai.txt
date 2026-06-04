@@ -1,0 +1,36 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 63
+Thời gian làm bài: 60 phút
+Cửa hàng cho thuê trang phục dạ hội, biểu diễn đặt hàng anh chị phát triển một phần mềm giúp họ
+quản lí hoạt động cho thuê trang phục của họ với mô tả như sau:
+• Cửa hàng có nhiều trang phục -TP, thuộc nhiều chủng loại khác nhau, một TP có thể có số
+lượng khác nhau.
+• TP được đặt hàng hoặc nhập sẵn từ các nhà cung cấp - NCC. Mỗi NCC có thể cung cấp
+nhiều loại TP khác nhau. Mỗi lần nhập có thể nhập nhiều loại TP từ cùng NCC, mỗi TP có
+số lượng khác nhau.
+• Khách hàng - KH có thể thuê nhiều lần, mỗi lần thuê nhiều TP khác nhau, mỗi TP có số
+lượng khác nhau. Nếu thuê lần đầu thì phải đặt cọc bằng tổng giá trị gốc của các TP thuê,
+nếu thuê nhiều lần (khách quen) thì tiền cọc do NV làm hóa đơn quyết định.
+• Khi trả, KH có thể trả một phần hoặc trả hết các TP đang thuê trong một lần, mỗi lần trả đều
+có phiếu trả tương ứng với các TP trả. Tiền cọc chỉ được trả lại cho KH khi đã trả hết các TP
+thuê. Trường hợp KH trả một phần TP, sau khi trả xong mà tiền cọc còn lại nhiều hơn giá trị
+gốc các TP thuê thì KH được nhận lại phần dư ra, chỉ giữ lại cọc tối đa bằng giá trị gốc các
+TP đang thuê.
+• Khi trả, nếu TP bị lỗi hỏng hóc, vấy bẩn thì KH phải trả tiền phạt. Một TP có thể dính nhiều
+lỗi đồng thời. Tiền phạt cho mỗi lỗi được ước tính bởi NV thanh toán trả đồ.
+Modul "Cho thuê trang phục" với mô tả chi tiết nghiệp vụ: Sau khi chọn được các trang phục để
+thuê mượn, khách hàng (KH) cầm đến quầy nhân viên (NV) thu ngân làm phiếu mượn. NV nhập
+tên KH và tìm kiếm → Hệ thống trả về danh sách các KH có tên vừa nhập → NV click chọn tên
+KH trong danh sách (nếu KH mượn lần đầu thì nhập mới) → Hệ thống hiện giao diện thêm trang
+phục mượn vào phiếu: Với mỗi trang phục, NV click chọn tìm trang phục theo tên → nhập tên trang
+phục + click tìm → hệ thống hiện lên danh sách các trang phục có tên vừa nhập → NV click chọn
+dòng đúng với trang phục do KH chọn thuê + nhập số lượng → Hệ thống thêm 1 dòng tương ứng
+với trang phục đó vào phiếu thuê mượn như mô tả. Tổng tiền đặt cọc bằng tổng tiền giá gốc của các
+trang phục và tự động tính vào cuối hóa đơn. Khi hết các trang phục do KH chọn thuê, NV click tạo
+phiếu mượn → Hệ thống lưu vào CSDL và hiển thị phiếu mượn lên màn hình → NV click in ra →
+Hệ thống in phiếu mượn ra cho KH và nhận tiền cọc.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

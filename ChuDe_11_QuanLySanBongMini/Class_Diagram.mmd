@@ -1,0 +1,92 @@
+﻿classDiagram
+    class SanMini {
+        +maSan
+        +tenSan
+        +loaiSan
+        +giaThueMotBuoi
+    }
+
+    class KhachHang {
+        +maKhachHang
+        +tenKhachHang
+        +soDienThoai
+    }
+
+    class PhieuDatSan {
+        +maPhieuDat
+        +ngayLamHopDong
+        +thongTinChuSan
+        +soTienDatCoc
+        +ngayDatCoc
+        +tongTienThueDuKien
+    }
+
+    class ChiTietDatSan {
+        +giaThueMotBuoi
+        +khungGioThueTrongTuan
+        +ngayBatDau
+        +ngayKetThuc
+        +tongSoBuoi
+        +tongTienDuKien
+    }
+
+    class MatHang {
+        +maMatHang
+        +tenMatHang
+        +donGia
+        +soLuongTon
+    }
+
+    class NhaCungCap {
+        +maNCC
+        +tenNCC
+        +diaChi
+        +email
+        +dienThoai
+        +moTa
+    }
+
+    class HoaDonNhap {
+        +maHoaDonNhap
+        +ngayNhap
+        +tongTien
+    }
+
+    class ChiTietNhap {
+        +donGia
+        +soLuong
+        +thanhTien
+    }
+
+    class BuoiThueSan {
+        +ngayThue
+        +khungGio
+        +tongTienHang
+    }
+
+    class ChiTietSuDungHang {
+        +gia
+        +soLuongDung
+        +thanhTien
+    }
+
+    class HoaDonThanhToan {
+        +maHoaDon
+        +ngayThanhToan
+        +tongTienSan
+        +tongTienHang
+        +tongTienThanhToan
+    }
+
+    SanMini "0..*" -- "0..1" SanMini : ghép thành sân lớn
+    KhachHang "1" -- "0..*" PhieuDatSan : đặt sân
+    PhieuDatSan "1" *-- "1..*" ChiTietDatSan : gồm
+    ChiTietDatSan "0..*" -- "1" SanMini : sân thuê
+    PhieuDatSan "1" *-- "0..*" BuoiThueSan : phát sinh buổi thuê
+    BuoiThueSan "1" *-- "0..*" ChiTietSuDungHang : dùng hàng
+    ChiTietSuDungHang "0..*" -- "1" MatHang : mặt hàng
+    NhaCungCap "1" -- "0..*" HoaDonNhap : cung cấp
+    HoaDonNhap "1" *-- "1..*" ChiTietNhap : gồm
+    ChiTietNhap "0..*" -- "1" MatHang : nhập
+    PhieuDatSan "1" -- "0..1" HoaDonThanhToan : thanh toán
+

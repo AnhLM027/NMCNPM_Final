@@ -1,0 +1,64 @@
+﻿%% De_07 - Đăng kí học
+classDiagram
+    class SinhVien {
+        +maSV
+        +matKhau
+        +tenSV
+        +ngaySinh
+        +khoa
+        +queQuan
+        +diaChi
+    }
+
+    class MonHoc {
+        +maMon
+        +tenMon
+        +soTinChi
+    }
+
+    class LopHocPhan {
+        +maLop
+        +tenLop
+        +soSVToiDa
+    }
+
+    class GiangVien {
+        +maGV
+        +tenGV
+    }
+
+    class KhungGio {
+        +maKhungGio
+        +thuTrongTuan
+        +kipHoc
+        +khungGioHoc
+    }
+
+    class LichHoc {
+        +maLichHoc
+    }
+
+    class DangKyHoc {
+        +maDangKy
+        +hocKy
+        +ngayDangKy
+        +tongSoTinChi
+    }
+
+    class Diem {
+        +diemThanhPhan1
+        +diemThanhPhan2
+        +diemThanhPhan3
+        +diemThi
+        +diemCuoiCung
+    }
+
+    MonHoc "0..*" -- "0..*" MonHoc : yêu cầu hoàn thành trước
+    MonHoc "1" *-- "0..*" LopHocPhan : mở lớp
+    GiangVien "1" -- "0..*" LopHocPhan : dạy
+    LopHocPhan "1" *-- "0..1" LichHoc : được xếp
+    KhungGio "1" -- "0..*" LichHoc : áp dụng
+    SinhVien "1" -- "0..*" DangKyHoc : đăng ký
+    LopHocPhan "1" -- "0..*" DangKyHoc : được đăng ký
+    DangKyHoc "1" *-- "0..1" Diem : lưu kết quả
+

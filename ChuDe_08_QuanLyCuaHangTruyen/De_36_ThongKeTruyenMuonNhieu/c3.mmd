@@ -1,0 +1,101 @@
+%% De_36 - Câu 3: MVC Class Diagram cho module Thống kê truyện được mượn nhiều
+classDiagram
+    class FrmMenu {
+        -btnThongKeTruyenMuonNhieu: Button
+        +moFrmThongKeTruyenMuonNhieu(): void
+    }
+
+    class FrmThongKeTruyenMuonNhieu {
+        -controller: ThongKeTruyenController
+        -txtNgayBatDau: TextField
+        -txtNgayKetThuc: TextField
+        -tblDauTruyen: Table
+        -tblHoaDonChiTiet: Table
+        -btnThongKe: Button
+        +nhapKhoangThoiGian(): void
+        +clickThongKe(): void
+        +clickChonDauTruyen(maTruyen: String): void
+        +hienThiDanhSachDauTruyen(dsDauTruyen: List~DauTruyen~): void
+        +hienThiChiTietHoaDon(dsHoaDonTra: List~HoaDonTra~): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class ThongKeTruyenController {
+        -dauTruyenDAO: DauTruyenDAO
+        -hoaDonTraDAO: HoaDonTraDAO
+        +layTruyenMuonNhieu(ngayBatDau: Date, ngayKetThuc: Date): List~DauTruyen~
+        +layHoaDonTheoTruyen(maTruyen: String, ngayBatDau: Date, ngayKetThuc: Date): List~HoaDonTra~
+        +tinhTongLuotMuon(maTruyen: String, ngayBatDau: Date, ngayKetThuc: Date): Integer
+        +tinhTongTienThu(maTruyen: String, ngayBatDau: Date, ngayKetThuc: Date): Double
+    }
+
+    class DauTruyenDAO {
+        +getThongKeMuonNhieu(ngayBatDau: Date, ngayKetThuc: Date): List~DauTruyen~
+    }
+
+    class HoaDonTraDAO {
+        +getByDauTruyen(maTruyen: String, ngayBatDau: Date, ngayKetThuc: Date): List~HoaDonTra~
+    }
+
+    class KhachHang {
+        -maKhachHang: String
+        -tenKhachHang: String
+        -soCMT: String
+        -soDienThoai: String
+        -diaChi: String
+    }
+
+    class DauTruyen {
+        -maTruyen: String
+        -tenTruyen: String
+        -tacGia: String
+        -nhaXuatBan: String
+        -namXuatBan: Integer
+        -soLuong: Integer
+        -giaThueNgay: Double
+    }
+
+    class PhieuMuon {
+        -maPhieuMuon: String
+        -khachHang: KhachHang
+        -ngayMuon: Date
+        -soLuongDauTruyenMuon: Integer
+    }
+
+    class ChiTietMuon {
+        -dauTruyen: DauTruyen
+        -giaThueNgay: Double
+    }
+
+    class HoaDonTra {
+        -maHoaDon: String
+        -khachHang: KhachHang
+        -phieuMuon: PhieuMuon
+        -ngayThanhToan: Date
+        -tongTienThanhToan: Double
+    }
+
+    class ChiTietTra {
+        -dauTruyen: DauTruyen
+        -ngayMuon: Date
+        -ngayTra: Date
+        -giaThueNgay: Double
+        -thanhTien: Double
+        -soTienPhat: Double
+    }
+
+    FrmMenu -- FrmThongKeTruyenMuonNhieu
+    FrmThongKeTruyenMuonNhieu o-- ThongKeTruyenController : controller
+    ThongKeTruyenController o-- DauTruyenDAO : dauTruyenDAO
+    ThongKeTruyenController o-- HoaDonTraDAO : hoaDonTraDAO
+
+    DauTruyenDAO -- DauTruyen : traVe
+    HoaDonTraDAO -- HoaDonTra : traVe
+
+    KhachHang "1" -- "0..*" PhieuMuon : khachHang
+    PhieuMuon "1" -- "1..*" ChiTietMuon : dsChiTietMuon
+    DauTruyen "1" -- "0..*" ChiTietMuon : dauTruyen
+    KhachHang "1" -- "0..*" HoaDonTra : khachHang
+    PhieuMuon "1" -- "0..*" HoaDonTra : phieuMuon
+    HoaDonTra "1" -- "1..*" ChiTietTra : dsChiTietTra
+    DauTruyen "1" -- "0..*" ChiTietTra : dauTruyen

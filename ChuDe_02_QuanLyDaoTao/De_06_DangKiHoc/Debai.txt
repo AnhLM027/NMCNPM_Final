@@ -1,0 +1,30 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 06
+Thời gian làm bài: 60 phút
+Khách hàng yêu cầu chúng ta phát triển một phần mềm quản lí kết quả học tập của sinh viên theo
+tín chỉ, được mô tả như sau:
+• Mỗi sinh viên (Mã SV, mật khẩu, tên, ngày sinh, khóa, quê quán, địa chỉ) được phép đăng kí
+tối thiểu 10 tín chỉ/học kì và tối đa 15 tín chỉ/học kì
+• Mỗi sinh viên được đăng kí nhiều môn học (mã môn, tên môn, số tín chỉ)
+• Mỗi môn học có thể có nhiều môn học yêu cầu sinh viên phải hoàn thành trước đó thì mới
+được đăng kí
+• Mỗi môn học có thể có nhiều lớp học phần (mã lớp, tên lớp, số sv tối đa, phòng học, khung
+giờ học cố định trong tuần)
+• Sinh viên không được phép đăng kí học hai lớp có trùng buổi học
+• Với mỗi môn học, một sinh viên chỉ được đăng kí vào 1 lớp xác định
+• Kết quả của sinh viên (điểm thành phần số 1, số 2, số 3, điểm thi, điểm cuối cùng=x% số1+
+y% số2 + z% số3 + w% điểm thi) được lưu theo từng môn học
+• Điểm trung bình của sinh viên trong học kì được tính bằng trung bình có trọng số là số tín
+chỉ từng môn học
+Anh/chị hãy thực hiện modul "Nhập điểm theo lớp học phần" với mô tả chi tiết nghiệp vụ: giáo
+viên hoặc giáo vụ (GV) chọn chức năng nhập điểm → giao diện hiện ra danh sách các môn học do
+GV dạy → GV click chọn 1 môn học → giao diện hiện ra danh sách các lớp học phần của môn học
+đã chọn do GV dạy → GV click chọn 1 lớp học phần → Giao diện hiện lên danh sách các sinh viên
+trong lớp học phần, mỗi SV trên 1 dòng với các cột điểm thành phần và cột điểm thi → GV nhập
+đầy đủ các đầu điểm của các SV + click xác nhận → Hệ thống lưu vào CSDL và thông báo thành
+công.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

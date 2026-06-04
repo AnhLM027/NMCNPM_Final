@@ -1,0 +1,35 @@
+﻿%% De_43 - Thống kê nhân viên làm nhiều
+classDiagram
+    class NhanVienParttime {
+        +maNhanVien
+        +tenNhanVien
+        +soDienThoai
+        +ngayKiHopDong
+    }
+
+
+    class CaLam {
+        +maCa
+        +tenCa
+        +gioBatDau
+        +gioKetThuc
+    }
+
+
+    class PhanCongCa {
+        +maPhanCong
+        +ngayLamViec
+    }
+
+
+    class ChamCong {
+        +gioCheckin
+        +gioCheckout
+        +soGioThucLam
+        +soGioTangCa
+        +soGioVangMat
+    }
+
+    PhanCongCa "0..*" -- "1" NhanVienParttime : nhân viên
+    PhanCongCa "0..*" -- "1" CaLam : ca làm
+    PhanCongCa "1" *-- "0..1" ChamCong : checkin checkout

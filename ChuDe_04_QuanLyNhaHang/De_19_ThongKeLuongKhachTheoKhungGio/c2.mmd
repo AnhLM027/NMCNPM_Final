@@ -1,0 +1,44 @@
+﻿%% De_19 - Thống kê lượng khách theo khung giờ
+classDiagram
+    class Ban {
+        +maBan
+        +tenBan
+        +soLuongKhachToiDa
+        +moTa
+    }
+
+
+    class KhachHang {
+        +maKhachHang
+        +tenKhachHang
+        +soDienThoai
+        +email
+        +diaChi
+    }
+
+
+    class PhieuGoiMon {
+        +maPhieuGoi
+        +ngayGioGoi
+    }
+
+
+    class ChiTietGoiMon {
+        +donGia
+        +soLuong
+        +thanhTien
+    }
+
+
+    class HoaDon {
+        +maHoaDon
+        +ngayGioThanhToan
+        +tongTien
+    }
+
+    Ban "0..*" -- "0..1" Ban : gộp thành bàn lớn
+    Ban "1" -- "0..*" PhieuGoiMon : phát sinh
+    PhieuGoiMon "1" *-- "1..*" ChiTietGoiMon : gồm
+    PhieuGoiMon "1" -- "0..1" HoaDon : thanh toán
+    KhachHang "0..1" -- "0..*" HoaDon : nhận hóa đơn
+

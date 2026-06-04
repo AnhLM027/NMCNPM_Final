@@ -1,0 +1,105 @@
+%% De_54 - Câu 3: MVC Class Diagram cho module Thống kê doanh thu
+classDiagram
+    class FrmMenu {
+        -btnThongKeDoanhThu: Button
+        +moFrmThongKeDoanhThu(): void
+    }
+
+    class FrmThongKeDoanhThu {
+        -controller: ThongKeDoanhThuController
+        -rdoTheoThang: RadioButton
+        -rdoTheoQuy: RadioButton
+        -rdoTheoNam: RadioButton
+        -tblDoanhThu: Table
+        -tblHoaDonChiTiet: Table
+        -btnThongKe: Button
+        +chonKieuThongKe(kieuThongKe: String): void
+        +clickThongKe(): void
+        +clickChonDongThongKe(ngayBatDau: Date, ngayKetThuc: Date): void
+        +hienThiBangDoanhThu(dsThongKe: List~ThongKeDoanhThuDTO~): void
+        +hienThiDanhSachHoaDon(dsHoaDon: List~HoaDonThanhToan~): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class ThongKeDoanhThuController {
+        -hoaDonThanhToanDAO: HoaDonThanhToanDAO
+        +layThongKeDoanhThu(kieuThongKe: String): List~ThongKeDoanhThuDTO~
+        +layHoaDonTheoKhoangThoiGian(ngayBatDau: Date, ngayKetThuc: Date): List~HoaDonThanhToan~
+        +tinhTongDoanhThu(dsHoaDon: List~HoaDonThanhToan~): Double
+        +taoDanhSachThongKe(kieuThongKe: String): List~ThongKeDoanhThuDTO~
+    }
+
+    class HoaDonThanhToanDAO {
+        +getByKhoangThoiGian(ngayBatDau: Date, ngayKetThuc: Date): List~HoaDonThanhToan~
+    }
+
+    class ThongKeDoanhThuDTO {
+        -thoiGianThongKe: String
+        -ngayBatDau: Date
+        -ngayKetThuc: Date
+        -tongDoanhThu: Double
+    }
+
+    class SanMini {
+        -maSan: String
+        -tenSan: String
+        -loaiSan: String
+        -giaThueMotBuoi: Double
+    }
+
+    class KhachHang {
+        -maKhachHang: String
+        -tenKhachHang: String
+        -soDienThoai: String
+    }
+
+    class PhieuDatSan {
+        -maPhieuDat: String
+        -khachHang: KhachHang
+        -ngayLamHopDong: Date
+        -thongTinChuSan: String
+        -soTienDatCoc: Double
+        -ngayDatCoc: Date
+        -tongTienThueDuKien: Double
+        -dsChiTietDatSan: List~ChiTietDatSan~
+    }
+
+    class ChiTietDatSan {
+        -sanMini: SanMini
+        -giaThueMotBuoi: Double
+        -khungGioThueTrongTuan: String
+        -ngayBatDau: Date
+        -ngayKetThuc: Date
+        -tongSoBuoi: Integer
+        -tongTienDuKien: Double
+    }
+
+    class BuoiThueSan {
+        -ngayThue: Date
+        -khungGio: String
+        -tongTienHang: Double
+    }
+
+    class HoaDonThanhToan {
+        -maHoaDon: String
+        -phieuDatSan: PhieuDatSan
+        -ngayThanhToan: Date
+        -tongTienSan: Double
+        -tongTienHang: Double
+        -tongTienThanhToan: Double
+    }
+
+    FrmMenu -- FrmThongKeDoanhThu
+
+    FrmThongKeDoanhThu o-- ThongKeDoanhThuController : controller
+    ThongKeDoanhThuController o-- HoaDonThanhToanDAO : hoaDonThanhToanDAO
+
+    HoaDonThanhToanDAO -- HoaDonThanhToan : traVe
+    ThongKeDoanhThuController -- ThongKeDoanhThuDTO : tao
+
+    SanMini "0..*" -- "0..1" SanMini : sanGhep
+    KhachHang "1" -- "0..*" PhieuDatSan : khachHang
+    PhieuDatSan "1" o-- "1..*" ChiTietDatSan : dsChiTietDatSan
+    SanMini "1" -- "0..*" ChiTietDatSan : sanMini
+    PhieuDatSan "1" o-- "0..*" BuoiThueSan : dsBuoiThueSan
+    PhieuDatSan "1" o-- "0..1" HoaDonThanhToan : hoaDonThanhToan

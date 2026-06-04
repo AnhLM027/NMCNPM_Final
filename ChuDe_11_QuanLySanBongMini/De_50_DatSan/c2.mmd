@@ -1,0 +1,41 @@
+﻿%% De_50 - Đặt sân
+classDiagram
+    class SanMini {
+        +maSan
+        +tenSan
+        +loaiSan
+        +giaThueMotBuoi
+    }
+
+
+    class KhachHang {
+        +maKhachHang
+        +tenKhachHang
+        +soDienThoai
+    }
+
+
+    class PhieuDatSan {
+        +maPhieuDat
+        +ngayLamHopDong
+        +thongTinChuSan
+        +soTienDatCoc
+        +ngayDatCoc
+        +tongTienThueDuKien
+    }
+
+
+    class ChiTietDatSan {
+        +giaThueMotBuoi
+        +khungGioThueTrongTuan
+        +ngayBatDau
+        +ngayKetThuc
+        +tongSoBuoi
+        +tongTienDuKien
+    }
+
+    SanMini "0..*" -- "0..1" SanMini : ghép thành sân lớn
+    KhachHang "1" -- "0..*" PhieuDatSan : đặt sân
+    PhieuDatSan "1" *-- "1..*" ChiTietDatSan : gồm
+    ChiTietDatSan "0..*" -- "1" SanMini : sân thuê
+

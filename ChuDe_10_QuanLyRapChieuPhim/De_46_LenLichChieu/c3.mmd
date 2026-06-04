@@ -1,0 +1,153 @@
+%% De_46 - Câu 3: MVC Class Diagram cho module Lên lịch chiếu
+classDiagram
+    class FrmMenu {
+        -btnQuanLiLichChieu: Button
+        -btnLenLichChieuMoi: Button
+        +moFrmLenLichChieu(): void
+    }
+
+    class FrmLenLichChieu {
+        -controller: LenLichChieuController
+        -cboPhim: ComboBox
+        -cboPhongChieu: ComboBox
+        -cboKhungGioChieu: ComboBox
+        -cboMucGiaVe: ComboBox
+        -btnThemLichChieu: Button
+        +chonPhim(maPhim: String): void
+        +chonPhongChieu(maPhongChieu: String): void
+        +chonKhungGioChieu(ngayGioChieu: DateTime): void
+        +chonMucGiaVe(maMucGia: String): void
+        +clickThemLichChieu(): void
+        +hienThiDanhSachPhim(dsPhim: List~Phim~): void
+        +hienThiPhongChieuTrong(dsPhongChieu: List~PhongChieu~): void
+        +hienThiKhungGioTrong(dsKhungGio: List~DateTime~): void
+        +hienThiDanhSachMucGiaVe(dsMucGiaVe: List~MucGiaVe~): void
+        +moFrmDinhGiaGhe(suatChieu: SuatChieu): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class FrmDinhGiaGhe {
+        -controller: LenLichChieuController
+        -tblSoDoGhe: Table
+        -cboMucGiaVe: ComboBox
+        -btnXacNhan: Button
+        +chonGhe(dsSoGhe: List~String~): void
+        +chonMucGiaVe(maMucGia: String): void
+        +ganMucGiaChoGhe(dsSoGhe: List~String~, maMucGia: String): void
+        +clickXacNhan(): void
+        +hienThiSoDoGhe(suatChieu: SuatChieu, dsGiaGhe: List~GiaGheTheoSuat~): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class LenLichChieuController {
+        -phimDAO: PhimDAO
+        -phongChieuDAO: PhongChieuDAO
+        -suatChieuDAO: SuatChieuDAO
+        -mucGiaVeDAO: MucGiaVeDAO
+        -giaGheTheoSuatDAO: GiaGheTheoSuatDAO
+        +layDanhSachPhim(): List~Phim~
+        +layPhongChieuTrong(ngayGioChieu: DateTime): List~PhongChieu~
+        +layKhungGioTrong(maPhongChieu: String): List~DateTime~
+        +layDanhSachMucGiaVe(): List~MucGiaVe~
+        +taoSuatChieu(maPhim: String, maPhongChieu: String, ngayGioChieu: DateTime, maMucGia: String): SuatChieu
+        +taoGiaGheMacDinh(suatChieu: SuatChieu, mucGiaVe: MucGiaVe): List~GiaGheTheoSuat~
+        +capNhatGiaGhe(dsGiaGhe: List~GiaGheTheoSuat~, dsSoGhe: List~String~, mucGiaVe: MucGiaVe): void
+        +kiemTraPhongChieuTrong(maPhongChieu: String, ngayGioChieu: DateTime): Boolean
+        +luuLichChieu(suatChieu: SuatChieu, dsGiaGhe: List~GiaGheTheoSuat~): Boolean
+    }
+
+    class PhimDAO {
+        +getAll(): List~Phim~
+        +getById(maPhim: String): Phim
+    }
+
+    class PhongChieuDAO {
+        +getAll(): List~PhongChieu~
+        +getById(maPhongChieu: String): PhongChieu
+        +getPhongChieuTrong(ngayGioChieu: DateTime): List~PhongChieu~
+    }
+
+    class SuatChieuDAO {
+        +getByPhongVaKhungGio(maPhongChieu: String, ngayGioChieu: DateTime): SuatChieu
+        +getKhungGioTrong(maPhongChieu: String): List~DateTime~
+        +insert(suatChieu: SuatChieu): void
+    }
+
+    class MucGiaVeDAO {
+        +getAll(): List~MucGiaVe~
+        +getById(maMucGia: String): MucGiaVe
+    }
+
+    class GiaGheTheoSuatDAO {
+        +insertAll(dsGiaGhe: List~GiaGheTheoSuat~): void
+        +getBySuatChieu(maSuatChieu: String): List~GiaGheTheoSuat~
+    }
+
+    class PhongChieu {
+        -maPhongChieu: String
+        -soLuongGhe: Integer
+        -dacDiemPhongChieu: String
+    }
+
+    class Ghe {
+        -maGhe: String
+        -phongChieu: PhongChieu
+        -soGhe: String
+    }
+
+    class Phim {
+        -maPhim: String
+        -tenPhim: String
+        -loaiPhim: String
+        -namSanXuat: Integer
+        -moTa: String
+    }
+
+    class SuatChieu {
+        -maSuatChieu: String
+        -phim: Phim
+        -phongChieu: PhongChieu
+        -mucGiaVeMacDinh: MucGiaVe
+        -ngayGioChieu: DateTime
+        -trangThai: String
+    }
+
+    class MucGiaVe {
+        -maMucGia: String
+        -tenMucGia: String
+        -giaTien: Double
+    }
+
+    class GiaGheTheoSuat {
+        -suatChieu: SuatChieu
+        -ghe: Ghe
+        -mucGiaVe: MucGiaVe
+        -giaTien: Double
+        -trangThaiGhe: String
+    }
+
+    FrmMenu -- FrmLenLichChieu
+    FrmLenLichChieu -- FrmDinhGiaGhe
+
+    FrmLenLichChieu o-- LenLichChieuController : controller
+    FrmDinhGiaGhe o-- LenLichChieuController : controller
+
+    LenLichChieuController o-- PhimDAO : phimDAO
+    LenLichChieuController o-- PhongChieuDAO : phongChieuDAO
+    LenLichChieuController o-- SuatChieuDAO : suatChieuDAO
+    LenLichChieuController o-- MucGiaVeDAO : mucGiaVeDAO
+    LenLichChieuController o-- GiaGheTheoSuatDAO : giaGheTheoSuatDAO
+
+    PhimDAO -- Phim : traVe
+    PhongChieuDAO -- PhongChieu : traVe
+    SuatChieuDAO -- SuatChieu : traVe
+    MucGiaVeDAO -- MucGiaVe : traVe
+    GiaGheTheoSuatDAO -- GiaGheTheoSuat : traVe
+
+    PhongChieu "1" *-- "1..*" Ghe : ghe
+    Phim "1" -- "0..*" SuatChieu : phim
+    PhongChieu "1" -- "0..*" SuatChieu : phongChieu
+    MucGiaVe "1" -- "0..*" SuatChieu : mucGiaVeMacDinh
+    SuatChieu "1" *-- "0..*" GiaGheTheoSuat : dsGiaGhe
+    Ghe "1" -- "0..*" GiaGheTheoSuat : ghe
+    MucGiaVe "1" -- "0..*" GiaGheTheoSuat : mucGiaVe

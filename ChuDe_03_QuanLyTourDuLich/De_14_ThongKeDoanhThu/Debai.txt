@@ -1,0 +1,27 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 14
+Thời gian làm bài: 60 phút
+Khách hàng yêu cầu chúng ta phát triển một phần mềm quản lí đặt tour du lịch, được mô tả như sau:
+• Mỗi tour (Mã tour, tên, nơi xuất phát, nơi đến, mô tả) có thể xuất phát vào nhiều ngày khác
+nhau, tùy vào ngày xuất phát và số lượng người mua tour cho mỗi đoàn sẽ có giá khác nhau.
+• Mỗi khách hàng (Mã, tên, số ID, loại thẻ ID, số ĐT, email, địa chỉ) có thể mua vé nhiều tour
+khác nhau. Mỗi tour có thể mua số lượng vé khác nhau. Mỗi lần mua có xuất hóa đơn ghi rõ
+thông tin tour, ngày xuất phát, giá tour, số lượng khách, tên khách hàng đại diện, tổng số tiền
+thanh toán.
+• Cùng một khách hàng có thể đi cùng một tour nhiều lần, chỉ khác nhau ở ngày xuất phát và
+giá vé.
+• Khách hàng có thể trả vé, nếu trả trước giờ xuất phát trước 7 ngày thì phạt 10%, trước 5
+ngày phạt 20%, trước 3 ngày phạt 50%, trước ít hơn 3 ngày phạt 100% giá ghi trên vé.
+Anh/chị hãy thực hiện modul "Thống kê doanh thu theo địa điểm" với các bước sau đây: Quản lí
+chọn chức năng thống kê doanh thu theo địa điểm du lịch →  giao diện chọn thời gian thống kê
+(ngày bắt đầu - kết thúc) hiện ra →  quản lí chọn xong bấm thống kê →  kết quả hiện ra gồm danh
+sách các địa điểm chi tiết: tên, số lượng tour đến địa điểm đấy, tổng số lượng khách đến địa điểm
+đấy, tổng doanh thu. Sắp xếp theo tổng doanh thu, xếp từ cao đến thấp. NV click vào một dòng của
+một địa điểm, hệ thống hiện ra danh sách chi tiết các hóa đơn của khách đã đặt mua tour qua địa
+điểm đó, mỗi hóa đơn trên 1 dòng: id, tên khách, ngày giờ xuất phát, tên tour, tổng số khách, tổng
+số tiền.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

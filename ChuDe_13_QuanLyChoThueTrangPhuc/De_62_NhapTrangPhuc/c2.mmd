@@ -1,0 +1,45 @@
+﻿%% De_62 - Nhập trang phục
+classDiagram
+
+    class NhaCungCap {
+        +maNCC
+        +tenNCC
+        +diaChi
+        +soDienThoai
+    }
+
+
+    class ChungLoaiTrangPhuc {
+        +maChungLoai
+        +tenChungLoai
+    }
+
+
+    class TrangPhuc {
+        +maTrangPhuc
+        +tenTrangPhuc
+        +kieu
+        +soLuong
+        +giaTriGoc
+        +giaThue
+    }
+
+
+    class HoaDonNhap {
+        +maHoaDonNhap
+        +ngayNhap
+        +tongTien
+    }
+
+
+    class ChiTietNhap {
+        +soLuong
+        +donGia
+        +thanhTien
+    }
+
+    ChungLoaiTrangPhuc "1" -- "0..*" TrangPhuc : phân loại
+    NhaCungCap "1" -- "0..*" HoaDonNhap : cung cấp
+    HoaDonNhap "1" *-- "1..*" ChiTietNhap : gồm
+    ChiTietNhap "0..*" -- "1" TrangPhuc : nhập
+

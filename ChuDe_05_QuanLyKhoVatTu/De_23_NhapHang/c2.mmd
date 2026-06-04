@@ -1,0 +1,35 @@
+﻿%% De_23 - Lập phiếu nhập hàng
+classDiagram
+
+    class NhaCungCap {
+        +maNCC
+        +tenNCC
+        +diaChi
+        +soDienThoai
+    }
+
+
+    class PhieuNhap {
+        +maPhieuNhap
+        +ngayNhap
+        +tongTien
+    }
+
+
+    class ChiTietNhap {
+        +soLuong
+        +donGia
+        +thanhTien
+    }
+
+    class HangHoa {
+        +maHang
+        +tenHang
+        +moTa
+        +soLuongConTrongKho
+    }
+
+    NhaCungCap "1" -- "0..*" PhieuNhap : cung cấp hàng
+    PhieuNhap "1" *-- "1..*" ChiTietNhap : gồm
+    ChiTietNhap "0..*" -- "1" HangHoa : hàng nhập
+

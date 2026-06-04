@@ -1,0 +1,42 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 60
+Thời gian làm bài: 60 phút
+Hãng cho vay trả góp Saison đặt hàng anh chị phát triển một phần mềm giúp họ quản lí khách hàng
+vay trả góp tại chuỗi cửa hàng của họ với mô tả như sau:
+• Hãng hợp tác với nhiều đối tác - ĐT, là các công ty bán lẻ các mặt hàng - MH với nhiều
+chủng loại từ điện thoại, máy tính, đồ điện tử, điện lạnh, gia dụng, ô tô, bất động sản...
+• Khi khách hàng - KH mua một hay một số MH của ĐT mà có nhu cầu sử dụng dịch vụ trả
+góp, nhân viên sẽ làm thủ tục kí hợp đồng - HĐ vay trả góp cho KH đó. HĐ chứa thông tin
+địa diện công ty, thông tin KH, thông tin ĐT, ngày kí, và danh sách các mặt hàng, mỗi mặt
+hàng trên 1 dòng: mã, tên, đơn vị tính, đơn giá, số lượng, thành tiền. Dòng cuối là tổng tiền
+và thời hạn vay. Tiếp theo là danh sách các thời điểm thanh toán, mỗi đợt trên 1 dòng: ngày
+phải thanh toán, tổng tiền thanh toán, tổng dư nợ còn lại.
+• Mỗi MH có giá niêm yết của ĐT riêng, công ty thanh toán cho ĐT sẽ được chiết khấu giảm
+giá mức 1-5%, công ty thu lại của khách hàng theo lãi suất 1-20%/năm dựa trên giá niêm yết
+của MH.
+• KH có thể thanh toán tiền trả góp cho mỗi HĐ mỗi tháng một lần, trong thời gian tùy chọn
+của hợp đồng.
+• KH có thể thanh toán trước hạn từng tháng nhưng giá trị thanh toán không đổi (không được
+giảm lãi)
+• Nếu KH thanh toán muộn so với thời hạn hàng tháng, thì khoản dư nợ trễ hạn được hình vào
+nợ gốc và tính lãi theo nợ gốc.
+• Công ty có thể thanh toán tiền MH cho ĐT theo từng MH hoặc theo từng đợt trong khoảng
+thời gian 1 tuần, 1 tháng... Mỗi lần thanh toán đều lưu hóa đơn đầy đủ thông tin người đại
+diện công ty, đại diện đối tác, ngày thanh toán, tổng tiền thanh toán và danh sách các MH
+được thanh toán, mỗi MH của một KH trên 1 dòng: mã, tên MH, tên KH, ngày mua, đơn vị
+tính, số lượng, đơn giá, thành tiền.
+Modul “Thống kê đối tác theo doanh số” được mô tả như sau: QL chọn chức năng thống kê ĐT
+theo doanh số → Giao diện thống kê hiện lên với ô nhập khoảng thời gian thống kê → QL nhập
+ngày bắt đầu, ngày kết thúc của thời gian thống kê → Giao diện hiện lên danh sách các ĐT,  mỗi
+ĐT trên 1 dòng, xếp theo thứ tự tổng doanh thu giảm dần: mã, tên, địa chỉ/chi nhánh, tổng số hóa
+đơn có, tổng doanh thu, tổng dư nợ chưa trả → QL click chọn vào 1 dòng để xem chi tiết → Giao
+diện hiện lên bảng danh sách các HĐ liên quan ĐT đó, mỗi dòng tương ứng 1 hợp đồng, xếp theo
+thứ tự thời gian: mã, tên KH, ngày kí, tổng tiền vay, tổng số lần trả, tổng dư nợ, tổng dư nợ quá hạn
+-> click vào 1 dòng -> hiện lên chi tiết hợp đồng tương ứng: thông tin KH, ĐT, danh sách các mặt
+hàng, số lượng, đơn giá, tổng tiền; danh sách các đợt thanh toán, trạng thái đã hoàn thành thanh toán
+hay chưa.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

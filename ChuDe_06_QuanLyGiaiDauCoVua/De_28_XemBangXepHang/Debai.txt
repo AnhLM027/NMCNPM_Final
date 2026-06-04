@@ -1,0 +1,31 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 28
+Thời gian làm bài: 60 phút
+Liên đoàn cờ vua thế giới (FIDE) yêu cầu anh/chị phát triển một phần mềm quản lí Giải đấu vô địch
+thế giới với mô tả như sau:
+• Mỗi giải đấu (Mã, tên, năm, lần tổ chức, địa điểm, mô tả) cho phép nhiều cờ thủ (mã, tên,
+năm sinh, quốc tịch, hệ số Elo, ghi chú) tham gia.
+• Có thể có hàng trăm cờ thủ tham gia, nhưng mỗi cờ thủ phải thi đấu 11 trận theo hệ Thụy Sỹ
+• Ở ván thứ nhất, các cờ thủ được xếp hạng theo thứ tự hệ số Elo từ cao đến thấp. Sau đó đi từ
+trên xuống dưới bảng sắp xếp, hai cờ thủ đứng kề nhau sẽ tạo thành một cặp đấu cho vòng 1.
+• Ở mỗi vòng đấu, thắng được 1 điểm, hòa được 0.5 điểm, thua được 0 điểm. Sau mỗi vòng
+đấu, kết quả từng trận được cập nhật theo các cặp đấu đã lên lịch trước đó. Đồng thời hệ số
+Elo tăng hay giảm sau mỗi vòng đấu cũng được cập nhật (Tính theo công thức của FIDE,
+chỉ cần nhập kết quả vào).
+• Bắt đầu từ ván thứ 2, bảng xếp hạng tạm thời sau vòng đấu trước đó được xếp theo thứ tự
+các tiêu chí: tổng điểm (giảm dần), tổng điểm của các đối thủ đã gặp (giảm dần), hệ số Elo
+(giảm dần). Và cặp đấu được xác định như sau, đi từ đầu đến cuối bảng xếp hạng tạm thời,
+với mỗi cờ thủ chưa có cặp, đối thủ cả cờ thủ đó là cờ thủ đầu tiên gặp phải và thỏa mãn:
+chưa có căp , và chưa gặp cờ thủ đang xem xét.
+• Sau 11 vòng đấu như vậy, cờ thủ đứng đầu bảng xếp hạng sẽ là nhà vô địch.
+Anh/chị hãy thực hiện modul "Xếp cặp thi đấu" với các bước sau đây: an tổ chức (BTC) chọn menu
+xếp cặp thi đấu  → trang xếp cặp thi đấu hiện ra → BTC chọn vòng đấu trước đó trong danh sách sổ
+xuống → hệ thống hiện bảng xếp hạng hiện tại sau vòng đấu trước đó + nút Xếp lịch → BTC click
+nút Xếp lịch → Hệ thống  tự động xếp cặp cho các cờ thủ theo luật mô tả ở trên, và hiện danh sách
+các bàn đấu theo đúng thứ tự các cặp đấu → BTC click Lưu → Hệ thống lưu lịch thi đấu của vòng
+mới vào CSDL 
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này

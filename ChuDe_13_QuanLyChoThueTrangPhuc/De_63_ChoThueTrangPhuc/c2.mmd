@@ -1,0 +1,43 @@
+﻿%% De_63 - Cho thuê trang phục
+classDiagram
+    class KhachHang {
+        +maKhachHang
+        +tenKhachHang
+        +soDienThoai
+        +diaChi
+    }
+
+
+    class ChungLoaiTrangPhuc {
+        +maChungLoai
+        +tenChungLoai
+    }
+
+
+    class TrangPhuc {
+        +maTrangPhuc
+        +tenTrangPhuc
+        +kieu
+        +soLuong
+        +giaTriGoc
+        +giaThue
+    }
+
+
+    class PhieuThue {
+        +maPhieuThue
+        +ngayThue
+        +tienCoc
+    }
+
+
+    class ChiTietThue {
+        +soLuong
+        +donGiaThue
+    }
+
+    ChungLoaiTrangPhuc "1" -- "0..*" TrangPhuc : phân loại
+    KhachHang "1" -- "0..*" PhieuThue : thuê
+    PhieuThue "1" *-- "1..*" ChiTietThue : gồm
+    ChiTietThue "0..*" -- "1" TrangPhuc : trang phục
+

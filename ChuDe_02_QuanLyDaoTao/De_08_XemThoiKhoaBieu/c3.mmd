@@ -1,0 +1,102 @@
+﻿%% De_08 - Câu 3: MVC Class Diagram cho module Xem TKB của sinh viên
+classDiagram
+    class FrmMenu {
+        -btnXemTKB: Button
+        +moFrmXemTKB(): void
+    }
+
+    class FrmXemTKB {
+        -controller: XemTKBController
+        -cboCachXem: ComboBox
+        -cboTuan: ComboBox
+        -cboHocKy: ComboBox
+        -tblThoiKhoaBieu: Table
+        -btnXem: Button
+        +chonCachXem(): void
+        +clickXem(): void
+        +hienThiTKB(dsLichHoc: List~LichHoc~): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class XemTKBController {
+        -dangKyHocDAO: DangKyHocDAO
+        -lichHocDAO: LichHocDAO
+        +layTKBTheoTuan(maSV: String, tuan: Integer): List~LichHoc~
+        +layTKBTheoHocKy(maSV: String, hocKy: String): List~LichHoc~
+    }
+
+    class DangKyHocDAO {
+        +getBySinhVienVaHocKy(maSV: String, hocKy: String): List~DangKyHoc~
+    }
+
+    class LichHocDAO {
+        +getBySinhVienVaTuan(maSV: String, tuan: Integer): List~LichHoc~
+        +getBySinhVienVaHocKy(maSV: String, hocKy: String): List~LichHoc~
+    }
+
+    class SinhVien {
+        -maSV: String
+        -matKhau: String
+        -tenSV: String
+        -ngaySinh: Date
+        -khoa: String
+        -queQuan: String
+        -diaChi: String
+    }
+
+    class MonHoc {
+        -maMon: String
+        -tenMon: String
+        -soTinChi: Integer
+    }
+
+    class LopHocPhan {
+        -maLop: String
+        -tenLop: String
+        -soSVToiDa: Integer
+        -monHoc: MonHoc
+    }
+
+    class PhongHoc {
+        -maPhong: String
+        -tenPhong: String
+    }
+
+    class KhungGio {
+        -maKhungGio: String
+        -thuTrongTuan: Integer
+        -kipHoc: Integer
+        -khungGioHoc: String
+    }
+
+    class LichHoc {
+        -maLichHoc: String
+        -lopHocPhan: LopHocPhan
+        -phongHoc: PhongHoc
+        -khungGio: KhungGio
+    }
+
+    class DangKyHoc {
+        -maDangKy: String
+        -sinhVien: SinhVien
+        -lopHocPhan: LopHocPhan
+        -hocKy: String
+        -ngayDangKy: Date
+        -tongSoTinChi: Integer
+    }
+
+    FrmMenu -- FrmXemTKB : moForm
+
+    FrmXemTKB o-- XemTKBController : controller
+    XemTKBController o-- DangKyHocDAO : dangKyHocDAO
+    XemTKBController o-- LichHocDAO : lichHocDAO
+
+    DangKyHocDAO -- DangKyHoc : traVe
+    LichHocDAO -- LichHoc : traVe
+
+    SinhVien "1" -- "0..*" DangKyHoc : sinhVien
+    LopHocPhan "1" -- "0..*" DangKyHoc : lopHocPhan
+    MonHoc "1" -- "0..*" LopHocPhan : monHoc
+    LopHocPhan "1" -- "0..1" LichHoc : lopHocPhan
+    PhongHoc "1" -- "0..*" LichHoc : phongHoc
+    KhungGio "1" -- "0..*" LichHoc : khungGio

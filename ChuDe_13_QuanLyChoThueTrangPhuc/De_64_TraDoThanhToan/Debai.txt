@@ -1,0 +1,36 @@
+Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
+Đề số 64
+Thời gian làm bài: 60 phút
+Cửa hàng cho thuê trang phục dạ hội, biểu diễn đặt hàng anh chị phát triển một phần mềm giúp họ
+quản lí hoạt động cho thuê trang phục của họ với mô tả như sau:
+• Cửa hàng có nhiều trang phục -TP, thuộc nhiều chủng loại khác nhau, một TP có thể có số
+lượng khác nhau.
+• TP được đặt hàng hoặc nhập sẵn từ các nhà cung cấp - NCC. Mỗi NCC có thể cung cấp
+nhiều loại TP khác nhau. Mỗi lần nhập có thể nhập nhiều loại TP từ cùng NCC, mỗi TP có
+số lượng khác nhau.
+• Khách hàng - KH có thể thuê nhiều lần, mỗi lần thuê nhiều TP khác nhau, mỗi TP có số
+lượng khác nhau. Nếu thuê lần đầu thì phải đặt cọc bằng tổng giá trị gốc của các TP thuê,
+nếu thuê nhiều lần (khách quen) thì tiền cọc do NV làm hóa đơn quyết định.
+• Khi trả, KH có thể trả một phần hoặc trả hết các TP đang thuê trong một lần, mỗi lần trả đều
+có phiếu trả tương ứng với các TP trả. Tiền cọc chỉ được trả lại cho KH khi đã trả hết các TP
+thuê. Trường hợp KH trả một phần TP, sau khi trả xong mà tiền cọc còn lại nhiều hơn giá trị
+gốc các TP thuê thì KH được nhận lại phần dư ra, chỉ giữ lại cọc tối đa bằng giá trị gốc các
+TP đang thuê.
+• Khi trả, nếu TP bị lỗi hỏng hóc, vấy bẩn thì KH phải trả tiền phạt. Một TP có thể dính nhiều
+lỗi đồng thời. Tiền phạt cho mỗi lỗi được ước tính bởi NV thanh toán trả đồ.
+Modul "Khách hàng trả đồ và thanh toán" với mô tả chi tiết nghiệp vụ: Khi KH đem trang phục
+đến trả, NV chọn menu tìm danh sách trang phục mượn theo tên KH → nhập tên KH+click tìm
+kiếm → hệ thống hiển thị danh sách các KH có tên vừa nhập → NV chọn tên KH đúng với thông
+tin KH hiện tại → hệ thống hiện lên danh sách các trang phục mà KH đó đang mượn, mỗi trang
+phục trên một dòng với đầy đủ thông tin về trang phục, ngày mượn, giá mượn theo ngày, số ngày đã
+mượn, và số tiền thuê tính đến ngày đang trả, cột cuối cùng là ô tích chọn trả → NV click vào nút
+chọn trả cho các trang phục mà KH đem trả (có thể không trả hết 1 lần), nhập tình trạng trang phục
+và tiền phạt nếu có, cuối cùng click nút thanh toán → hệ thống hiện hóa đơn đầy đủ thông tin khách
+hàng + 1 bảng danh sách các trang phục trả như mô tả trên + dòng cuối là tổng số tiền trả , số tiền
+đã đặt cọc, số tiền khách phải trả hoặc trả lại khách → NV click xác nhận → hệ thống cập nhật vào
+CSDL.
+1. Viết một scenario chuẩn cho use case này
+2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul
+3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul
+4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul
+5. Viết một test case chuẩn cho modul này
