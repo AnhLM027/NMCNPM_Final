@@ -2,20 +2,6 @@
 
 Thư mục này gom lời giải sơ đồ lớp cho các đề thi môn **Nhập môn Công nghệ phần mềm**.
 
-## Cấu Trúc
-
-Mỗi chủ đề lớn được gom vào một thư mục riêng:
-
-```text
-ChuDe_01_QuanLyThuVien/
-    Class_Diagram.mmd
-    De_01_QuanLiMuonSach/
-        Debai.txt
-        c2.mmd
-        c3.mmd
-    ...
-```
-
 Ý nghĩa các file:
 
 - `Class_Diagram.mmd`: sơ đồ lớp thực thể của chủ đề lớn.
@@ -43,14 +29,6 @@ Có **13 chủ đề lớn** trong bộ 66 đề này, nếu tính theo miền n
 | Quản lí vay trả góp Saison | Đề 56-61 |
 | Quản lí cho thuê trang phục | Đề 62-66 |
 
-## Quy Ước Mermaid
-
-Các sơ đồ dùng Mermaid:
-
-```mermaid
-classDiagram
-```
-
 Quy ước chính:
 
 - C2 chỉ gồm các lớp thực thể liên quan trực tiếp đến module.
@@ -59,25 +37,26 @@ Quy ước chính:
 - Quan hệ thành phần dùng `*--`, ví dụ `HoaDon *-- ChiTietHoaDon`.
 - Quan hệ tham chiếu dùng `--`.
 
+## Cấu Trúc
+
+Mỗi chủ đề lớn được gom vào một thư mục riêng:
+
+```text
+ChuDe_01_QuanLyThuVien/
+    Class_Diagram.mmd
+    De_01_QuanLiMuonSach/
+        Debai.txt
+        c2.mmd
+        c3.mmd
+    ...
+```
+
 ## Xuất Ảnh Từ File `.mmd`
 
 Tool xuất ảnh nằm ở gốc project:
 
 ```powershell
 .\export_mermaid_images.ps1
-```
-
-Lệnh trên sẽ quét các file `.mmd` trong:
-
-```text
-ChuDe_*/De_*/*.mmd
-```
-
-Ảnh sẽ được lưu ngay cùng thư mục với file `.mmd`, ví dụ:
-
-```text
-ChuDe_01_QuanLyThuVien/De_01_QuanLiMuonSach/c2.png
-```
 
 Xuất riêng một đề:
 
@@ -90,25 +69,3 @@ Xuất cả `Class_Diagram.mmd` của các chủ đề:
 ```powershell
 .\export_mermaid_images.ps1 -IncludeClassDiagram
 ```
-
-Xuất SVG thay vì PNG:
-
-```powershell
-.\export_mermaid_images.ps1 -Format svg
-```
-
-## Yêu Cầu Để Xuất Ảnh
-
-Cần có Node.js và Mermaid CLI.
-
-Cài Mermaid CLI global:
-
-```powershell
-npm install -g @mermaid-js/mermaid-cli
-```
-
-Nếu chưa cài global, script sẽ thử dùng `npx` để chạy `@mermaid-js/mermaid-cli`.
-
-## Lưu Ý
-
-Nếu file ảnh bị lỗi khi mở trong VS Code, hãy kiểm tra kích thước file. File `0 byte` thường là do quá trình export bị ngắt giữa chừng. Chạy lại script để tạo lại ảnh.

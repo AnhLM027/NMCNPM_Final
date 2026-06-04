@@ -1,3 +1,36 @@
+Có 13 chủ đề lớn trong bộ 66 đề này, nếu tính theo miền nghiệp vụ/hệ thống như bạn nói “cửa hàng truyện” là 1 chủ đề, “giải đấu cờ vua” là 1 chủ đề.
+Chủ đề
+Các đề
+Quản lí thư viện / mượn trả sách
+Đề 01-04
+Quản lí đào tạo / lớp học phần / sinh viên
+Đề 05-10
+Quản lí tour du lịch
+Đề 11-14
+Quản lí nhà hàng / gọi món / đặt bàn
+Đề 15-21
+Quản lí kho vật tư
+Đề 22-25
+Quản lí giải đấu cờ vua
+Đề 26-29
+Quản lí giải đua F1
+Đề 30-33
+Quản lí cửa hàng cho thuê truyện
+Đề 34-38
+Quản lí nhân viên parttime Lotteria
+Đề 39-44
+Quản lí chuỗi rạp chiếu phim
+Đề 45-49
+Quản lí cho thuê sân bóng mini
+Đề 50-55
+Quản lí vay trả góp Saison
+Đề 56-61
+Quản lí cho thuê trang phục
+Đề 62-66
+
+
+
+
 6Ngân hàng câu hỏi thi môn: Công nghệ phần mềm
 Đề số 01
 Thời gian làm bài: 60 phút
