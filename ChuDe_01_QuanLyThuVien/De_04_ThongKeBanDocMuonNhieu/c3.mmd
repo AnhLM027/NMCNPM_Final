@@ -1,0 +1,70 @@
+%% De_04 - Câu 3: MVC Class Diagram cho module Thống kê độc giả mượn nhiều
+classDiagram
+    class FrmMenu {
+        -btnThongKeBanDocMuonNhieu: Button
+        +moFrmThongKeBanDocMuonNhieu(): void
+    }
+
+    class FrmThongKeBanDocMuonNhieu {
+        -controller: ThongKeBanDocMuonNhieuController
+        -dtNgayBatDau: DatePicker
+        -dtNgayKetThuc: DatePicker
+        -tblBanDocMuonNhieu: Table
+        -tblPhieuMuonChiTiet: Table
+        -btnThongKe: Button
+        +chonNgayBatDau(ngayBatDau: Date): void
+        +chonNgayKetThuc(ngayKetThuc: Date): void
+        +clickThongKe(): void
+        +clickChonBanDoc(maBanDoc: String): void
+        +hienThiBangBanDocMuonNhieu(dsThongKe: List~ThongKeBanDocMuonDTO~): void
+        +hienThiChiTietPhieuMuon(dsPhieuMuon: List~PhieuMuon~): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class ThongKeBanDocMuonNhieuController {
+        -phieuMuonDAO: PhieuMuonDAO
+        +layThongKeBanDocMuonNhieu(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeBanDocMuonDTO~
+        +layPhieuMuonTheoBanDoc(maBanDoc: String, ngayBatDau: Date, ngayKetThuc: Date): List~PhieuMuon~
+        +kiemTraKhoangThoiGian(ngayBatDau: Date, ngayKetThuc: Date): Boolean
+    }
+
+    class PhieuMuonDAO {
+        +getThongKeBanDocMuonNhieu(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeBanDocMuonDTO~
+        +getByBanDoc(maBanDoc: String, ngayBatDau: Date, ngayKetThuc: Date): List~PhieuMuon~
+    }
+
+    class ThongKeBanDocMuonDTO {
+        -maBanDoc: String
+        -tenBanDoc: String
+        -ngaySinh: Date
+        -diaChi: String
+        -tongSoSachMuon: Integer
+    }
+
+    class BanDoc {
+        -maBanDoc: String
+        -tenBanDoc: String
+        -ngaySinh: Date
+        -diaChi: String
+        -soDienThoai: String
+        -maVach: String
+    }
+
+    class PhieuMuon {
+        -maPhieuMuon: String
+        -banDoc: BanDoc
+        -maVachPhieuMuon: String
+        -ngayLap: Date
+        -tongSoSach: Integer
+    }
+
+    FrmMenu -- FrmThongKeBanDocMuonNhieu
+
+    FrmThongKeBanDocMuonNhieu o-- ThongKeBanDocMuonNhieuController : controller
+    ThongKeBanDocMuonNhieuController o-- PhieuMuonDAO : phieuMuonDAO
+
+    PhieuMuonDAO -- PhieuMuon : traVe
+    PhieuMuonDAO -- ThongKeBanDocMuonDTO : traVe
+    ThongKeBanDocMuonNhieuController -- ThongKeBanDocMuonDTO : tao
+
+    BanDoc "1" -- "0..*" PhieuMuon : banDoc

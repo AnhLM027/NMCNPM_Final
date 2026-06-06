@@ -74,12 +74,6 @@ classDiagram
         -tongTienDuKien: Double
     }
 
-    class BuoiThueSan {
-        -ngayThue: Date
-        -khungGio: String
-        -tongTienHang: Double
-    }
-
     class HoaDonThanhToan {
         -maHoaDon: String
         -phieuDatSan: PhieuDatSan
@@ -101,5 +95,4 @@ classDiagram
     KhachHang "1" -- "0..*" PhieuDatSan : khachHang
     PhieuDatSan "1" o-- "1..*" ChiTietDatSan : dsChiTietDatSan
     SanMini "1" -- "0..*" ChiTietDatSan : sanMini
-    PhieuDatSan "1" o-- "0..*" BuoiThueSan : dsBuoiThueSan
     PhieuDatSan "1" o-- "0..1" HoaDonThanhToan : hoaDonThanhToan

@@ -68,6 +68,7 @@ classDiagram
     PhongChieu "1" *-- "1..*" Ghe : có
     Phim "1" -- "0..*" SuatChieu : được chiếu
     PhongChieu "1" -- "0..*" SuatChieu : tổ chức
+    MucGiaVe "1" -- "0..*" SuatChieu : giá mặc định
     SuatChieu "1" *-- "0..*" GiaGheTheoSuat : định giá ghế
     Ghe "1" -- "0..*" GiaGheTheoSuat : ghế
     MucGiaVe "1" -- "0..*" GiaGheTheoSuat : mức giá

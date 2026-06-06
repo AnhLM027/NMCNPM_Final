@@ -43,3 +43,33 @@ Phần B: Vẽ biểu đồ lớp theo mô hình MVC (MVC Class Diagram)
   + DAO (Các lớp giao tiếp cơ sở dữ liệu, có các phương thức truy vấn như get, update, insert...).
   + Entity (Các lớp thực thể liên quan, có thuộc tính).
 - Vẽ rõ đầy đủ các mũi tên liên kết, gọi phương thức hoặc truyền sự kiện giữa các tầng (View -> Controller -> DAO -> Entity). Chiều mũi tên và các đường nối (1-n, 1-1) ở phần DAO - Entity phải hợp lý. Mỗi DAO phải nối tới 1 Entity. các lớp phải có sự liên kết với nhau.
+Câu 4:
+Thiết kế động: Vẽ biểu đồ tuần tự (Sequence Diagram) cho module dựa trực tiếp vào biểu đồ lớp MVC đã thiết kế ở Câu 3.
+
+Yêu cầu chung:
+- Vẽ bằng Mermaid `sequenceDiagram`.
+- Biểu đồ tuần tự phải bám sát đúng luồng nghiệp vụ chính của đề bài.
+- Thứ tự thông điệp phải đi theo đúng thứ tự thao tác của actor trong scenario và đúng thứ tự xử lý trong C3.
+- Tên participant phải lấy từ các lớp trong C3: Actor, Frm..., Controller, DAO, Entity/DTO.
+- Tên message nên dùng đúng tên phương thức đã khai báo trong C3. Nếu cần thêm phương thức mới để luồng rõ hơn thì được thêm, nhưng phải hợp lý và không phá vỡ thiết kế C3.
+- Không vẽ quá nhiều xử lý nội bộ nhỏ vụn. Chỉ vẽ các lời gọi chính thể hiện rõ luồng View -> Controller -> DAO -> Entity/DTO -> Controller -> View.
+
+Cách vẽ:
+1. Xác định actor chính của module, ví dụ: NV, QL, KH.
+2. Xác định các form tham gia luồng theo C3, ví dụ: FrmMenu, FrmTimKhachHang, FrmHoaDon.
+3. Xác định controller chính của module.
+4. Xác định các DAO được controller gọi.
+5. Xác định entity hoặc DTO được trả về/được lưu.
+6. Vẽ luồng chính từ actor thao tác trên form, form gọi controller, controller gọi DAO, DAO trả dữ liệu, controller xử lý và cập nhật form.
+7. Nếu có rẽ nhánh nghiệp vụ thì dùng `alt/else/end`.
+8. Nếu có vòng lặp như quét nhiều sách, chọn nhiều món, thêm nhiều mặt hàng thì dùng `loop/end`.
+9. Nếu có thông báo hoặc in phiếu/hóa đơn thì thể hiện ở cuối luồng.
+
+Lưu ý quan trọng:
+- Không tự bịa lớp mới nếu lớp trong C3 đã đủ.
+- Không dùng tên hàm chung chung như `process()` nếu trong C3 đã có hàm cụ thể.
+- Không gọi DAO trực tiếp từ View.
+- Không để Actor gọi trực tiếp Controller hoặc DAO.
+- Với module thống kê, DAO thường trả về DTO hoặc danh sách entity; sequence phải thể hiện bước hiển thị bảng thống kê và bước click một dòng để xem chi tiết.
+- Với module thêm/sửa/xóa, sequence phải thể hiện bước nhập dữ liệu, kiểm tra, lưu CSDL và thông báo kết quả.
+- Với module có in phiếu/hóa đơn, sequence phải thể hiện bước hệ thống hiển thị/in phiếu hoặc hóa đơn.

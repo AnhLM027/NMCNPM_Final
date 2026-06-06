@@ -1,0 +1,150 @@
+%% De_02 - Câu 3: MVC Class Diagram cho module Quản lí việc trả sách
+classDiagram
+    class FrmMenu {
+        -btnTraSach: Button
+        +moFrmTraSach(): void
+    }
+
+    class FrmTraSach {
+        -controller: TraSachController
+        -txtMaVachBanDoc: TextField
+        -txtMaVachSach: TextField
+        -tblSachDangMuon: Table
+        -tblSachDaTra: Table
+        -tblSachTra: Table
+        -banDoc: BanDoc
+        -btnSubmit: Button
+        +quetTheBanDoc(): void
+        +quetSachTra(): void
+        +submitTraSach(): void
+        +hienThiThongTinBanDoc(banDoc: BanDoc): void
+        +hienThiDanhSachSach(dsDangMuon: List~ChiTietMuon~, dsDaTra: List~ChiTietMuon~): void
+        +hienThiDanhSachSachTra(dsSachTra: List~ChiTietMuon~): void
+        +moFrmKetQuaTraSach(phieuMuon: PhieuMuon, phieuPhat: PhieuPhat): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class FrmKetQuaTraSach {
+        -controller: TraSachController
+        -lblMaBanDoc: Label
+        -lblTenBanDoc: Label
+        -lblMaVachBanDoc: Label
+        -lblMaVachPhieuMuon: Label
+        -tblSachConMuon: Table
+        -tblSachBiPhat: Table
+        -lblTongSoSachConMuon: Label
+        -lblTongTienPhat: Label
+        -btnInPhieuMuon: Button
+        -btnInPhieuPhat: Button
+        +hienThiPhieuMuon(phieuMuon: PhieuMuon): void
+        +hienThiPhieuPhat(phieuPhat: PhieuPhat): void
+        +inPhieuMuon(): void
+        +inPhieuPhat(): void
+    }
+
+    class TraSachController {
+        -banDocDAO: BanDocDAO
+        -dauSachDAO: DauSachDAO
+        -phieuMuonDAO: PhieuMuonDAO
+        -chiTietMuonDAO: ChiTietMuonDAO
+        -phieuPhatDAO: PhieuPhatDAO
+        +xuLyQuetTheBanDoc(maVach: String): BanDoc
+        +laySachDangMuon(maBanDoc: String): List~ChiTietMuon~
+        +laySachDaTra(maBanDoc: String): List~ChiTietMuon~
+        +xuLyQuetSachTra(maVachSach: String, dsDangMuon: List~ChiTietMuon~): ChiTietMuon
+        +traSach(banDoc: BanDoc, dsSachTra: List~ChiTietMuon~): PhieuPhat
+        +capNhatSachTra(dsSachTra: List~ChiTietMuon~): void
+        +lapPhieuPhat(dsSachTraMuon: List~ChiTietMuon~): PhieuPhat
+        +layPhieuMuonConSach(maBanDoc: String): PhieuMuon
+    }
+
+    class BanDocDAO {
+        +getByMaVach(maVach: String): BanDoc
+    }
+
+    class DauSachDAO {
+        +getByMaVach(maVach: String): DauSach
+    }
+
+    class PhieuMuonDAO {
+        +getPhieuMuonConSach(maBanDoc: String): PhieuMuon
+        +updateTongSoSach(phieuMuon: PhieuMuon): void
+    }
+
+    class ChiTietMuonDAO {
+        +getSachDangMuon(maBanDoc: String): List~ChiTietMuon~
+        +getSachDaTra(maBanDoc: String): List~ChiTietMuon~
+        +updateNgayTra(chiTietMuon: ChiTietMuon): void
+        +updateSoTienPhat(chiTietMuon: ChiTietMuon): void
+    }
+
+    class PhieuPhatDAO {
+        +insert(phieuPhat: PhieuPhat): void
+    }
+
+    class BanDoc {
+        -maBanDoc: String
+        -tenBanDoc: String
+        -ngaySinh: Date
+        -diaChi: String
+        -soDienThoai: String
+        -maVach: String
+    }
+
+    class DauSach {
+        -maDauSach: String
+        -tenSach: String
+        -tacGia: String
+        -namXuatBan: Integer
+        -giaBia: Double
+        -soLuong: Integer
+        -maVach: String
+        -moTa: String
+    }
+
+    class PhieuMuon {
+        -maPhieuMuon: String
+        -banDoc: BanDoc
+        -dsChiTietMuon: List~ChiTietMuon~
+        -maVachPhieuMuon: String
+        -ngayLap: Date
+        -tongSoSach: Integer
+    }
+
+    class ChiTietMuon {
+        -maChiTiet: String
+        -dauSach: DauSach
+        -ngayMuon: Date
+        -ngayPhaiTra: Date
+        -ngayTra: Date
+        -soTienPhat: Double
+    }
+
+    class PhieuPhat {
+        -maPhieuPhat: String
+        -tongTienPhat: Double
+        -dsChiTietMuonBiPhat: List~ChiTietMuon~
+    }
+
+    FrmMenu -- FrmTraSach
+    FrmTraSach -- FrmKetQuaTraSach
+
+    FrmTraSach o-- TraSachController : controller
+    FrmKetQuaTraSach o-- TraSachController : controller
+
+    TraSachController o-- BanDocDAO : banDocDAO
+    TraSachController o-- DauSachDAO : dauSachDAO
+    TraSachController o-- PhieuMuonDAO : phieuMuonDAO
+    TraSachController o-- ChiTietMuonDAO : chiTietMuonDAO
+    TraSachController o-- PhieuPhatDAO : phieuPhatDAO
+
+    BanDocDAO -- BanDoc : traVe
+    DauSachDAO -- DauSach : traVe
+    PhieuMuonDAO -- PhieuMuon : traVe
+    ChiTietMuonDAO -- ChiTietMuon : traVe
+    PhieuPhatDAO -- PhieuPhat : traVe
+
+    BanDoc "1" -- "0..*" PhieuMuon : banDoc
+    PhieuMuon "1" *-- "1..5" ChiTietMuon : dsChiTietMuon
+    DauSach "1" -- "0..*" ChiTietMuon : dauSach
+    PhieuPhat "1" -- "1..*" ChiTietMuon : dsChiTietMuonBiPhat

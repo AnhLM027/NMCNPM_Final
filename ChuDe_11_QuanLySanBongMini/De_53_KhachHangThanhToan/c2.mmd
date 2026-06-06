@@ -35,13 +35,6 @@ classDiagram
     }
 
 
-    class BuoiThueSan {
-        +ngayThue
-        +khungGio
-        +tongTienHang
-    }
-
-
     class MatHang {
         +maMatHang
         +tenMatHang
@@ -51,6 +44,7 @@ classDiagram
 
 
     class ChiTietSuDungHang {
+        +ngaySuDung
         +gia
         +soLuongDung
         +thanhTien
@@ -69,8 +63,6 @@ classDiagram
     KhachHang "1" -- "0..*" PhieuDatSan : đặt sân
     PhieuDatSan "1" *-- "1..*" ChiTietDatSan : gồm
     ChiTietDatSan "0..*" -- "1" SanMini : sân thuê
-    PhieuDatSan "1" *-- "0..*" BuoiThueSan : phát sinh buổi thuê
-    BuoiThueSan "1" *-- "0..*" ChiTietSuDungHang : dùng hàng
+    ChiTietDatSan "1" *-- "0..*" ChiTietSuDungHang : phát sinh hàng dùng
     ChiTietSuDungHang "0..*" -- "1" MatHang : mặt hàng
     PhieuDatSan "1" -- "0..1" HoaDonThanhToan : thanh toán
-

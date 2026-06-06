@@ -1,0 +1,90 @@
+sequenceDiagram
+    actor QL as QL
+    participant FrmMenu as FrmMenu
+    participant FrmLenLichChieu as FrmLenLichChieu
+    participant FrmDinhGiaGhe as FrmDinhGiaGhe
+    participant Controller as LenLichChieuController
+    participant PhimDAO as PhimDAO
+    participant PhongChieuDAO as PhongChieuDAO
+    participant SuatChieuDAO as SuatChieuDAO
+    participant MucGiaVeDAO as MucGiaVeDAO
+    participant GiaGheTheoSuatDAO as GiaGheTheoSuatDAO
+    participant SuatChieu as SuatChieu
+    participant GiaGheTheoSuat as GiaGheTheoSuat
+
+    QL ->> FrmMenu: moFrmLenLichChieu()
+    FrmMenu ->> FrmLenLichChieu: moForm()
+
+    FrmLenLichChieu ->> Controller: layDanhSachPhim()
+    Controller ->> PhimDAO: getAll()
+    PhimDAO -->> Controller: dsPhim
+    Controller -->> FrmLenLichChieu: dsPhim
+    FrmLenLichChieu ->> FrmLenLichChieu: hienThiDanhSachPhim(dsPhim)
+
+    FrmLenLichChieu ->> Controller: layDanhSachMucGiaVe()
+    Controller ->> MucGiaVeDAO: getAll()
+    MucGiaVeDAO -->> Controller: dsMucGiaVe
+    Controller -->> FrmLenLichChieu: dsMucGiaVe
+    FrmLenLichChieu ->> FrmLenLichChieu: hienThiDanhSachMucGiaVe(dsMucGiaVe)
+
+    QL ->> FrmLenLichChieu: chonKhungGioChieu(ngayGioChieu)
+    FrmLenLichChieu ->> Controller: layPhongChieuTrong(ngayGioChieu)
+    Controller ->> PhongChieuDAO: getPhongChieuTrong(ngayGioChieu)
+    PhongChieuDAO -->> Controller: dsPhongChieu
+    Controller -->> FrmLenLichChieu: dsPhongChieu
+    FrmLenLichChieu ->> FrmLenLichChieu: hienThiPhongChieuTrong(dsPhongChieu)
+
+    QL ->> FrmLenLichChieu: chonPhongChieu(maPhongChieu)
+    FrmLenLichChieu ->> Controller: layKhungGioTrong(maPhongChieu)
+    Controller ->> SuatChieuDAO: getKhungGioTrong(maPhongChieu)
+    SuatChieuDAO -->> Controller: dsKhungGio
+    Controller -->> FrmLenLichChieu: dsKhungGio
+    FrmLenLichChieu ->> FrmLenLichChieu: hienThiKhungGioTrong(dsKhungGio)
+
+    QL ->> FrmLenLichChieu: chonPhim(maPhim)
+    QL ->> FrmLenLichChieu: chonMucGiaVe(maMucGia)
+    QL ->> FrmLenLichChieu: clickThemLichChieu()
+    FrmLenLichChieu ->> Controller: taoSuatChieu(maPhim, maPhongChieu, ngayGioChieu, maMucGia)
+    Controller ->> Controller: kiemTraPhongChieuTrong(maPhongChieu, ngayGioChieu)
+    Controller ->> SuatChieuDAO: getByPhongVaKhungGio(maPhongChieu, ngayGioChieu)
+    SuatChieuDAO -->> Controller: suatChieuDaCo
+
+    alt Phòng chiếu đã có suất chiếu tại khung giờ này
+        Controller -->> FrmLenLichChieu: hienThiThongBao(message)
+        FrmLenLichChieu ->> FrmLenLichChieu: hienThiThongBao(message)
+    else Phòng chiếu còn trống
+        Controller ->> PhimDAO: getById(maPhim)
+        PhimDAO -->> Controller: phim
+        Controller ->> PhongChieuDAO: getById(maPhongChieu)
+        PhongChieuDAO -->> Controller: phongChieu
+        Controller ->> MucGiaVeDAO: getById(maMucGia)
+        MucGiaVeDAO -->> Controller: mucGiaVe
+        Controller ->> SuatChieu: <<create>> suatChieu
+        Controller -->> FrmLenLichChieu: suatChieu
+
+        FrmLenLichChieu ->> Controller: taoGiaGheMacDinh(suatChieu, mucGiaVe)
+        loop Tạo giá mặc định cho từng ghế
+            Controller ->> GiaGheTheoSuat: <<create>> giaGheTheoSuat
+        end
+        Controller -->> FrmLenLichChieu: dsGiaGhe
+        FrmLenLichChieu ->> FrmDinhGiaGhe: moFrmDinhGiaGhe(suatChieu)
+        FrmDinhGiaGhe ->> FrmDinhGiaGhe: hienThiSoDoGhe(suatChieu, dsGiaGhe)
+
+        loop QL gán nhiều mức giá cho các nhóm ghế
+            QL ->> FrmDinhGiaGhe: chonGhe(dsSoGhe)
+            QL ->> FrmDinhGiaGhe: chonMucGiaVe(maMucGia)
+            QL ->> FrmDinhGiaGhe: ganMucGiaChoGhe(dsSoGhe, maMucGia)
+            FrmDinhGiaGhe ->> Controller: capNhatGiaGhe(dsGiaGhe, dsSoGhe, mucGiaVe)
+            Controller -->> FrmDinhGiaGhe: daCapNhatGiaGhe
+            FrmDinhGiaGhe ->> FrmDinhGiaGhe: hienThiSoDoGhe(suatChieu, dsGiaGhe)
+        end
+
+        QL ->> FrmDinhGiaGhe: clickXacNhan()
+        FrmDinhGiaGhe ->> Controller: luuLichChieu(suatChieu, dsGiaGhe)
+        Controller ->> SuatChieuDAO: insert(suatChieu)
+        SuatChieuDAO -->> Controller: daLuuSuatChieu
+        Controller ->> GiaGheTheoSuatDAO: insertAll(dsGiaGhe)
+        GiaGheTheoSuatDAO -->> Controller: daLuuGiaGhe
+        Controller -->> FrmDinhGiaGhe: true
+        FrmDinhGiaGhe ->> FrmDinhGiaGhe: hienThiThongBao("Thêm lịch chiếu thành công")
+    end
