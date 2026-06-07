@@ -11,33 +11,41 @@ classDiagram
         -rdoTheoQuy: RadioButton
         -rdoTheoNam: RadioButton
         -tblDoanhThu: Table
-        -tblHoaDonChiTiet: Table
+        -tblHoaDon: Table
         -btnThongKe: Button
         +chonKieuThongKe(kieuThongKe: String): void
         +clickThongKe(): void
         +clickChonDongThongKe(ngayBatDau: Date, ngayKetThuc: Date): void
         +hienThiBangDoanhThu(dsThongKe: List~ThongKeDoanhThuDTO~): void
-        +hienThiDanhSachHoaDon(dsHoaDon: List~HoaDonThanhToan~): void
+        +hienThiDanhSachHoaDon(dsHoaDon: List~HoaDonThanhToanDTO~): void
         +hienThiThongBao(message: String): void
     }
 
     class ThongKeDoanhThuController {
         -hoaDonThanhToanDAO: HoaDonThanhToanDAO
         +layThongKeDoanhThu(kieuThongKe: String): List~ThongKeDoanhThuDTO~
-        +layHoaDonTheoKhoangThoiGian(ngayBatDau: Date, ngayKetThuc: Date): List~HoaDonThanhToan~
-        +tinhTongDoanhThu(dsHoaDon: List~HoaDonThanhToan~): Double
-        +taoDanhSachThongKe(kieuThongKe: String): List~ThongKeDoanhThuDTO~
+        +layHoaDonTheoKhoangThoiGian(ngayBatDau: Date, ngayKetThuc: Date): List~HoaDonThanhToanDTO~
     }
 
     class HoaDonThanhToanDAO {
+        +getThongKeDoanhThu(kieuThongKe: String): List~ThongKeDoanhThuDTO~
+        +getChiTietHoaDon(ngayBatDau: Date, ngayKetThuc: Date): List~HoaDonThanhToanDTO~
         +getByKhoangThoiGian(ngayBatDau: Date, ngayKetThuc: Date): List~HoaDonThanhToan~
     }
 
     class ThongKeDoanhThuDTO {
-        -thoiGianThongKe: String
+        -tenKyThongKe: String
         -ngayBatDau: Date
         -ngayKetThuc: Date
         -tongDoanhThu: Double
+    }
+
+    class HoaDonThanhToanDTO {
+        -maHoaDon: String
+        -tenKhachHang: String
+        -tenSan: String
+        -ngayGio: DateTime
+        -tongTienThanhToan: Double
     }
 
     class SanMini {
@@ -72,6 +80,14 @@ classDiagram
         -ngayKetThuc: Date
         -tongSoBuoi: Integer
         -tongTienDuKien: Double
+        -dsBuoiThueSan: List~BuoiThueSan~
+    }
+
+    class BuoiThueSan {
+        -chiTietDatSan: ChiTietDatSan
+        -ngayThue: Date
+        -khungGio: String
+        -tongTienHang: Double
     }
 
     class HoaDonThanhToan {
@@ -89,10 +105,12 @@ classDiagram
     ThongKeDoanhThuController o-- HoaDonThanhToanDAO : hoaDonThanhToanDAO
 
     HoaDonThanhToanDAO -- HoaDonThanhToan : traVe
-    ThongKeDoanhThuController -- ThongKeDoanhThuDTO : tao
+    HoaDonThanhToanDAO -- ThongKeDoanhThuDTO : traVe
+    HoaDonThanhToanDAO -- HoaDonThanhToanDTO : traVe
 
     SanMini "0..*" -- "0..1" SanMini : sanGhep
     KhachHang "1" -- "0..*" PhieuDatSan : khachHang
     PhieuDatSan "1" o-- "1..*" ChiTietDatSan : dsChiTietDatSan
     SanMini "1" -- "0..*" ChiTietDatSan : sanMini
+    ChiTietDatSan "1" o-- "1..*" BuoiThueSan : dsBuoiThueSan
     PhieuDatSan "1" o-- "0..1" HoaDonThanhToan : hoaDonThanhToan

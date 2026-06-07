@@ -1,4 +1,4 @@
-%% De_50 - Câu 3: MVC Class Diagram cho module Đặt sân
+﻿%% De_50 - CÃ¢u 3: MVC Class Diagram cho module Äáº·t sÃ¢n
 classDiagram
     class FrmMenu {
         -btnDatSan: Button
@@ -80,6 +80,7 @@ classDiagram
         -khachHangDAO: KhachHangDAO
         -phieuDatSanDAO: PhieuDatSanDAO
         -chiTietDatSanDAO: ChiTietDatSanDAO
+        -buoiThueSanDAO: BuoiThueSanDAO
         +timSanTrong(khungGio: String, loaiSan: String): List~SanMini~
         +timKhachHangTheoTen(tenKhachHang: String): List~KhachHang~
         +themKhachHang(tenKhachHang: String, soDienThoai: String): KhachHang
@@ -108,6 +109,10 @@ classDiagram
 
     class ChiTietDatSanDAO {
         +insertAll(dsChiTiet: List~ChiTietDatSan~): void
+    }
+
+    class BuoiThueSanDAO {
+        +insertAll(dsBuoiThue: List~BuoiThueSan~): void
     }
 
     class SanMini {
@@ -144,6 +149,12 @@ classDiagram
         -tongTienDuKien: Double
     }
 
+    class BuoiThueSan {
+        -chiTietDatSan: ChiTietDatSan
+        -ngayThue: Date
+        -khungGio: String
+    }
+
     FrmMenu -- FrmTimSanTrong
     FrmTimSanTrong -- FrmTimKhachHang
     FrmTimKhachHang -- FrmNhapThongTinKhachHang
@@ -161,13 +172,16 @@ classDiagram
     DatSanController o-- KhachHangDAO : khachHangDAO
     DatSanController o-- PhieuDatSanDAO : phieuDatSanDAO
     DatSanController o-- ChiTietDatSanDAO : chiTietDatSanDAO
+    DatSanController o-- BuoiThueSanDAO : buoiThueSanDAO
 
     SanMiniDAO -- SanMini : traVe
     KhachHangDAO -- KhachHang : traVe
     PhieuDatSanDAO -- PhieuDatSan : traVe
     ChiTietDatSanDAO -- ChiTietDatSan : traVe
+    BuoiThueSanDAO -- BuoiThueSan : traVe
 
     SanMini "0..*" -- "0..1" SanMini : sanGhep
     KhachHang "1" -- "0..*" PhieuDatSan : khachHang
     PhieuDatSan "1" o-- "1..*" ChiTietDatSan : dsChiTietDatSan
     SanMini "1" -- "0..*" ChiTietDatSan : sanMini
+    ChiTietDatSan "1" o-- "1..*" BuoiThueSan : dsBuoiThueSan

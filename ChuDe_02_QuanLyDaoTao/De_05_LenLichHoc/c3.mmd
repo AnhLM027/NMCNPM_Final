@@ -1,0 +1,123 @@
+%% De_05 - Cau 3: MVC Class Diagram cho module Len lich hoc cho lop hoc phan
+classDiagram
+    class FrmMenu {
+        -btnLenLichHoc: Button
+        +moFrmLenLichHoc(): void
+    }
+
+    class FrmLenLichHoc {
+        -controller: LenLichHocController
+        -cboMonHoc: ComboBox
+        -cboLopHocPhan: ComboBox
+        -cboPhongHoc: ComboBox
+        -cboKhungGio: ComboBox
+        -btnXacNhan: Button
+        -monHoc: MonHoc
+        -lopHocPhan: LopHocPhan
+        -phongHoc: PhongHoc
+        -khungGio: KhungGio
+        +chonMonHoc(maMon: String): void
+        +chonLopHocPhan(maLop: String): void
+        +chonPhongHoc(maPhong: String): void
+        +chonKhungGio(maKhungGio: String): void
+        +clickXacNhan(): void
+        +hienThiDanhSachMonHoc(dsMonHoc: List~MonHoc~): void
+        +hienThiDanhSachLopHocPhan(dsLopHocPhan: List~LopHocPhan~): void
+        +hienThiDanhSachPhongHoc(dsPhongHoc: List~PhongHoc~): void
+        +hienThiDanhSachKhungGio(dsKhungGio: List~KhungGio~): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class LenLichHocController {
+        -monHocDAO: MonHocDAO
+        -lopHocPhanDAO: LopHocPhanDAO
+        -phongHocDAO: PhongHocDAO
+        -khungGioDAO: KhungGioDAO
+        -lichHocDAO: LichHocDAO
+        +layDanhSachMonHoc(): List~MonHoc~
+        +layLopHocPhanTheoMon(maMon: String): List~LopHocPhan~
+        +layDanhSachPhongHoc(): List~PhongHoc~
+        +layDanhSachKhungGio(): List~KhungGio~
+        +kiemTraTrungLich(maPhong: String, maKhungGio: String): Boolean
+        +lapLichHoc(maLop: String, maPhong: String, maKhungGio: String): LichHoc
+        +luuLichHoc(lichHoc: LichHoc): Boolean
+    }
+
+    class MonHocDAO {
+        +getAll(): List~MonHoc~
+        +getById(maMon: String): MonHoc
+    }
+
+    class LopHocPhanDAO {
+        +getByMonHoc(maMon: String): List~LopHocPhan~
+        +getById(maLop: String): LopHocPhan
+    }
+
+    class PhongHocDAO {
+        +getAll(): List~PhongHoc~
+        +getById(maPhong: String): PhongHoc
+    }
+
+    class KhungGioDAO {
+        +getAll(): List~KhungGio~
+        +getById(maKhungGio: String): KhungGio
+    }
+
+    class LichHocDAO {
+        +kiemTraTrungPhong(maPhong: String, maKhungGio: String): Boolean
+        +insert(lichHoc: LichHoc): void
+    }
+
+    class MonHoc {
+        -maMon: String
+        -tenMon: String
+        -soTinChi: Integer
+    }
+
+    class LopHocPhan {
+        -maLop: String
+        -tenLop: String
+        -soSVToiDa: Integer
+        -monHoc: MonHoc
+        -lichHoc: LichHoc
+    }
+
+    class PhongHoc {
+        -maPhong: String
+        -tenPhong: String
+    }
+
+    class KhungGio {
+        -maKhungGio: String
+        -thuTrongTuan: Integer
+        -kipHoc: Integer
+        -khungGioHoc: String
+    }
+
+    class LichHoc {
+        -maLichHoc: String
+        -lopHocPhan: LopHocPhan
+        -phongHoc: PhongHoc
+        -khungGio: KhungGio
+    }
+
+    FrmMenu -- FrmLenLichHoc : moForm
+
+    FrmLenLichHoc o-- LenLichHocController : controller
+
+    LenLichHocController o-- MonHocDAO : monHocDAO
+    LenLichHocController o-- LopHocPhanDAO : lopHocPhanDAO
+    LenLichHocController o-- PhongHocDAO : phongHocDAO
+    LenLichHocController o-- KhungGioDAO : khungGioDAO
+    LenLichHocController o-- LichHocDAO : lichHocDAO
+
+    MonHocDAO -- MonHoc : traVe
+    LopHocPhanDAO -- LopHocPhan : traVe
+    PhongHocDAO -- PhongHoc : traVe
+    KhungGioDAO -- KhungGio : traVe
+    LichHocDAO -- LichHoc : traVe
+
+    MonHoc "1" -- "0..*" LopHocPhan : monHoc
+    LopHocPhan "1" -- "0..1" LichHoc : lichHoc
+    PhongHoc "1" -- "0..*" LichHoc : phongHoc
+    KhungGio "1" -- "0..*" LichHoc : khungGio
