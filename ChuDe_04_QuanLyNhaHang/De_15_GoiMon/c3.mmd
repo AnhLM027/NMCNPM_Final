@@ -1,0 +1,145 @@
+﻿%% De_15 - Cau 3: MVC Class Diagram cho module Goi mon
+classDiagram
+    class FrmMenu {
+        -btnGoiMon: Button
+        +moFrmChonBanGoiMon(): void
+    }
+
+    class FrmChonBanGoiMon {
+        -controller: GoiMonController
+        -tblBan: Table
+        -cboSoHieuBan: ComboBox
+        -btnChonBan: Button
+        +hienThiDanhSachBan(dsBan: List~Ban~): void
+        +clickChonBan(maBan: String): void
+        +moFrmGoiMon(ban: Ban): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class FrmGoiMon {
+        -controller: GoiMonController
+        -ban: Ban
+        -phieuGoiMon: PhieuGoiMon
+        -txtTenMon: TextField
+        -tblKetQuaTimKiem: Table
+        -tblMonDaChon: Table
+        -txtSoLuong: TextField
+        -btnTimKiem: Button
+        -btnChon: Button
+        -btnOK: Button
+        -btnXacNhan: Button
+        +clickTimKiem(): void
+        +clickChonMon(idMonHoacCombo: String): void
+        +nhapSoLuong(soLuong: Integer): void
+        +clickOK(): void
+        +clickXacNhan(): void
+        +hienThiKetQuaTimKiem(dsMonAn: List~MonAn~, dsCombo: List~Combo~): void
+        +hienThiDanhSachMonDaChon(phieuGoiMon: PhieuGoiMon): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class GoiMonController {
+        -banDAO: BanDAO
+        -monAnDAO: MonAnDAO
+        -comboDAO: ComboDAO
+        -phieuGoiMonDAO: PhieuGoiMonDAO
+        -chiTietGoiMonDAO: ChiTietGoiMonDAO
+        +layDanhSachBan(): List~Ban~
+        +layBan(maBan: String): Ban
+        +timMonAn(tenMon: String): List~MonAn~
+        +timCombo(tenCombo: String): List~Combo~
+        +taoPhieuGoiMon(ban: Ban): PhieuGoiMon
+        +themMonAn(phieuGoiMon: PhieuGoiMon, monAn: MonAn, soLuong: Integer): ChiTietGoiMon
+        +themCombo(phieuGoiMon: PhieuGoiMon, combo: Combo, soLuong: Integer): ChiTietGoiMon
+        +luuPhieuGoiMon(phieuGoiMon: PhieuGoiMon): Boolean
+    }
+
+    class BanDAO {
+        +getAll(): List~Ban~
+        +getById(maBan: String): Ban
+    }
+
+    class MonAnDAO {
+        +searchByTen(tenMon: String): List~MonAn~
+        +getById(maMon: String): MonAn
+    }
+
+    class ComboDAO {
+        +searchByTen(tenCombo: String): List~Combo~
+        +getById(maCombo: String): Combo
+    }
+
+    class PhieuGoiMonDAO {
+        +insert(phieuGoiMon: PhieuGoiMon): void
+    }
+
+    class ChiTietGoiMonDAO {
+        +insertAll(dsChiTiet: List~ChiTietGoiMon~): void
+    }
+
+    class Ban {
+        -maBan: String
+        -tenBan: String
+        -soLuongKhachToiDa: Integer
+        -moTa: String
+    }
+
+    class MonAn {
+        -maMon: String
+        -loai: String
+        -tenMon: String
+        -moTa: String
+        -giaHienTai: Double
+    }
+
+    class Combo {
+        -maCombo: String
+        -tenCombo: String
+        -giaHienTai: Double
+        -dsChiTietCombo: List~ChiTietCombo~
+    }
+
+    class ChiTietCombo {
+        -monAn: MonAn
+        -soLuong: Integer
+    }
+
+    class PhieuGoiMon {
+        -maPhieuGoi: String
+        -ban: Ban
+        -ngayGioGoi: DateTime
+        -dsChiTietGoiMon: List~ChiTietGoiMon~
+    }
+
+    class ChiTietGoiMon {
+        -monAn: MonAn
+        -combo: Combo
+        -donGia: Double
+        -soLuong: Integer
+        -thanhTien: Double
+    }
+
+    FrmMenu -- FrmChonBanGoiMon
+    FrmChonBanGoiMon -- FrmGoiMon
+
+    FrmChonBanGoiMon o-- GoiMonController : controller
+    FrmGoiMon o-- GoiMonController : controller
+
+    GoiMonController o-- BanDAO : banDAO
+    GoiMonController o-- MonAnDAO : monAnDAO
+    GoiMonController o-- ComboDAO : comboDAO
+    GoiMonController o-- PhieuGoiMonDAO : phieuGoiMonDAO
+    GoiMonController o-- ChiTietGoiMonDAO : chiTietGoiMonDAO
+
+    BanDAO -- Ban : traVe
+    MonAnDAO -- MonAn : traVe
+    ComboDAO -- Combo : traVe
+    PhieuGoiMonDAO -- PhieuGoiMon : traVe
+    ChiTietGoiMonDAO -- ChiTietGoiMon : traVe
+    Ban "1" -- "0..*" PhieuGoiMon : ban
+    PhieuGoiMon "1" o-- "1..*" ChiTietGoiMon : dsChiTietGoiMon
+    ChiTietGoiMon "0..*" -- "0..1" MonAn : monAn
+    ChiTietGoiMon "0..*" -- "0..1" Combo : combo
+    Combo "1" o-- "1..*" ChiTietCombo : dsChiTietCombo
+    ChiTietCombo "0..*" -- "1" MonAn : monAn
+

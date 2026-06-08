@@ -1,4 +1,4 @@
-%% De_54 - Câu 3: MVC Class Diagram cho module Thống kê doanh thu
+﻿%% De_54 - CÃ¢u 3: MVC Class Diagram cho module Thá»‘ng kÃª doanh thu
 classDiagram
     class FrmMenu {
         -btnThongKeDoanhThu: Button
@@ -107,10 +107,9 @@ classDiagram
     HoaDonThanhToanDAO -- HoaDonThanhToan : traVe
     HoaDonThanhToanDAO -- ThongKeDoanhThuDTO : traVe
     HoaDonThanhToanDAO -- HoaDonThanhToanDTO : traVe
-
-    SanMini "0..*" -- "0..1" SanMini : sanGhep
     KhachHang "1" -- "0..*" PhieuDatSan : khachHang
     PhieuDatSan "1" o-- "1..*" ChiTietDatSan : dsChiTietDatSan
     SanMini "1" -- "0..*" ChiTietDatSan : sanMini
     ChiTietDatSan "1" o-- "1..*" BuoiThueSan : dsBuoiThueSan
     PhieuDatSan "1" o-- "0..1" HoaDonThanhToan : hoaDonThanhToan
+

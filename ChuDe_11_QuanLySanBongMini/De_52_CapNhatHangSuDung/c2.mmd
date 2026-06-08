@@ -54,12 +54,11 @@ classDiagram
         +soLuongDung
         +thanhTien
     }
-
-    SanMini "0..*" -- "0..1" SanMini : ghép thành sân lớn
     KhachHang "1" -- "0..*" PhieuDatSan : đặt sân
     PhieuDatSan "1" *-- "1..*" ChiTietDatSan : gồm
     ChiTietDatSan "0..*" -- "1" SanMini : sân thuê
     ChiTietDatSan "1" *-- "1..*" BuoiThueSan : gồm buổi thuê
     BuoiThueSan "1" *-- "0..*" ChiTietSuDungHang : dùng hàng
     ChiTietSuDungHang "0..*" -- "1" MatHang : mặt hàng
+
 

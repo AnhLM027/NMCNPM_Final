@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-07T02:27:43.430Z",
+  "generatedAt": "2026-06-08T09:39:15.984Z",
   "diagrams": [
     {
       "id": "ChuDe_01_QuanLyThuVien/Class_Diagram/class",
@@ -3446,6 +3446,11 @@
           "name": "FrmHoaDonVe",
           "attributes": [
             "controller: MuaVeController",
+            "dotXuatPhat: DotXuatPhat",
+            "lblTenTour: Label",
+            "lblNoiXuatPhat: Label",
+            "lblNoiDen: Label",
+            "lblNgayXuatPhat: Label",
             "txtTenKhachDaiDien: TextField",
             "txtSoID: TextField",
             "txtLoaiTheID: TextField",
@@ -3453,14 +3458,11 @@
             "txtSoDienThoai: TextField",
             "txtEmail: TextField",
             "txtSoLuongKhach: TextField",
-            "lblGiaVe: Label",
-            "lblTongTien: Label",
-            "btnThanhToan: Button"
+            "btnXacNhan: Button"
           ],
           "methods": [
-            "nhapThongTinKhachHang(): void",
-            "clickThanhToan(): void",
-            "hienThiHoaDonTam(dotXuatPhat: DotXuatPhat, khachHang: KhachHang): void",
+            "hienThiThongTinTour(dotXuatPhat: DotXuatPhat): void",
+            "clickXacNhan(): void",
             "hienThiHoaDonVe(hoaDonVe: HoaDonVe): void",
             "inVe(hoaDonVe: HoaDonVe): void",
             "hienThiThongBao(message: String): void"
@@ -4051,14 +4053,6 @@
       ],
       "relations": [
         {
-          "from": "Ban",
-          "fromMultiplicity": "0..*",
-          "type": "--",
-          "toMultiplicity": "0..1",
-          "to": "Ban",
-          "label": "gộp thành bàn lớn"
-        },
-        {
           "from": "KhachHang",
           "fromMultiplicity": "1",
           "type": "--",
@@ -4223,14 +4217,6 @@
       "relations": [
         {
           "from": "Ban",
-          "fromMultiplicity": "0..*",
-          "type": "--",
-          "toMultiplicity": "0..1",
-          "to": "Ban",
-          "label": "gộp thành bàn lớn"
-        },
-        {
-          "from": "Ban",
           "fromMultiplicity": "1",
           "type": "--",
           "toMultiplicity": "0..*",
@@ -4280,6 +4266,347 @@
       ]
     },
     {
+      "id": "ChuDe_04_QuanLyNhaHang/De_15_GoiMon/c3",
+      "topicName": "ChuDe_04_QuanLyNhaHang",
+      "moduleName": "De_15_GoiMon",
+      "type": "c3",
+      "file": "ChuDe_04_QuanLyNhaHang/De_15_GoiMon/c3.mmd",
+      "problemFile": "ChuDe_04_QuanLyNhaHang/De_15_GoiMon/Debai.txt",
+      "problemText": "Ngân hàng câu hỏi thi môn: Công nghệ phần mềm\r\nĐề số 15\r\nThời gian làm bài: 60 phút\r\nKhách hàng yêu cầu chúng ta phát triển một phần mềm quản lí việc gọi món trong một nhà hàng,\r\nđược mô tả như sau:\r\n• Nhà hàng có nhiều bàn (Mã bàn, tên, số lượng khách tối đa, mô tả). Nhiều bàn nhỏ có thể\r\ngộp lại thành một bàn lớn khi có yêu cầu từ đoàn khách có số lượng lớn.\r\n• Mỗi bàn, có thể bị đặt nhiều lần khác nhau trong ngày, hoặc khác ngày.\r\n• Mỗi khách hàng (Mã, tên, số ĐT, email, địa chỉ) có thể đặt bàn nhiều lần, mỗi lần có thể đặt\r\nnhiều bàn (trường hợp này sẽ bị gộp thành đặt 1 bàn)\r\n• Nhà hàng có thể lên combo dạng kết hợp sẵn một số món ăn đủ cho 1 bữa ăn cho một người\r\năn. Khách hàng có thể gọi combo có sẵn như thế này.\r\n• Khách hàng ở mỗi bàn có thể gọi nhiều món ăn (Mã, loại, tên, mô tả, giá hiện tại) hoặc\r\ncombo. Mỗi món ăn (combo) có có thể bị gọi với số lượng khác nhau. \r\n• Khi thanh toán, hóa đơn ghi đầy đủ thông tin: mã bàn, tên và mã nhân viên thanh toán, tên\r\nkhách hàng nếu có, sau đó là một bảng, mỗi dòng chứa thông tin một món (combo) đã dùng:\r\nid, tên, đơn giá, sơ lượng, thành tiền. Dòng cuối cùng ghi tổng số tiền của hóa đơn.\r\nAnh/chị hãy thực hiện modul \"Gọi món\" với các bước sau đây: Nhân viên chọn chức năng gọi món\r\n→  giao diện bàn hiện ra với danh sách bàn và số hiệu sổ xuống →  NV chọn bàn đúng với KH\r\nđang gọi món → Giao diện nhập món được gọi hiện ra → NV hỏi KH và nhập vào tên món ăn +\r\nchọn tìm →  kết quả hiện ra gồm danh sách các món ăn chi tiết: mã, loại, tên, giá. →  NV chọn 1\r\nmón ăn đúng như KH gọi và NV click chọn →  Yêu cầu nhập số lượng →  NV nhập số lượng và\r\nclick OK → Tên món ăn + số lượng + số tiền tạm tính được thêm vào danh sách các món ăn đã\r\nchọn phía dưới. NV lặp lại các bước chọn món ăn này cho đến khi nhập vào được hết các món mà\r\nkhách hàng trong bàn đã gọi. NV đọc lại để xác nhận với KH →  NV click xác nhận →  hệ thống\r\nlưu lại.\r\n1. Viết một scenario chuẩn cho use case này\r\n2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul\r\n3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul\r\n4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul\r\n5. Viết một test case chuẩn cho modul này",
+      "classes": [
+        {
+          "name": "Ban",
+          "attributes": [
+            "maBan: String",
+            "tenBan: String",
+            "soLuongKhachToiDa: Integer",
+            "moTa: String"
+          ],
+          "methods": []
+        },
+        {
+          "name": "BanDAO",
+          "attributes": [],
+          "methods": [
+            "getAll(): List~Ban~",
+            "getById(maBan: String): Ban"
+          ]
+        },
+        {
+          "name": "ChiTietCombo",
+          "attributes": [
+            "monAn: MonAn",
+            "soLuong: Integer"
+          ],
+          "methods": []
+        },
+        {
+          "name": "ChiTietGoiMon",
+          "attributes": [
+            "monAn: MonAn",
+            "combo: Combo",
+            "donGia: Double",
+            "soLuong: Integer",
+            "thanhTien: Double"
+          ],
+          "methods": []
+        },
+        {
+          "name": "ChiTietGoiMonDAO",
+          "attributes": [],
+          "methods": [
+            "insertAll(dsChiTiet: List~ChiTietGoiMon~): void"
+          ]
+        },
+        {
+          "name": "Combo",
+          "attributes": [
+            "maCombo: String",
+            "tenCombo: String",
+            "giaHienTai: Double",
+            "dsChiTietCombo: List~ChiTietCombo~"
+          ],
+          "methods": []
+        },
+        {
+          "name": "ComboDAO",
+          "attributes": [],
+          "methods": [
+            "searchByTen(tenCombo: String): List~Combo~",
+            "getById(maCombo: String): Combo"
+          ]
+        },
+        {
+          "name": "FrmChonBanGoiMon",
+          "attributes": [
+            "controller: GoiMonController",
+            "tblBan: Table",
+            "cboSoHieuBan: ComboBox",
+            "btnChonBan: Button"
+          ],
+          "methods": [
+            "hienThiDanhSachBan(dsBan: List~Ban~): void",
+            "clickChonBan(maBan: String): void",
+            "moFrmGoiMon(ban: Ban): void",
+            "hienThiThongBao(message: String): void"
+          ]
+        },
+        {
+          "name": "FrmGoiMon",
+          "attributes": [
+            "controller: GoiMonController",
+            "ban: Ban",
+            "phieuGoiMon: PhieuGoiMon",
+            "txtTenMon: TextField",
+            "tblKetQuaTimKiem: Table",
+            "tblMonDaChon: Table",
+            "txtSoLuong: TextField",
+            "btnTimKiem: Button",
+            "btnChon: Button",
+            "btnOK: Button",
+            "btnXacNhan: Button"
+          ],
+          "methods": [
+            "clickTimKiem(): void",
+            "clickChonMon(idMonHoacCombo: String): void",
+            "nhapSoLuong(soLuong: Integer): void",
+            "clickOK(): void",
+            "clickXacNhan(): void",
+            "hienThiKetQuaTimKiem(dsMonAn: List~MonAn~, dsCombo: List~Combo~): void",
+            "hienThiDanhSachMonDaChon(phieuGoiMon: PhieuGoiMon): void",
+            "hienThiThongBao(message: String): void"
+          ]
+        },
+        {
+          "name": "FrmMenu",
+          "attributes": [
+            "btnGoiMon: Button"
+          ],
+          "methods": [
+            "moFrmChonBanGoiMon(): void"
+          ]
+        },
+        {
+          "name": "GoiMonController",
+          "attributes": [
+            "banDAO: BanDAO",
+            "monAnDAO: MonAnDAO",
+            "comboDAO: ComboDAO",
+            "phieuGoiMonDAO: PhieuGoiMonDAO",
+            "chiTietGoiMonDAO: ChiTietGoiMonDAO"
+          ],
+          "methods": [
+            "layDanhSachBan(): List~Ban~",
+            "layBan(maBan: String): Ban",
+            "timMonAn(tenMon: String): List~MonAn~",
+            "timCombo(tenCombo: String): List~Combo~",
+            "taoPhieuGoiMon(ban: Ban): PhieuGoiMon",
+            "themMonAn(phieuGoiMon: PhieuGoiMon, monAn: MonAn, soLuong: Integer): ChiTietGoiMon",
+            "themCombo(phieuGoiMon: PhieuGoiMon, combo: Combo, soLuong: Integer): ChiTietGoiMon",
+            "luuPhieuGoiMon(phieuGoiMon: PhieuGoiMon): Boolean"
+          ]
+        },
+        {
+          "name": "MonAn",
+          "attributes": [
+            "maMon: String",
+            "loai: String",
+            "tenMon: String",
+            "moTa: String",
+            "giaHienTai: Double"
+          ],
+          "methods": []
+        },
+        {
+          "name": "MonAnDAO",
+          "attributes": [],
+          "methods": [
+            "searchByTen(tenMon: String): List~MonAn~",
+            "getById(maMon: String): MonAn"
+          ]
+        },
+        {
+          "name": "PhieuGoiMon",
+          "attributes": [
+            "maPhieuGoi: String",
+            "ban: Ban",
+            "ngayGioGoi: DateTime",
+            "dsChiTietGoiMon: List~ChiTietGoiMon~"
+          ],
+          "methods": []
+        },
+        {
+          "name": "PhieuGoiMonDAO",
+          "attributes": [],
+          "methods": [
+            "insert(phieuGoiMon: PhieuGoiMon): void"
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "from": "FrmMenu",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "FrmChonBanGoiMon",
+          "label": ""
+        },
+        {
+          "from": "FrmChonBanGoiMon",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "FrmGoiMon",
+          "label": ""
+        },
+        {
+          "from": "FrmChonBanGoiMon",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "GoiMonController",
+          "label": "controller"
+        },
+        {
+          "from": "FrmGoiMon",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "GoiMonController",
+          "label": "controller"
+        },
+        {
+          "from": "GoiMonController",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "BanDAO",
+          "label": "banDAO"
+        },
+        {
+          "from": "GoiMonController",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "MonAnDAO",
+          "label": "monAnDAO"
+        },
+        {
+          "from": "GoiMonController",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "ComboDAO",
+          "label": "comboDAO"
+        },
+        {
+          "from": "GoiMonController",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "PhieuGoiMonDAO",
+          "label": "phieuGoiMonDAO"
+        },
+        {
+          "from": "GoiMonController",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "ChiTietGoiMonDAO",
+          "label": "chiTietGoiMonDAO"
+        },
+        {
+          "from": "BanDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "Ban",
+          "label": "traVe"
+        },
+        {
+          "from": "MonAnDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "MonAn",
+          "label": "traVe"
+        },
+        {
+          "from": "ComboDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "Combo",
+          "label": "traVe"
+        },
+        {
+          "from": "PhieuGoiMonDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "PhieuGoiMon",
+          "label": "traVe"
+        },
+        {
+          "from": "ChiTietGoiMonDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "ChiTietGoiMon",
+          "label": "traVe"
+        },
+        {
+          "from": "Ban",
+          "fromMultiplicity": "1",
+          "type": "--",
+          "toMultiplicity": "0..*",
+          "to": "PhieuGoiMon",
+          "label": "ban"
+        },
+        {
+          "from": "PhieuGoiMon",
+          "fromMultiplicity": "1",
+          "type": "o--",
+          "toMultiplicity": "1..*",
+          "to": "ChiTietGoiMon",
+          "label": "dsChiTietGoiMon"
+        },
+        {
+          "from": "ChiTietGoiMon",
+          "fromMultiplicity": "0..*",
+          "type": "--",
+          "toMultiplicity": "0..1",
+          "to": "MonAn",
+          "label": "monAn"
+        },
+        {
+          "from": "ChiTietGoiMon",
+          "fromMultiplicity": "0..*",
+          "type": "--",
+          "toMultiplicity": "0..1",
+          "to": "Combo",
+          "label": "combo"
+        },
+        {
+          "from": "Combo",
+          "fromMultiplicity": "1",
+          "type": "o--",
+          "toMultiplicity": "1..*",
+          "to": "ChiTietCombo",
+          "label": "dsChiTietCombo"
+        },
+        {
+          "from": "ChiTietCombo",
+          "fromMultiplicity": "0..*",
+          "type": "--",
+          "toMultiplicity": "1",
+          "to": "MonAn",
+          "label": "monAn"
+        }
+      ]
+    },
+    {
       "id": "ChuDe_04_QuanLyNhaHang/De_16_DatBan/c2",
       "topicName": "ChuDe_04_QuanLyNhaHang",
       "moduleName": "De_16_DatBan",
@@ -4321,14 +4648,6 @@
         }
       ],
       "relations": [
-        {
-          "from": "Ban",
-          "fromMultiplicity": "0..*",
-          "type": "--",
-          "toMultiplicity": "0..1",
-          "to": "Ban",
-          "label": "gộp thành bàn lớn"
-        },
         {
           "from": "KhachHang",
           "fromMultiplicity": "1",
@@ -4764,14 +5083,6 @@
       "relations": [
         {
           "from": "Ban",
-          "fromMultiplicity": "0..*",
-          "type": "--",
-          "toMultiplicity": "0..1",
-          "to": "Ban",
-          "label": "gộp thành bàn lớn"
-        },
-        {
-          "from": "Ban",
           "fromMultiplicity": "1",
           "type": "--",
           "toMultiplicity": "0..*",
@@ -4896,14 +5207,6 @@
       "relations": [
         {
           "from": "Ban",
-          "fromMultiplicity": "0..*",
-          "type": "--",
-          "toMultiplicity": "0..1",
-          "to": "Ban",
-          "label": "gộp thành bàn lớn"
-        },
-        {
-          "from": "Ban",
           "fromMultiplicity": "1",
           "type": "--",
           "toMultiplicity": "0..*",
@@ -5014,14 +5317,6 @@
         }
       ],
       "relations": [
-        {
-          "from": "Ban",
-          "fromMultiplicity": "0..*",
-          "type": "--",
-          "toMultiplicity": "0..1",
-          "to": "Ban",
-          "label": "gộp thành bàn lớn"
-        },
         {
           "from": "Ban",
           "fromMultiplicity": "1",
@@ -10188,6 +10483,378 @@
       ]
     },
     {
+      "id": "ChuDe_10_QuanLyRapChieuPhim/De_48_ThongKeDoanhThu/c3",
+      "topicName": "ChuDe_10_QuanLyRapChieuPhim",
+      "moduleName": "De_48_ThongKeDoanhThu",
+      "type": "c3",
+      "file": "ChuDe_10_QuanLyRapChieuPhim/De_48_ThongKeDoanhThu/c3.mmd",
+      "problemFile": "ChuDe_10_QuanLyRapChieuPhim/De_48_ThongKeDoanhThu/Debai.txt",
+      "problemText": "Ngân hàng câu hỏi thi môn: Công nghệ phần mềm\r\nĐề số 48\r\nThời gian làm bài: 60 phút\r\nKhách hàng yêu cầu anh/chị phát triển một phần mềm quản lí chuỗi rạp chiếu phim với mô tả như\r\nsau:\r\n• Hãng có một chuỗi rạp chiếu phim (Mã rạp, tên rạp, địa chỉ, giới thiệu).\r\n• Mỗi rạp chiếu phim có nhiều phòng chiếu khác nhau (Mã phòng chiếu, số lượng ghế, đặc\r\nđiểm phòng chiếu)\r\n• Mỗi phim (Mã phim, tên phim, loại phim, năm sản xuất, mô tả) có thể được chiếu tại  nhiều\r\nphòng chiếu khác nhau vào nhiều thời điểm khác nhau\r\n• Mỗi phòng chiếu có thể chiếu nhiều phim khác nhau tại nhiều thời điểm khác nhau\r\n• Mỗi một thời điểm nhất định, trong một phòng chiếu chỉ có duy nhất một phim được chiếu,\r\nvà bán với một giá vé xác định.\r\n• Cùng một phim, chiếu tại cùng 1 phòng chiếu nhưng nếu ở các khung giờ và ngày khác\r\nnhau có thể có giá vé khác nhau.\r\n• Cùng một suất chiếu, ghế ngồi chỗ khác nhau có thể có giá vé khác nhau.\r\n• Nhân viên chỉ bán vé cho khách hàng khi phòng chiếu tại giờ chiếu mà khách hàng yêu cầu\r\nvẫn còn đủ số lượng ghế trống cho khách hàng.\r\n• Khi mua vé, khách hàng được xuất hóa đơn ghi rõ các vé đã mua. Mỗi vé trên một dòng: tên\r\nphim, phòng chiếu, giờ chiếu, số ghế, ưu đãi, giá tiền. Bên dưới là tổng tiền.\r\n• Rạp chiếu có bán kèm các dịch vụ ăn uống nhẹ (như bỏng ngô, nước uống...). Khách hàng\r\ncó thể mua kèm với vé xem phim (khi đó, hóa đơn sẽ bao gồm các dịch vụ này), hoặc mua\r\nriêng lẻ. Nếu mua riêng lẻ thì xuất hóa đơn riêng, mỗi dòng là một mặt hàng: mã, tên, đơn\r\ngiá, số lượng, ưu đãi, thành tiền. Dưới cùng là tổng tiền.\r\nModul \"Thống kê doanh thu\" cho phép nhân viên (NV) rạp thống kê doanh thu bán vé theo phim\r\n(hoặc theo rạp) với mô tả chi tiết nghiệp vụ: NV chọn menu thống kê →  chọn thống kê doanh thu\r\ntheo phim (hoặc theo rạp) →  nhập thời gian bắt đầu và kết thúc thống kê →  danh sách các phim\r\n(rạp) có hiện ra, mỗi dòng cho 1 phim: Mã, tên phim, tổng số lượng vé bán ra, tổng doanh thu thu\r\nđược, được sắp xếp theo chiều giảm dần tổng doanh thu -> NV click vào một dòng của phim (rạp)\r\nthì hiện lên chi tiết tổng số tiền thu được cho từng suất chiếu của phim, mỗi dòng tương ứng: suất\r\nchiếu, số lượng vé bán ra, tổng tiền thu được, được sắp xếp theo thứ tự thời gian của suất chiếu từ\r\ncũ đến mới -> NV click vào một suất chiếu thì hiện lên danh sách các hóa đơn đã bán cho suất chiếu\r\nđó, mỗi hóa đơn trên 1 dòng sắp sếp theo thời gian thanh toán: mã, tên KH nếu có, tổng số vé, tổng\r\ntiền của hóa đơn (chỉ tính những vé liên quan đến suất chiếu đó trong hóa đơn).\r\n1. Viết một scenario chuẩn cho use case này\r\n2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul\r\n3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul\r\n4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul\r\n5. Viết một test case chuẩn cho modul này",
+      "classes": [
+        {
+          "name": "FrmMenu",
+          "attributes": [
+            "btnThongKeDoanhThu: Button"
+          ],
+          "methods": [
+            "moFrmThongKeDoanhThu(): void"
+          ]
+        },
+        {
+          "name": "FrmThongKeDoanhThu",
+          "attributes": [
+            "controller: ThongKeDoanhThuController",
+            "cboKieuThongKe: ComboBox",
+            "dtNgayBatDau: DatePicker",
+            "dtNgayKetThuc: DatePicker",
+            "tblDoanhThu: Table",
+            "tblSuatChieu: Table",
+            "tblHoaDon: Table",
+            "btnThongKe: Button"
+          ],
+          "methods": [
+            "clickThongKe(): void",
+            "clickChonDongDoanhThu(maDoiTuong: String): void",
+            "clickChonSuatChieu(maSuatChieu: String): void",
+            "hienThiBangDoanhThu(dsThongKe: List~ThongKeDoanhThuDTO~): void",
+            "hienThiBangSuatChieu(dsSuatChieu: List~ThongKeSuatChieuDTO~): void",
+            "hienThiBangHoaDon(dsHoaDon: List~HoaDonTheoSuatDTO~): void",
+            "hienThiThongBao(message: String): void"
+          ]
+        },
+        {
+          "name": "Ghe",
+          "attributes": [
+            "maGhe: String",
+            "soGhe: String"
+          ],
+          "methods": []
+        },
+        {
+          "name": "GiaGheTheoSuat",
+          "attributes": [
+            "suatChieu: SuatChieu",
+            "ghe: Ghe",
+            "mucGiaVe: MucGiaVe",
+            "giaTien: Double",
+            "trangThaiGhe: String"
+          ],
+          "methods": []
+        },
+        {
+          "name": "HoaDon",
+          "attributes": [
+            "maHoaDon: String",
+            "tenKhachHang: String",
+            "ngayLap: DateTime",
+            "tongSoVe: Integer",
+            "tongTien: Double",
+            "dsVe: List~Ve~"
+          ],
+          "methods": []
+        },
+        {
+          "name": "HoaDonDAO",
+          "attributes": [],
+          "methods": [
+            "getHoaDonTheoSuatChieu(maSuatChieu: String): List~HoaDonTheoSuatDTO~",
+            "getBySuatChieu(maSuatChieu: String): List~HoaDon~"
+          ]
+        },
+        {
+          "name": "HoaDonTheoSuatDTO",
+          "attributes": [
+            "maHoaDon: String",
+            "tenKhachHang: String",
+            "tongSoVe: Integer",
+            "tongTien: Double"
+          ],
+          "methods": []
+        },
+        {
+          "name": "MucGiaVe",
+          "attributes": [
+            "maMucGia: String",
+            "tenMucGia: String",
+            "giaTien: Double"
+          ],
+          "methods": []
+        },
+        {
+          "name": "Phim",
+          "attributes": [
+            "maPhim: String",
+            "tenPhim: String",
+            "loaiPhim: String",
+            "namSanXuat: Integer",
+            "moTa: String"
+          ],
+          "methods": []
+        },
+        {
+          "name": "PhongChieu",
+          "attributes": [
+            "maPhongChieu: String",
+            "soLuongGhe: Integer",
+            "dacDiemPhongChieu: String"
+          ],
+          "methods": []
+        },
+        {
+          "name": "RapChieu",
+          "attributes": [
+            "maRap: String",
+            "tenRap: String",
+            "diaChi: String",
+            "gioiThieu: String"
+          ],
+          "methods": []
+        },
+        {
+          "name": "SuatChieu",
+          "attributes": [
+            "maSuatChieu: String",
+            "phim: Phim",
+            "phongChieu: PhongChieu",
+            "ngayGioChieu: DateTime",
+            "trangThai: String"
+          ],
+          "methods": []
+        },
+        {
+          "name": "SuatChieuDAO",
+          "attributes": [],
+          "methods": [
+            "getById(maSuatChieu: String): SuatChieu"
+          ]
+        },
+        {
+          "name": "ThongKeDoanhThuController",
+          "attributes": [
+            "veDAO: VeDAO",
+            "hoaDonDAO: HoaDonDAO",
+            "suatChieuDAO: SuatChieuDAO"
+          ],
+          "methods": [
+            "layThongKeDoanhThu(kieuThongKe: String, ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeDoanhThuDTO~",
+            "layThongKeSuatChieu(kieuThongKe: String, maDoiTuong: String, ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeSuatChieuDTO~",
+            "layHoaDonTheoSuatChieu(maSuatChieu: String): List~HoaDonTheoSuatDTO~"
+          ]
+        },
+        {
+          "name": "ThongKeDoanhThuDTO",
+          "attributes": [
+            "maDoiTuong: String",
+            "tenDoiTuong: String",
+            "tongSoVeBanRa: Integer",
+            "tongDoanhThu: Double"
+          ],
+          "methods": []
+        },
+        {
+          "name": "ThongKeSuatChieuDTO",
+          "attributes": [
+            "maSuatChieu: String",
+            "thongTinSuatChieu: String",
+            "soLuongVeBanRa: Integer",
+            "tongTienThuDuoc: Double"
+          ],
+          "methods": []
+        },
+        {
+          "name": "Ve",
+          "attributes": [
+            "maVe: String",
+            "giaGheTheoSuat: GiaGheTheoSuat",
+            "uuDai: Double",
+            "giaTien: Double"
+          ],
+          "methods": []
+        },
+        {
+          "name": "VeDAO",
+          "attributes": [],
+          "methods": [
+            "getThongKeTheoPhim(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeDoanhThuDTO~",
+            "getThongKeTheoRap(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeDoanhThuDTO~",
+            "getThongKeSuatChieuTheoPhim(maPhim: String, ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeSuatChieuDTO~",
+            "getThongKeSuatChieuTheoRap(maRap: String, ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeSuatChieuDTO~",
+            "getBySuatChieu(maSuatChieu: String): List~Ve~"
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "from": "FrmMenu",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "FrmThongKeDoanhThu",
+          "label": ""
+        },
+        {
+          "from": "FrmThongKeDoanhThu",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "ThongKeDoanhThuController",
+          "label": "controller"
+        },
+        {
+          "from": "ThongKeDoanhThuController",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "VeDAO",
+          "label": "veDAO"
+        },
+        {
+          "from": "ThongKeDoanhThuController",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "HoaDonDAO",
+          "label": "hoaDonDAO"
+        },
+        {
+          "from": "ThongKeDoanhThuController",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "SuatChieuDAO",
+          "label": "suatChieuDAO"
+        },
+        {
+          "from": "VeDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "Ve",
+          "label": "traVe"
+        },
+        {
+          "from": "VeDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "ThongKeDoanhThuDTO",
+          "label": "traVe"
+        },
+        {
+          "from": "VeDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "ThongKeSuatChieuDTO",
+          "label": "traVe"
+        },
+        {
+          "from": "HoaDonDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "HoaDon",
+          "label": "traVe"
+        },
+        {
+          "from": "HoaDonDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "HoaDonTheoSuatDTO",
+          "label": "traVe"
+        },
+        {
+          "from": "SuatChieuDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "SuatChieu",
+          "label": "traVe"
+        },
+        {
+          "from": "RapChieu",
+          "fromMultiplicity": "1",
+          "type": "*--",
+          "toMultiplicity": "1..*",
+          "to": "PhongChieu",
+          "label": "phongChieu"
+        },
+        {
+          "from": "PhongChieu",
+          "fromMultiplicity": "1",
+          "type": "*--",
+          "toMultiplicity": "1..*",
+          "to": "Ghe",
+          "label": "ghe"
+        },
+        {
+          "from": "Phim",
+          "fromMultiplicity": "1",
+          "type": "--",
+          "toMultiplicity": "0..*",
+          "to": "SuatChieu",
+          "label": "phim"
+        },
+        {
+          "from": "PhongChieu",
+          "fromMultiplicity": "1",
+          "type": "--",
+          "toMultiplicity": "0..*",
+          "to": "SuatChieu",
+          "label": "phongChieu"
+        },
+        {
+          "from": "MucGiaVe",
+          "fromMultiplicity": "1",
+          "type": "--",
+          "toMultiplicity": "0..*",
+          "to": "SuatChieu",
+          "label": "mucGiaMacDinh"
+        },
+        {
+          "from": "SuatChieu",
+          "fromMultiplicity": "1",
+          "type": "o--",
+          "toMultiplicity": "0..*",
+          "to": "GiaGheTheoSuat",
+          "label": "giaGheTheoSuat"
+        },
+        {
+          "from": "Ghe",
+          "fromMultiplicity": "1",
+          "type": "--",
+          "toMultiplicity": "0..*",
+          "to": "GiaGheTheoSuat",
+          "label": "ghe"
+        },
+        {
+          "from": "MucGiaVe",
+          "fromMultiplicity": "1",
+          "type": "--",
+          "toMultiplicity": "0..*",
+          "to": "GiaGheTheoSuat",
+          "label": "mucGiaVe"
+        },
+        {
+          "from": "GiaGheTheoSuat",
+          "fromMultiplicity": "1",
+          "type": "--",
+          "toMultiplicity": "0..1",
+          "to": "Ve",
+          "label": "ve"
+        },
+        {
+          "from": "HoaDon",
+          "fromMultiplicity": "1",
+          "type": "o--",
+          "toMultiplicity": "0..*",
+          "to": "Ve",
+          "label": "dsVe"
+        }
+      ]
+    },
+    {
       "id": "ChuDe_10_QuanLyRapChieuPhim/De_49_ThongKeMatHangBanKem/c2",
       "topicName": "ChuDe_10_QuanLyRapChieuPhim",
       "moduleName": "De_49_ThongKeMatHangBanKem",
@@ -10369,14 +11036,6 @@
       ],
       "relations": [
         {
-          "from": "SanMini",
-          "fromMultiplicity": "0..*",
-          "type": "--",
-          "toMultiplicity": "0..1",
-          "to": "SanMini",
-          "label": "ghép thành sân lớn"
-        },
-        {
           "from": "KhachHang",
           "fromMultiplicity": "1",
           "type": "--",
@@ -10520,14 +11179,6 @@
         }
       ],
       "relations": [
-        {
-          "from": "SanMini",
-          "fromMultiplicity": "0..*",
-          "type": "--",
-          "toMultiplicity": "0..1",
-          "to": "SanMini",
-          "label": "ghép thành sân lớn"
-        },
         {
           "from": "KhachHang",
           "fromMultiplicity": "1",
@@ -10955,14 +11606,6 @@
           "label": "traVe"
         },
         {
-          "from": "SanMini",
-          "fromMultiplicity": "0..*",
-          "type": "--",
-          "toMultiplicity": "0..1",
-          "to": "SanMini",
-          "label": "sanGhep"
-        },
-        {
           "from": "KhachHang",
           "fromMultiplicity": "1",
           "type": "--",
@@ -11156,14 +11799,6 @@
       ],
       "relations": [
         {
-          "from": "SanMini",
-          "fromMultiplicity": "0..*",
-          "type": "--",
-          "toMultiplicity": "0..1",
-          "to": "SanMini",
-          "label": "ghép thành sân lớn"
-        },
-        {
           "from": "KhachHang",
           "fromMultiplicity": "1",
           "type": "--",
@@ -11307,14 +11942,6 @@
       ],
       "relations": [
         {
-          "from": "SanMini",
-          "fromMultiplicity": "0..*",
-          "type": "--",
-          "toMultiplicity": "0..1",
-          "to": "SanMini",
-          "label": "ghép thành sân lớn"
-        },
-        {
           "from": "KhachHang",
           "fromMultiplicity": "1",
           "type": "--",
@@ -11446,14 +12073,6 @@
         }
       ],
       "relations": [
-        {
-          "from": "SanMini",
-          "fromMultiplicity": "0..*",
-          "type": "--",
-          "toMultiplicity": "0..1",
-          "to": "SanMini",
-          "label": "ghép thành sân lớn"
-        },
         {
           "from": "KhachHang",
           "fromMultiplicity": "1",
@@ -11694,14 +12313,6 @@
           "label": "traVe"
         },
         {
-          "from": "SanMini",
-          "fromMultiplicity": "0..*",
-          "type": "--",
-          "toMultiplicity": "0..1",
-          "to": "SanMini",
-          "label": "sanGhep"
-        },
-        {
           "from": "KhachHang",
           "fromMultiplicity": "1",
           "type": "--",
@@ -11755,6 +12366,7 @@
         {
           "name": "BuoiThueSan",
           "attributes": [
+            "maBuoiThueSan",
             "ngayThue",
             "khungGio"
           ],
@@ -11817,14 +12429,6 @@
       ],
       "relations": [
         {
-          "from": "SanMini",
-          "fromMultiplicity": "0..*",
-          "type": "--",
-          "toMultiplicity": "0..1",
-          "to": "SanMini",
-          "label": "ghép thành sân lớn"
-        },
-        {
           "from": "KhachHang",
           "fromMultiplicity": "1",
           "type": "--",
@@ -11878,6 +12482,7 @@
         {
           "name": "BuoiThueSan",
           "attributes": [
+            "maBuoiThueSan: String",
             "chiTietDatSan: ChiTietDatSan",
             "ngayThue: Date",
             "khungGio: String"
@@ -11889,13 +12494,14 @@
           "attributes": [],
           "methods": [
             "getThongKeKhungGio(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeKhungGioDTO~",
-            "getChiTietTheoKhungGio(khungGio: String, ngay: Date): List~BuoiThueSanDTO~",
-            "getByKhungGioVaNgay(khungGio: String, ngay: Date): List~BuoiThueSan~"
+            "getChiTietTheoKhungGio(khungGio: String, ngay: Date, ngayBatDau: Date, ngayKetThuc: Date): List~BuoiThueSanDTO~",
+            "getByKhungGioVaNgay(khungGio: String, ngay: Date, ngayBatDau: Date, ngayKetThuc: Date): List~BuoiThueSan~"
           ]
         },
         {
           "name": "BuoiThueSanDTO",
           "attributes": [
+            "maBuoiThueSan: String",
             "maPhieuDat: String",
             "tenKhachHang: String",
             "tenSan: String",
@@ -12000,7 +12606,7 @@
           ],
           "methods": [
             "layThongKeKhungGio(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeKhungGioDTO~",
-            "layBuoiThueTheoKhungGio(khungGio: String, ngay: Date): List~BuoiThueSanDTO~"
+            "layBuoiThueTheoKhungGio(khungGio: String, ngay: Date, ngayBatDau: Date, ngayKetThuc: Date): List~BuoiThueSanDTO~"
           ]
         },
         {
@@ -12062,14 +12668,6 @@
           "toMultiplicity": "",
           "to": "BuoiThueSanDTO",
           "label": "traVe"
-        },
-        {
-          "from": "SanMini",
-          "fromMultiplicity": "0..*",
-          "type": "--",
-          "toMultiplicity": "0..1",
-          "to": "SanMini",
-          "label": "sanGhep"
         },
         {
           "from": "KhachHang",
@@ -13584,14 +14182,6 @@
           "methods": []
         },
         {
-          "name": "ChungLoaiTrangPhuc",
-          "attributes": [
-            "maChungLoai",
-            "tenChungLoai"
-          ],
-          "methods": []
-        },
-        {
           "name": "HoaDonNhap",
           "attributes": [
             "maHoaDonNhap",
@@ -13664,14 +14254,6 @@
         }
       ],
       "relations": [
-        {
-          "from": "ChungLoaiTrangPhuc",
-          "fromMultiplicity": "1",
-          "type": "--",
-          "toMultiplicity": "0..*",
-          "to": "TrangPhuc",
-          "label": "phân loại"
-        },
         {
           "from": "NhaCungCap",
           "fromMultiplicity": "1",
@@ -13773,14 +14355,6 @@
           "methods": []
         },
         {
-          "name": "ChungLoaiTrangPhuc",
-          "attributes": [
-            "maChungLoai",
-            "tenChungLoai"
-          ],
-          "methods": []
-        },
-        {
           "name": "HoaDonNhap",
           "attributes": [
             "maHoaDonNhap",
@@ -13813,14 +14387,6 @@
         }
       ],
       "relations": [
-        {
-          "from": "ChungLoaiTrangPhuc",
-          "fromMultiplicity": "1",
-          "type": "--",
-          "toMultiplicity": "0..*",
-          "to": "TrangPhuc",
-          "label": "phân loại"
-        },
         {
           "from": "NhaCungCap",
           "fromMultiplicity": "1",
@@ -13865,14 +14431,6 @@
           "methods": []
         },
         {
-          "name": "ChungLoaiTrangPhuc",
-          "attributes": [
-            "maChungLoai",
-            "tenChungLoai"
-          ],
-          "methods": []
-        },
-        {
           "name": "KhachHang",
           "attributes": [
             "maKhachHang",
@@ -13905,14 +14463,6 @@
         }
       ],
       "relations": [
-        {
-          "from": "ChungLoaiTrangPhuc",
-          "fromMultiplicity": "1",
-          "type": "--",
-          "toMultiplicity": "0..*",
-          "to": "TrangPhuc",
-          "label": "phân loại"
-        },
         {
           "from": "KhachHang",
           "fromMultiplicity": "1",
@@ -14081,6 +14631,401 @@
       ]
     },
     {
+      "id": "ChuDe_13_QuanLyChoThueTrangPhuc/De_64_TraDoThanhToan/c3",
+      "topicName": "ChuDe_13_QuanLyChoThueTrangPhuc",
+      "moduleName": "De_64_TraDoThanhToan",
+      "type": "c3",
+      "file": "ChuDe_13_QuanLyChoThueTrangPhuc/De_64_TraDoThanhToan/c3.mmd",
+      "problemFile": "ChuDe_13_QuanLyChoThueTrangPhuc/De_64_TraDoThanhToan/Debai.txt",
+      "problemText": "Ngân hàng câu hỏi thi môn: Công nghệ phần mềm\r\nĐề số 64\r\nThời gian làm bài: 60 phút\r\nCửa hàng cho thuê trang phục dạ hội, biểu diễn đặt hàng anh chị phát triển một phần mềm giúp họ\r\nquản lí hoạt động cho thuê trang phục của họ với mô tả như sau:\r\n• Cửa hàng có nhiều trang phục -TP, thuộc nhiều chủng loại khác nhau, một TP có thể có số\r\nlượng khác nhau.\r\n• TP được đặt hàng hoặc nhập sẵn từ các nhà cung cấp - NCC. Mỗi NCC có thể cung cấp\r\nnhiều loại TP khác nhau. Mỗi lần nhập có thể nhập nhiều loại TP từ cùng NCC, mỗi TP có\r\nsố lượng khác nhau.\r\n• Khách hàng - KH có thể thuê nhiều lần, mỗi lần thuê nhiều TP khác nhau, mỗi TP có số\r\nlượng khác nhau. Nếu thuê lần đầu thì phải đặt cọc bằng tổng giá trị gốc của các TP thuê,\r\nnếu thuê nhiều lần (khách quen) thì tiền cọc do NV làm hóa đơn quyết định.\r\n• Khi trả, KH có thể trả một phần hoặc trả hết các TP đang thuê trong một lần, mỗi lần trả đều\r\ncó phiếu trả tương ứng với các TP trả. Tiền cọc chỉ được trả lại cho KH khi đã trả hết các TP\r\nthuê. Trường hợp KH trả một phần TP, sau khi trả xong mà tiền cọc còn lại nhiều hơn giá trị\r\ngốc các TP thuê thì KH được nhận lại phần dư ra, chỉ giữ lại cọc tối đa bằng giá trị gốc các\r\nTP đang thuê.\r\n• Khi trả, nếu TP bị lỗi hỏng hóc, vấy bẩn thì KH phải trả tiền phạt. Một TP có thể dính nhiều\r\nlỗi đồng thời. Tiền phạt cho mỗi lỗi được ước tính bởi NV thanh toán trả đồ.\r\nModul \"Khách hàng trả đồ và thanh toán\" với mô tả chi tiết nghiệp vụ: Khi KH đem trang phục\r\nđến trả, NV chọn menu tìm danh sách trang phục mượn theo tên KH → nhập tên KH+click tìm\r\nkiếm → hệ thống hiển thị danh sách các KH có tên vừa nhập → NV chọn tên KH đúng với thông\r\ntin KH hiện tại → hệ thống hiện lên danh sách các trang phục mà KH đó đang mượn, mỗi trang\r\nphục trên một dòng với đầy đủ thông tin về trang phục, ngày mượn, giá mượn theo ngày, số ngày đã\r\nmượn, và số tiền thuê tính đến ngày đang trả, cột cuối cùng là ô tích chọn trả → NV click vào nút\r\nchọn trả cho các trang phục mà KH đem trả (có thể không trả hết 1 lần), nhập tình trạng trang phục\r\nvà tiền phạt nếu có, cuối cùng click nút thanh toán → hệ thống hiện hóa đơn đầy đủ thông tin khách\r\nhàng + 1 bảng danh sách các trang phục trả như mô tả trên + dòng cuối là tổng số tiền trả , số tiền\r\nđã đặt cọc, số tiền khách phải trả hoặc trả lại khách → NV click xác nhận → hệ thống cập nhật vào\r\nCSDL.\r\n1. Viết một scenario chuẩn cho use case này\r\n2. Trích và vẽ biểu đồ các lớp thực thể liên quan của modul\r\n3. Thiết kế tĩnh: thiết kế giao diện và vẽ biểu đồ lớp MVC chi tiết cho modul\r\n4. Thiết kế động: vẽ biểu đồ tuần tự mô tả tuần tự hoạt động của modul\r\n5. Viết một test case chuẩn cho modul này",
+      "classes": [
+        {
+          "name": "ChiTietThue",
+          "attributes": [
+            "phieuThue: PhieuThue",
+            "trangPhuc: TrangPhuc",
+            "soLuong: Integer",
+            "soLuongDaTra: Integer",
+            "donGiaThue: Double"
+          ],
+          "methods": []
+        },
+        {
+          "name": "ChiTietThueDAO",
+          "attributes": [],
+          "methods": [
+            "getDangThueByKhachHang(maKhachHang: String): List~ChiTietThue~",
+            "updateAll(dsChiTietThue: List~ChiTietThue~): void"
+          ]
+        },
+        {
+          "name": "ChiTietTra",
+          "attributes": [
+            "chiTietThue: ChiTietThue",
+            "soLuongTra: Integer",
+            "soNgayThue: Integer",
+            "tienThue: Double",
+            "tinhTrang: String",
+            "tienPhat: Double",
+            "dsLoiTrangPhuc: List~LoiTrangPhuc~"
+          ],
+          "methods": []
+        },
+        {
+          "name": "ChiTietTraDAO",
+          "attributes": [],
+          "methods": [
+            "insertAll(dsChiTietTra: List~ChiTietTra~): void"
+          ]
+        },
+        {
+          "name": "FrmMenu",
+          "attributes": [
+            "btnTraDoThanhToan: Button"
+          ],
+          "methods": [
+            "moFrmTimKhachHangTraDo(): void"
+          ]
+        },
+        {
+          "name": "FrmTimKhachHangTraDo",
+          "attributes": [
+            "controller: TraDoThanhToanController",
+            "txtTenKhachHang: TextField",
+            "tblKhachHang: Table",
+            "btnTimKiem: Button"
+          ],
+          "methods": [
+            "nhapTenKhachHang(tenKhachHang: String): void",
+            "clickTimKiem(): void",
+            "clickChonKhachHang(maKhachHang: String): void",
+            "hienThiDanhSachKhachHang(dsKhachHang: List~KhachHang~): void",
+            "moFrmTraDoThanhToan(khachHang: KhachHang): void",
+            "hienThiThongBao(message: String): void"
+          ]
+        },
+        {
+          "name": "FrmTraDoThanhToan",
+          "attributes": [
+            "controller: TraDoThanhToanController",
+            "khachHang: KhachHang",
+            "phieuTra: PhieuTra",
+            "tblTrangPhucDangThue: Table",
+            "tblTrangPhucTra: Table",
+            "lblTongTienThue: Label",
+            "lblTongTienPhat: Label",
+            "lblTienCoc: Label",
+            "lblSoTienKhachPhaiTra: Label",
+            "lblSoTienTraLaiKhach: Label",
+            "btnThanhToan: Button",
+            "btnXacNhan: Button"
+          ],
+          "methods": [
+            "hienThiThongTinKhachHang(khachHang: KhachHang): void",
+            "hienThiTrangPhucDangThue(dsChiTietThue: List~ChiTietThue~): void",
+            "chonTrangPhucTra(maChiTietThue: String, soLuongTra: Integer): void",
+            "nhapTinhTrangVaTienPhat(maChiTietThue: String, tinhTrang: String, tienPhat: Double): void",
+            "clickThanhToan(): void",
+            "hienThiPhieuTra(phieuTra: PhieuTra): void",
+            "clickXacNhan(): void",
+            "hienThiThongBao(message: String): void"
+          ]
+        },
+        {
+          "name": "KhachHang",
+          "attributes": [
+            "maKhachHang: String",
+            "tenKhachHang: String",
+            "soDienThoai: String",
+            "diaChi: String"
+          ],
+          "methods": []
+        },
+        {
+          "name": "KhachHangDAO",
+          "attributes": [],
+          "methods": [
+            "searchByTen(tenKhachHang: String): List~KhachHang~",
+            "getById(maKhachHang: String): KhachHang"
+          ]
+        },
+        {
+          "name": "LoiTrangPhuc",
+          "attributes": [
+            "maLoi: String",
+            "moTaLoi: String",
+            "tienPhat: Double"
+          ],
+          "methods": []
+        },
+        {
+          "name": "LoiTrangPhucDAO",
+          "attributes": [],
+          "methods": [
+            "insertAll(dsLoi: List~LoiTrangPhuc~): void"
+          ]
+        },
+        {
+          "name": "PhieuThue",
+          "attributes": [
+            "maPhieuThue: String",
+            "khachHang: KhachHang",
+            "ngayThue: Date",
+            "tienCoc: Double",
+            "dsChiTietThue: List~ChiTietThue~"
+          ],
+          "methods": []
+        },
+        {
+          "name": "PhieuTra",
+          "attributes": [
+            "maPhieuTra: String",
+            "khachHang: KhachHang",
+            "ngayTra: Date",
+            "tongTienThue: Double",
+            "tongTienPhat: Double",
+            "soTienKhachPhaiTra: Double",
+            "soTienTraLaiKhach: Double",
+            "dsChiTietTra: List~ChiTietTra~"
+          ],
+          "methods": []
+        },
+        {
+          "name": "PhieuTraDAO",
+          "attributes": [],
+          "methods": [
+            "insert(phieuTra: PhieuTra): void"
+          ]
+        },
+        {
+          "name": "TraDoThanhToanController",
+          "attributes": [
+            "khachHangDAO: KhachHangDAO",
+            "chiTietThueDAO: ChiTietThueDAO",
+            "phieuTraDAO: PhieuTraDAO",
+            "chiTietTraDAO: ChiTietTraDAO",
+            "loiTrangPhucDAO: LoiTrangPhucDAO",
+            "trangPhucDAO: TrangPhucDAO"
+          ],
+          "methods": [
+            "timKhachHangTheoTen(tenKhachHang: String): List~KhachHang~",
+            "layTrangPhucDangThue(maKhachHang: String): List~ChiTietThue~",
+            "lapChiTietTra(chiTietThue: ChiTietThue, soLuongTra: Integer, tinhTrang: String, tienPhat: Double): ChiTietTra",
+            "lapPhieuTra(khachHang: KhachHang, dsChiTietTra: List~ChiTietTra~): PhieuTra",
+            "tinhTienCocConLai(khachHang: KhachHang): Double",
+            "tinhSoTienThanhToan(phieuTra: PhieuTra, tienCocConLai: Double): void",
+            "luuPhieuTra(phieuTra: PhieuTra): Boolean",
+            "capNhatTrangPhucDaTra(dsChiTietTra: List~ChiTietTra~): void"
+          ]
+        },
+        {
+          "name": "TrangPhuc",
+          "attributes": [
+            "maTrangPhuc: String",
+            "tenTrangPhuc: String",
+            "kieu: String",
+            "soLuong: Integer",
+            "giaTriGoc: Double",
+            "giaThue: Double"
+          ],
+          "methods": []
+        },
+        {
+          "name": "TrangPhucDAO",
+          "attributes": [],
+          "methods": [
+            "updateSoLuong(trangPhuc: TrangPhuc): void"
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "from": "FrmMenu",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "FrmTimKhachHangTraDo",
+          "label": ""
+        },
+        {
+          "from": "FrmTimKhachHangTraDo",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "FrmTraDoThanhToan",
+          "label": ""
+        },
+        {
+          "from": "FrmTimKhachHangTraDo",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "TraDoThanhToanController",
+          "label": "controller"
+        },
+        {
+          "from": "FrmTraDoThanhToan",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "TraDoThanhToanController",
+          "label": "controller"
+        },
+        {
+          "from": "TraDoThanhToanController",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "KhachHangDAO",
+          "label": "khachHangDAO"
+        },
+        {
+          "from": "TraDoThanhToanController",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "ChiTietThueDAO",
+          "label": "chiTietThueDAO"
+        },
+        {
+          "from": "TraDoThanhToanController",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "PhieuTraDAO",
+          "label": "phieuTraDAO"
+        },
+        {
+          "from": "TraDoThanhToanController",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "ChiTietTraDAO",
+          "label": "chiTietTraDAO"
+        },
+        {
+          "from": "TraDoThanhToanController",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "LoiTrangPhucDAO",
+          "label": "loiTrangPhucDAO"
+        },
+        {
+          "from": "TraDoThanhToanController",
+          "fromMultiplicity": "",
+          "type": "o--",
+          "toMultiplicity": "",
+          "to": "TrangPhucDAO",
+          "label": "trangPhucDAO"
+        },
+        {
+          "from": "KhachHangDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "KhachHang",
+          "label": "traVe"
+        },
+        {
+          "from": "ChiTietThueDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "ChiTietThue",
+          "label": "traVe"
+        },
+        {
+          "from": "PhieuTraDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "PhieuTra",
+          "label": "traVe"
+        },
+        {
+          "from": "ChiTietTraDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "ChiTietTra",
+          "label": "traVe"
+        },
+        {
+          "from": "LoiTrangPhucDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "LoiTrangPhuc",
+          "label": "traVe"
+        },
+        {
+          "from": "TrangPhucDAO",
+          "fromMultiplicity": "",
+          "type": "--",
+          "toMultiplicity": "",
+          "to": "TrangPhuc",
+          "label": "capNhat"
+        },
+        {
+          "from": "KhachHang",
+          "fromMultiplicity": "1",
+          "type": "--",
+          "toMultiplicity": "0..*",
+          "to": "PhieuThue",
+          "label": "khachHang"
+        },
+        {
+          "from": "KhachHang",
+          "fromMultiplicity": "1",
+          "type": "--",
+          "toMultiplicity": "0..*",
+          "to": "PhieuTra",
+          "label": "khachHang"
+        },
+        {
+          "from": "PhieuThue",
+          "fromMultiplicity": "1",
+          "type": "o--",
+          "toMultiplicity": "1..*",
+          "to": "ChiTietThue",
+          "label": "dsChiTietThue"
+        },
+        {
+          "from": "ChiTietThue",
+          "fromMultiplicity": "0..*",
+          "type": "--",
+          "toMultiplicity": "1",
+          "to": "TrangPhuc",
+          "label": "trangPhuc"
+        },
+        {
+          "from": "PhieuTra",
+          "fromMultiplicity": "1",
+          "type": "o--",
+          "toMultiplicity": "1..*",
+          "to": "ChiTietTra",
+          "label": "dsChiTietTra"
+        },
+        {
+          "from": "ChiTietTra",
+          "fromMultiplicity": "0..*",
+          "type": "--",
+          "toMultiplicity": "1",
+          "to": "ChiTietThue",
+          "label": "chiTietThue"
+        },
+        {
+          "from": "ChiTietTra",
+          "fromMultiplicity": "1",
+          "type": "o--",
+          "toMultiplicity": "0..*",
+          "to": "LoiTrangPhuc",
+          "label": "dsLoiTrangPhuc"
+        }
+      ]
+    },
+    {
       "id": "ChuDe_13_QuanLyChoThueTrangPhuc/De_65_ThongKeTrangPhucMuonNhieu/c2",
       "topicName": "ChuDe_13_QuanLyChoThueTrangPhuc",
       "moduleName": "De_65_ThongKeTrangPhucMuonNhieu",
@@ -14106,14 +15051,6 @@
             "tienThue",
             "tinhTrang",
             "tienPhat"
-          ],
-          "methods": []
-        },
-        {
-          "name": "ChungLoaiTrangPhuc",
-          "attributes": [
-            "maChungLoai",
-            "tenChungLoai"
           ],
           "methods": []
         },
@@ -14162,14 +15099,6 @@
         }
       ],
       "relations": [
-        {
-          "from": "ChungLoaiTrangPhuc",
-          "fromMultiplicity": "1",
-          "type": "--",
-          "toMultiplicity": "0..*",
-          "to": "TrangPhuc",
-          "label": "phân loại"
-        },
         {
           "from": "KhachHang",
           "fromMultiplicity": "1",
@@ -14244,7 +15173,7 @@
           "attributes": [],
           "methods": [
             "getThongKeTrangPhucMuonNhieu(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeTrangPhucDTO~",
-            "getHoaDonTheoTrangPhuc(maTrangPhuc: String, ngayBatDau: Date, ngayKetThuc: Date): List~HoaDonTrangPhucDTO~",
+            "getHoaDonTheoTrangPhuc(maTrangPhuc: String, ngayBatDau: Date, ngayKetThuc: Date): List~PhieuTrangPhucDTO~",
             "getByTrangPhuc(maTrangPhuc: String, ngayBatDau: Date, ngayKetThuc: Date): List~ChiTietThue~"
           ]
         },
@@ -14266,14 +15195,6 @@
           "methods": [
             "getByTrangPhuc(maTrangPhuc: String, ngayBatDau: Date, ngayKetThuc: Date): List~ChiTietTra~"
           ]
-        },
-        {
-          "name": "ChungLoaiTrangPhuc",
-          "attributes": [
-            "maChungLoai: String",
-            "tenChungLoai: String"
-          ],
-          "methods": []
         },
         {
           "name": "FrmMenu",
@@ -14300,20 +15221,9 @@
             "clickThongKe(): void",
             "clickChonTrangPhuc(maTrangPhuc: String): void",
             "hienThiBangTrangPhuc(dsThongKe: List~ThongKeTrangPhucDTO~): void",
-            "hienThiChiTietHoaDon(dsHoaDon: List~HoaDonTrangPhucDTO~): void",
+            "hienThiChiTietHoaDon(dsHoaDon: List~PhieuTrangPhucDTO~): void",
             "hienThiThongBao(message: String): void"
           ]
-        },
-        {
-          "name": "HoaDonTrangPhucDTO",
-          "attributes": [
-            "maHoaDon: String",
-            "tenKhachHang: String",
-            "ngayGioMuon: Date",
-            "ngayGioTra: Date",
-            "tongTien: Double"
-          ],
-          "methods": []
         },
         {
           "name": "KhachHang",
@@ -14351,12 +15261,22 @@
           "methods": []
         },
         {
+          "name": "PhieuTrangPhucDTO",
+          "attributes": [
+            "maHoaDon: String",
+            "tenKhachHang: String",
+            "ngayGioMuon: Date",
+            "ngayGioTra: Date",
+            "tongTien: Double"
+          ],
+          "methods": []
+        },
+        {
           "name": "ThongKeTrangPhucDTO",
           "attributes": [
             "maTrangPhuc: String",
             "tenTrangPhuc: String",
             "kieu: String",
-            "tenChungLoai: String",
             "tongSoLuotMuon: Integer",
             "tongTienThuDuoc: Double"
           ],
@@ -14370,7 +15290,7 @@
           ],
           "methods": [
             "layThongKeTrangPhucMuonNhieu(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeTrangPhucDTO~",
-            "layHoaDonTheoTrangPhuc(maTrangPhuc: String, ngayBatDau: Date, ngayKetThuc: Date): List~HoaDonTrangPhucDTO~",
+            "layHoaDonTheoTrangPhuc(maTrangPhuc: String, ngayBatDau: Date, ngayKetThuc: Date): List~PhieuTrangPhucDTO~",
             "tinhTongSoLuotMuon(dsChiTietThue: List~ChiTietThue~): Integer",
             "tinhTongTienThuDuoc(dsChiTietTra: List~ChiTietTra~): Double"
           ]
@@ -14383,8 +15303,7 @@
             "kieu: String",
             "soLuong: Integer",
             "giaTriGoc: Double",
-            "giaThue: Double",
-            "chungLoai: ChungLoaiTrangPhuc"
+            "giaThue: Double"
           ],
           "methods": []
         }
@@ -14443,7 +15362,7 @@
           "fromMultiplicity": "",
           "type": "--",
           "toMultiplicity": "",
-          "to": "HoaDonTrangPhucDTO",
+          "to": "PhieuTrangPhucDTO",
           "label": "traVe"
         },
         {
@@ -14467,16 +15386,8 @@
           "fromMultiplicity": "",
           "type": "--",
           "toMultiplicity": "",
-          "to": "HoaDonTrangPhucDTO",
+          "to": "PhieuTrangPhucDTO",
           "label": "tao"
-        },
-        {
-          "from": "ChungLoaiTrangPhuc",
-          "fromMultiplicity": "1",
-          "type": "--",
-          "toMultiplicity": "0..*",
-          "to": "TrangPhuc",
-          "label": "chungLoai"
         },
         {
           "from": "KhachHang",

@@ -1,0 +1,69 @@
+sequenceDiagram
+    actor QL as QL
+    participant FrmMenu as FrmMenu
+    participant FrmLenLichHoc as FrmLenLichHoc
+    participant Controller as LenLichHocController
+    participant MonHocDAO as MonHocDAO
+    participant LopHocPhanDAO as LopHocPhanDAO
+    participant PhongHocDAO as PhongHocDAO
+    participant KhungGioDAO as KhungGioDAO
+    participant LichHocDAO as LichHocDAO
+    participant LichHoc as LichHoc
+
+    QL ->> FrmMenu: moFrmLenLichHoc()
+    FrmMenu ->> FrmLenLichHoc: <<create>>
+
+    FrmLenLichHoc ->> Controller: layDanhSachMonHoc()
+    Controller ->> MonHocDAO: getAll()
+    MonHocDAO -->> Controller: dsMonHoc
+    Controller -->> FrmLenLichHoc: dsMonHoc
+    FrmLenLichHoc ->> FrmLenLichHoc: hienThiDanhSachMonHoc(dsMonHoc)
+
+    FrmLenLichHoc ->> Controller: layDanhSachPhongHoc()
+    Controller ->> PhongHocDAO: getAll()
+    PhongHocDAO -->> Controller: dsPhongHoc
+    Controller -->> FrmLenLichHoc: dsPhongHoc
+    FrmLenLichHoc ->> FrmLenLichHoc: hienThiDanhSachPhongHoc(dsPhongHoc)
+
+    FrmLenLichHoc ->> Controller: layDanhSachKhungGio()
+    Controller ->> KhungGioDAO: getAll()
+    KhungGioDAO -->> Controller: dsKhungGio
+    Controller -->> FrmLenLichHoc: dsKhungGio
+    FrmLenLichHoc ->> FrmLenLichHoc: hienThiDanhSachKhungGio(dsKhungGio)
+
+    QL ->> FrmLenLichHoc: chonMonHoc(maMon)
+    FrmLenLichHoc ->> Controller: layLopHocPhanTheoMon(maMon)
+    Controller ->> LopHocPhanDAO: getByMonHoc(maMon)
+    LopHocPhanDAO -->> Controller: dsLopHocPhan
+    Controller -->> FrmLenLichHoc: dsLopHocPhan
+    FrmLenLichHoc ->> FrmLenLichHoc: hienThiDanhSachLopHocPhan(dsLopHocPhan)
+
+    QL ->> FrmLenLichHoc: chonLopHocPhan(maLop)
+    QL ->> FrmLenLichHoc: chonPhongHoc(maPhong)
+    QL ->> FrmLenLichHoc: chonKhungGio(maKhungGio)
+    QL ->> FrmLenLichHoc: clickXacNhan()
+
+    FrmLenLichHoc ->> Controller: kiemTraTrungLich(maPhong, maKhungGio)
+    Controller ->> LichHocDAO: kiemTraTrungPhong(maPhong, maKhungGio)
+    LichHocDAO -->> Controller: daTrungLich
+
+    alt Phong hoc da co lop o khung gio nay
+        Controller -->> FrmLenLichHoc: false
+        FrmLenLichHoc ->> FrmLenLichHoc: hienThiThongBao("Phong hoc da bi trung lich")
+    else Phong hoc con trong
+        FrmLenLichHoc ->> Controller: lapLichHoc(maLop, maPhong, maKhungGio)
+        Controller ->> LopHocPhanDAO: getById(maLop)
+        LopHocPhanDAO -->> Controller: lopHocPhan
+        Controller ->> PhongHocDAO: getById(maPhong)
+        PhongHocDAO -->> Controller: phongHoc
+        Controller ->> KhungGioDAO: getById(maKhungGio)
+        KhungGioDAO -->> Controller: khungGio
+        Controller ->> LichHoc: <<create>> lichHoc
+        Controller -->> FrmLenLichHoc: lichHoc
+
+        FrmLenLichHoc ->> Controller: luuLichHoc(lichHoc)
+        Controller ->> LichHocDAO: insert(lichHoc)
+        LichHocDAO -->> Controller: daLuu
+        Controller -->> FrmLenLichHoc: true
+        FrmLenLichHoc ->> FrmLenLichHoc: hienThiThongBao("Luu lich hoc thanh cong")
+    end

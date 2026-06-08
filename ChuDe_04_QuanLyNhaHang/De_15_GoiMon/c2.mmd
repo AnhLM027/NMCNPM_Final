@@ -40,12 +40,11 @@ classDiagram
         +soLuong
         +thanhTien
     }
-
-    Ban "0..*" -- "0..1" Ban : gộp thành bàn lớn
     Ban "1" -- "0..*" PhieuGoiMon : phát sinh
     PhieuGoiMon "1" *-- "1..*" ChiTietGoiMon : gồm
     ChiTietGoiMon "0..*" -- "0..1" MonAn : món ăn
     ChiTietGoiMon "0..*" -- "0..1" Combo : combo
     Combo "1" *-- "1..*" ChiTietCombo : gồm
     ChiTietCombo "0..*" -- "1" MonAn : món ăn
+
 

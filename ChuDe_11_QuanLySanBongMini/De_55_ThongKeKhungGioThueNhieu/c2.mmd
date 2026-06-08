@@ -35,6 +35,7 @@ classDiagram
     }
 
     class BuoiThueSan {
+        +maBuoiThueSan
         +ngayThue
         +khungGio
     }
@@ -47,11 +48,10 @@ classDiagram
         +tongTienHang
         +tongTienThanhToan
     }
-
-    SanMini "0..*" -- "0..1" SanMini : ghép thành sân lớn
     KhachHang "1" -- "0..*" PhieuDatSan : đặt sân
     PhieuDatSan "1" *-- "1..*" ChiTietDatSan : gồm
     ChiTietDatSan "0..*" -- "1" SanMini : sân thuê
     ChiTietDatSan "1" *-- "1..*" BuoiThueSan : gồm buổi thuê
     PhieuDatSan "1" -- "0..1" HoaDonThanhToan : thanh toán
+
 

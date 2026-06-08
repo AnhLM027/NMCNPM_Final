@@ -8,12 +8,6 @@ classDiagram
     }
 
 
-    class ChungLoaiTrangPhuc {
-        +maChungLoai
-        +tenChungLoai
-    }
-
-
     class TrangPhuc {
         +maTrangPhuc
         +tenTrangPhuc
@@ -56,11 +50,12 @@ classDiagram
         +tienPhat
     }
 
-    ChungLoaiTrangPhuc "1" -- "0..*" TrangPhuc : phân loại
     KhachHang "1" -- "0..*" PhieuThue : thuê
     KhachHang "1" -- "0..*" PhieuTra : trả đồ
     PhieuThue "1" *-- "1..*" ChiTietThue : gồm
     ChiTietThue "0..*" -- "1" TrangPhuc : trang phục
     PhieuTra "1" *-- "1..*" ChiTietTra : gồm
     ChiTietTra "0..*" -- "1" ChiTietThue : trả cho dòng thuê
+
+
 

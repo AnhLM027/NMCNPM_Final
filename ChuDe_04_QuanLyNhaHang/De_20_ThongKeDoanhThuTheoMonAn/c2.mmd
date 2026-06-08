@@ -51,12 +51,11 @@ classDiagram
         +ngayGioThanhToan
         +tongTien
     }
-
-    Ban "0..*" -- "0..1" Ban : gộp thành bàn lớn
     Ban "1" -- "0..*" PhieuGoiMon : phát sinh
     PhieuGoiMon "1" *-- "1..*" ChiTietGoiMon : gồm
     ChiTietGoiMon "0..*" -- "0..1" MonAn : món ăn
     ChiTietGoiMon "0..*" -- "0..1" Combo : combo
     PhieuGoiMon "1" -- "0..1" HoaDon : thanh toán
     KhachHang "0..1" -- "0..*" HoaDon : nhận hóa đơn
+
 

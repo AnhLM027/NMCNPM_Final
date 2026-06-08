@@ -9,12 +9,6 @@ classDiagram
     }
 
 
-    class ChungLoaiTrangPhuc {
-        +maChungLoai
-        +tenChungLoai
-    }
-
-
     class TrangPhuc {
         +maTrangPhuc
         +tenTrangPhuc
@@ -38,7 +32,6 @@ classDiagram
         +thanhTien
     }
 
-    ChungLoaiTrangPhuc "1" -- "0..*" TrangPhuc : phân loại
     NhaCungCap "1" -- "0..*" HoaDonNhap : cung cấp
     HoaDonNhap "1" *-- "1..*" ChiTietNhap : gồm
     ChiTietNhap "0..*" -- "1" TrangPhuc : nhập

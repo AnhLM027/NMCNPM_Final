@@ -1,4 +1,4 @@
-%% De_55 - Câu 3: MVC Class Diagram cho module Thống kê khung giờ được thuê nhiều
+﻿%% De_55 - CÃ¢u 3: MVC Class Diagram cho module Thá»‘ng kÃª khung giá» Ä‘Æ°á»£c thuÃª nhiá»u
 classDiagram
     class FrmMenu {
         -btnThongKeKhungGioThueNhieu: Button
@@ -24,13 +24,13 @@ classDiagram
     class ThongKeKhungGioController {
         -buoiThueSanDAO: BuoiThueSanDAO
         +layThongKeKhungGio(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeKhungGioDTO~
-        +layBuoiThueTheoKhungGio(khungGio: String, ngay: Date): List~BuoiThueSanDTO~
+        +layBuoiThueTheoKhungGio(khungGio: String, ngay: Date, ngayBatDau: Date, ngayKetThuc: Date): List~BuoiThueSanDTO~
     }
 
     class BuoiThueSanDAO {
         +getThongKeKhungGio(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeKhungGioDTO~
-        +getChiTietTheoKhungGio(khungGio: String, ngay: Date): List~BuoiThueSanDTO~
-        +getByKhungGioVaNgay(khungGio: String, ngay: Date): List~BuoiThueSan~
+        +getChiTietTheoKhungGio(khungGio: String, ngay: Date, ngayBatDau: Date, ngayKetThuc: Date): List~BuoiThueSanDTO~
+        +getByKhungGioVaNgay(khungGio: String, ngay: Date, ngayBatDau: Date, ngayKetThuc: Date): List~BuoiThueSan~
     }
 
     class ThongKeKhungGioDTO {
@@ -41,6 +41,7 @@ classDiagram
     }
 
     class BuoiThueSanDTO {
+        -maBuoiThueSan: String
         -maPhieuDat: String
         -tenKhachHang: String
         -tenSan: String
@@ -85,6 +86,7 @@ classDiagram
     }
 
     class BuoiThueSan {
+        -maBuoiThueSan: String
         -chiTietDatSan: ChiTietDatSan
         -ngayThue: Date
         -khungGio: String
@@ -107,10 +109,9 @@ classDiagram
     BuoiThueSanDAO -- BuoiThueSan : traVe
     BuoiThueSanDAO -- ThongKeKhungGioDTO : traVe
     BuoiThueSanDAO -- BuoiThueSanDTO : traVe
-
-    SanMini "0..*" -- "0..1" SanMini : sanGhep
     KhachHang "1" -- "0..*" PhieuDatSan : khachHang
     PhieuDatSan "1" o-- "1..*" ChiTietDatSan : dsChiTietDatSan
     SanMini "1" -- "0..*" ChiTietDatSan : sanMini
     ChiTietDatSan "1" o-- "1..*" BuoiThueSan : dsBuoiThueSan
     PhieuDatSan "1" o-- "0..1" HoaDonThanhToan : hoaDonThanhToan
+

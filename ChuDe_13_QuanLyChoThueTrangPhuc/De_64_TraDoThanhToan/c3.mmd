@@ -1,0 +1,172 @@
+%% De_64 - Cau 3: MVC Class Diagram cho module Khach hang tra do va thanh toan
+classDiagram
+    class FrmMenu {
+        -btnTraDoThanhToan: Button
+        +moFrmTimKhachHangTraDo(): void
+    }
+
+    class FrmTimKhachHangTraDo {
+        -controller: TraDoThanhToanController
+        -txtTenKhachHang: TextField
+        -tblKhachHang: Table
+        -btnTimKiem: Button
+        +nhapTenKhachHang(tenKhachHang: String): void
+        +clickTimKiem(): void
+        +clickChonKhachHang(maKhachHang: String): void
+        +hienThiDanhSachKhachHang(dsKhachHang: List~KhachHang~): void
+        +moFrmTraDoThanhToan(khachHang: KhachHang): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class FrmTraDoThanhToan {
+        -controller: TraDoThanhToanController
+        -khachHang: KhachHang
+        -phieuTra: PhieuTra
+        -tblTrangPhucDangThue: Table
+        -tblTrangPhucTra: Table
+        -lblTongTienThue: Label
+        -lblTongTienPhat: Label
+        -lblTienCoc: Label
+        -lblSoTienKhachPhaiTra: Label
+        -lblSoTienTraLaiKhach: Label
+        -btnThanhToan: Button
+        -btnXacNhan: Button
+        +hienThiThongTinKhachHang(khachHang: KhachHang): void
+        +hienThiTrangPhucDangThue(dsChiTietThue: List~ChiTietThue~): void
+        +chonTrangPhucTra(maChiTietThue: String, soLuongTra: Integer): void
+        +nhapTinhTrangVaTienPhat(maChiTietThue: String, tinhTrang: String, tienPhat: Double): void
+        +clickThanhToan(): void
+        +hienThiPhieuTra(phieuTra: PhieuTra): void
+        +clickXacNhan(): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class TraDoThanhToanController {
+        -khachHangDAO: KhachHangDAO
+        -chiTietThueDAO: ChiTietThueDAO
+        -phieuTraDAO: PhieuTraDAO
+        -chiTietTraDAO: ChiTietTraDAO
+        -loiTrangPhucDAO: LoiTrangPhucDAO
+        -trangPhucDAO: TrangPhucDAO
+        +timKhachHangTheoTen(tenKhachHang: String): List~KhachHang~
+        +layTrangPhucDangThue(maKhachHang: String): List~ChiTietThue~
+        +lapChiTietTra(chiTietThue: ChiTietThue, soLuongTra: Integer, tinhTrang: String, tienPhat: Double): ChiTietTra
+        +lapPhieuTra(khachHang: KhachHang, dsChiTietTra: List~ChiTietTra~): PhieuTra
+        +tinhTienCocConLai(khachHang: KhachHang): Double
+        +tinhSoTienThanhToan(phieuTra: PhieuTra, tienCocConLai: Double): void
+        +luuPhieuTra(phieuTra: PhieuTra): Boolean
+        +capNhatTrangPhucDaTra(dsChiTietTra: List~ChiTietTra~): void
+    }
+
+    class KhachHangDAO {
+        +searchByTen(tenKhachHang: String): List~KhachHang~
+        +getById(maKhachHang: String): KhachHang
+    }
+
+    class ChiTietThueDAO {
+        +getDangThueByKhachHang(maKhachHang: String): List~ChiTietThue~
+        +updateAll(dsChiTietThue: List~ChiTietThue~): void
+    }
+
+    class PhieuTraDAO {
+        +insert(phieuTra: PhieuTra): void
+    }
+
+    class ChiTietTraDAO {
+        +insertAll(dsChiTietTra: List~ChiTietTra~): void
+    }
+
+    class LoiTrangPhucDAO {
+        +insertAll(dsLoi: List~LoiTrangPhuc~): void
+    }
+
+    class TrangPhucDAO {
+        +updateSoLuong(trangPhuc: TrangPhuc): void
+    }
+
+    class KhachHang {
+        -maKhachHang: String
+        -tenKhachHang: String
+        -soDienThoai: String
+        -diaChi: String
+    }
+
+    class TrangPhuc {
+        -maTrangPhuc: String
+        -tenTrangPhuc: String
+        -kieu: String
+        -soLuong: Integer
+        -giaTriGoc: Double
+        -giaThue: Double
+    }
+
+    class PhieuThue {
+        -maPhieuThue: String
+        -khachHang: KhachHang
+        -ngayThue: Date
+        -tienCoc: Double
+        -dsChiTietThue: List~ChiTietThue~
+    }
+
+    class ChiTietThue {
+        -phieuThue: PhieuThue
+        -trangPhuc: TrangPhuc
+        -soLuong: Integer
+        -soLuongDaTra: Integer
+        -donGiaThue: Double
+    }
+
+    class PhieuTra {
+        -maPhieuTra: String
+        -khachHang: KhachHang
+        -ngayTra: Date
+        -tongTienThue: Double
+        -tongTienPhat: Double
+        -soTienKhachPhaiTra: Double
+        -soTienTraLaiKhach: Double
+        -dsChiTietTra: List~ChiTietTra~
+    }
+
+    class ChiTietTra {
+        -chiTietThue: ChiTietThue
+        -soLuongTra: Integer
+        -soNgayThue: Integer
+        -tienThue: Double
+        -tinhTrang: String
+        -tienPhat: Double
+        -dsLoiTrangPhuc: List~LoiTrangPhuc~
+    }
+
+    class LoiTrangPhuc {
+        -maLoi: String
+        -moTaLoi: String
+        -tienPhat: Double
+    }
+
+    FrmMenu -- FrmTimKhachHangTraDo
+    FrmTimKhachHangTraDo -- FrmTraDoThanhToan
+
+    FrmTimKhachHangTraDo o-- TraDoThanhToanController : controller
+    FrmTraDoThanhToan o-- TraDoThanhToanController : controller
+
+    TraDoThanhToanController o-- KhachHangDAO : khachHangDAO
+    TraDoThanhToanController o-- ChiTietThueDAO : chiTietThueDAO
+    TraDoThanhToanController o-- PhieuTraDAO : phieuTraDAO
+    TraDoThanhToanController o-- ChiTietTraDAO : chiTietTraDAO
+    TraDoThanhToanController o-- LoiTrangPhucDAO : loiTrangPhucDAO
+    TraDoThanhToanController o-- TrangPhucDAO : trangPhucDAO
+
+    KhachHangDAO -- KhachHang : traVe
+    ChiTietThueDAO -- ChiTietThue : traVe
+    PhieuTraDAO -- PhieuTra : traVe
+    ChiTietTraDAO -- ChiTietTra : traVe
+    LoiTrangPhucDAO -- LoiTrangPhuc : traVe
+    TrangPhucDAO -- TrangPhuc : capNhat
+
+    KhachHang "1" -- "0..*" PhieuThue : khachHang
+    KhachHang "1" -- "0..*" PhieuTra : khachHang
+    PhieuThue "1" o-- "1..*" ChiTietThue : dsChiTietThue
+    ChiTietThue "0..*" -- "1" TrangPhuc : trangPhuc
+    PhieuTra "1" o-- "1..*" ChiTietTra : dsChiTietTra
+    ChiTietTra "0..*" -- "1" ChiTietThue : chiTietThue
+    ChiTietTra "1" o-- "0..*" LoiTrangPhuc : dsLoiTrangPhuc

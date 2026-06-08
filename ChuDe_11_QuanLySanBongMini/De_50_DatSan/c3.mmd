@@ -179,9 +179,8 @@ classDiagram
     PhieuDatSanDAO -- PhieuDatSan : traVe
     ChiTietDatSanDAO -- ChiTietDatSan : traVe
     BuoiThueSanDAO -- BuoiThueSan : traVe
-
-    SanMini "0..*" -- "0..1" SanMini : sanGhep
     KhachHang "1" -- "0..*" PhieuDatSan : khachHang
     PhieuDatSan "1" o-- "1..*" ChiTietDatSan : dsChiTietDatSan
     SanMini "1" -- "0..*" ChiTietDatSan : sanMini
     ChiTietDatSan "1" o-- "1..*" BuoiThueSan : dsBuoiThueSan
+

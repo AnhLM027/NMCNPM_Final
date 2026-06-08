@@ -1,0 +1,161 @@
+%% De_48 - Cau 3: MVC Class Diagram cho module Thong ke doanh thu
+classDiagram
+    class FrmMenu {
+        -btnThongKeDoanhThu: Button
+        +moFrmThongKeDoanhThu(): void
+    }
+
+    class FrmThongKeDoanhThu {
+        -controller: ThongKeDoanhThuController
+        -cboKieuThongKe: ComboBox
+        -dtNgayBatDau: DatePicker
+        -dtNgayKetThuc: DatePicker
+        -tblDoanhThu: Table
+        -tblSuatChieu: Table
+        -tblHoaDon: Table
+        -btnThongKe: Button
+        +clickThongKe(): void
+        +clickChonDongDoanhThu(maDoiTuong: String): void
+        +clickChonSuatChieu(maSuatChieu: String): void
+        +hienThiBangDoanhThu(dsThongKe: List~ThongKeDoanhThuDTO~): void
+        +hienThiBangSuatChieu(dsSuatChieu: List~ThongKeSuatChieuDTO~): void
+        +hienThiBangHoaDon(dsHoaDon: List~HoaDonTheoSuatDTO~): void
+        +hienThiThongBao(message: String): void
+    }
+
+    class ThongKeDoanhThuController {
+        -veDAO: VeDAO
+        -hoaDonDAO: HoaDonDAO
+        -suatChieuDAO: SuatChieuDAO
+        +layThongKeDoanhThu(kieuThongKe: String, ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeDoanhThuDTO~
+        +layThongKeSuatChieu(kieuThongKe: String, maDoiTuong: String, ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeSuatChieuDTO~
+        +layHoaDonTheoSuatChieu(maSuatChieu: String): List~HoaDonTheoSuatDTO~
+    }
+
+    class VeDAO {
+        +getThongKeTheoPhim(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeDoanhThuDTO~
+        +getThongKeTheoRap(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeDoanhThuDTO~
+        +getThongKeSuatChieuTheoPhim(maPhim: String, ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeSuatChieuDTO~
+        +getThongKeSuatChieuTheoRap(maRap: String, ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeSuatChieuDTO~
+        +getBySuatChieu(maSuatChieu: String): List~Ve~
+    }
+
+    class HoaDonDAO {
+        +getHoaDonTheoSuatChieu(maSuatChieu: String): List~HoaDonTheoSuatDTO~
+        +getBySuatChieu(maSuatChieu: String): List~HoaDon~
+    }
+
+    class SuatChieuDAO {
+        +getById(maSuatChieu: String): SuatChieu
+    }
+
+    class ThongKeDoanhThuDTO {
+        -maDoiTuong: String
+        -tenDoiTuong: String
+        -tongSoVeBanRa: Integer
+        -tongDoanhThu: Double
+    }
+
+    class ThongKeSuatChieuDTO {
+        -maSuatChieu: String
+        -thongTinSuatChieu: String
+        -soLuongVeBanRa: Integer
+        -tongTienThuDuoc: Double
+    }
+
+    class HoaDonTheoSuatDTO {
+        -maHoaDon: String
+        -tenKhachHang: String
+        -tongSoVe: Integer
+        -tongTien: Double
+    }
+
+    class RapChieu {
+        -maRap: String
+        -tenRap: String
+        -diaChi: String
+        -gioiThieu: String
+    }
+
+    class PhongChieu {
+        -maPhongChieu: String
+        -soLuongGhe: Integer
+        -dacDiemPhongChieu: String
+    }
+
+    class Ghe {
+        -maGhe: String
+        -soGhe: String
+    }
+
+    class Phim {
+        -maPhim: String
+        -tenPhim: String
+        -loaiPhim: String
+        -namSanXuat: Integer
+        -moTa: String
+    }
+
+    class SuatChieu {
+        -maSuatChieu: String
+        -phim: Phim
+        -phongChieu: PhongChieu
+        -ngayGioChieu: DateTime
+        -trangThai: String
+    }
+
+    class MucGiaVe {
+        -maMucGia: String
+        -tenMucGia: String
+        -giaTien: Double
+    }
+
+    class GiaGheTheoSuat {
+        -suatChieu: SuatChieu
+        -ghe: Ghe
+        -mucGiaVe: MucGiaVe
+        -giaTien: Double
+        -trangThaiGhe: String
+    }
+
+    class Ve {
+        -maVe: String
+        -giaGheTheoSuat: GiaGheTheoSuat
+        -uuDai: Double
+        -giaTien: Double
+    }
+
+    class HoaDon {
+        -maHoaDon: String
+        -tenKhachHang: String
+        -ngayLap: DateTime
+        -tongSoVe: Integer
+        -tongTien: Double
+        -dsVe: List~Ve~
+    }
+
+    FrmMenu -- FrmThongKeDoanhThu
+
+    FrmThongKeDoanhThu o-- ThongKeDoanhThuController : controller
+
+    ThongKeDoanhThuController o-- VeDAO : veDAO
+    ThongKeDoanhThuController o-- HoaDonDAO : hoaDonDAO
+    ThongKeDoanhThuController o-- SuatChieuDAO : suatChieuDAO
+
+    VeDAO -- Ve : traVe
+    VeDAO -- ThongKeDoanhThuDTO : traVe
+    VeDAO -- ThongKeSuatChieuDTO : traVe
+    HoaDonDAO -- HoaDon : traVe
+    HoaDonDAO -- HoaDonTheoSuatDTO : traVe
+    SuatChieuDAO -- SuatChieu : traVe
+
+    RapChieu "1" *-- "1..*" PhongChieu : phongChieu
+    PhongChieu "1" *-- "1..*" Ghe : ghe
+    Phim "1" -- "0..*" SuatChieu : phim
+    PhongChieu "1" -- "0..*" SuatChieu : phongChieu
+    MucGiaVe "1" -- "0..*" SuatChieu : mucGiaMacDinh
+    SuatChieu "1" o-- "0..*" GiaGheTheoSuat : giaGheTheoSuat
+    Ghe "1" -- "0..*" GiaGheTheoSuat : ghe
+    MucGiaVe "1" -- "0..*" GiaGheTheoSuat : mucGiaVe
+    GiaGheTheoSuat "1" -- "0..1" Ve : ve
+    HoaDon "1" o-- "0..*" Ve : dsVe

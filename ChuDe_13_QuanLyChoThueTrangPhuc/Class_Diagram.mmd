@@ -13,11 +13,6 @@
         +soDienThoai
     }
 
-    class ChungLoaiTrangPhuc {
-        +maChungLoai
-        +tenChungLoai
-    }
-
     class TrangPhuc {
         +maTrangPhuc
         +tenTrangPhuc
@@ -74,7 +69,6 @@
         +tienPhat
     }
 
-    ChungLoaiTrangPhuc "1" -- "0..*" TrangPhuc : phân loại
     NhaCungCap "1" -- "0..*" HoaDonNhap : cung cấp
     HoaDonNhap "1" *-- "1..*" ChiTietNhap : gồm
     ChiTietNhap "0..*" -- "1" TrangPhuc : nhập
@@ -85,4 +79,6 @@
     PhieuTra "1" *-- "1..*" ChiTietTra : gồm
     ChiTietTra "0..*" -- "1" ChiTietThue : trả cho dòng thuê
     ChiTietTra "1" *-- "0..*" LoiTrangPhuc : lỗi phát sinh
+
+
 

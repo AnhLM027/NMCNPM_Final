@@ -8,12 +8,6 @@ classDiagram
     }
 
 
-    class ChungLoaiTrangPhuc {
-        +maChungLoai
-        +tenChungLoai
-    }
-
-
     class TrangPhuc {
         +maTrangPhuc
         +tenTrangPhuc
@@ -36,7 +30,6 @@ classDiagram
         +donGiaThue
     }
 
-    ChungLoaiTrangPhuc "1" -- "0..*" TrangPhuc : phân loại
     KhachHang "1" -- "0..*" PhieuThue : thuê
     PhieuThue "1" *-- "1..*" ChiTietThue : gồm
     ChiTietThue "0..*" -- "1" TrangPhuc : trang phục

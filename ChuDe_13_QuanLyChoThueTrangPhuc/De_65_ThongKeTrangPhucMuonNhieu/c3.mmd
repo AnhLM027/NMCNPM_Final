@@ -1,4 +1,4 @@
-%% De_65 - Câu 3: MVC Class Diagram cho module Thống kê trang phục được mượn nhiều
+﻿%% De_65 - CÃ¢u 3: MVC Class Diagram cho module Thá»‘ng kÃª trang phá»¥c Ä‘Æ°á»£c mÆ°á»£n nhiá»u
 classDiagram
     class FrmMenu {
         -btnThongKeTrangPhucMuonNhieu: Button
@@ -17,7 +17,7 @@ classDiagram
         +clickThongKe(): void
         +clickChonTrangPhuc(maTrangPhuc: String): void
         +hienThiBangTrangPhuc(dsThongKe: List~ThongKeTrangPhucDTO~): void
-        +hienThiChiTietHoaDon(dsHoaDon: List~HoaDonTrangPhucDTO~): void
+        +hienThiChiTietHoaDon(dsHoaDon: List~PhieuTrangPhucDTO~): void
         +hienThiThongBao(message: String): void
     }
 
@@ -25,14 +25,14 @@ classDiagram
         -chiTietThueDAO: ChiTietThueDAO
         -chiTietTraDAO: ChiTietTraDAO
         +layThongKeTrangPhucMuonNhieu(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeTrangPhucDTO~
-        +layHoaDonTheoTrangPhuc(maTrangPhuc: String, ngayBatDau: Date, ngayKetThuc: Date): List~HoaDonTrangPhucDTO~
+        +layHoaDonTheoTrangPhuc(maTrangPhuc: String, ngayBatDau: Date, ngayKetThuc: Date): List~PhieuTrangPhucDTO~
         +tinhTongSoLuotMuon(dsChiTietThue: List~ChiTietThue~): Integer
         +tinhTongTienThuDuoc(dsChiTietTra: List~ChiTietTra~): Double
     }
 
     class ChiTietThueDAO {
         +getThongKeTrangPhucMuonNhieu(ngayBatDau: Date, ngayKetThuc: Date): List~ThongKeTrangPhucDTO~
-        +getHoaDonTheoTrangPhuc(maTrangPhuc: String, ngayBatDau: Date, ngayKetThuc: Date): List~HoaDonTrangPhucDTO~
+        +getHoaDonTheoTrangPhuc(maTrangPhuc: String, ngayBatDau: Date, ngayKetThuc: Date): List~PhieuTrangPhucDTO~
         +getByTrangPhuc(maTrangPhuc: String, ngayBatDau: Date, ngayKetThuc: Date): List~ChiTietThue~
     }
 
@@ -44,12 +44,11 @@ classDiagram
         -maTrangPhuc: String
         -tenTrangPhuc: String
         -kieu: String
-        -tenChungLoai: String
         -tongSoLuotMuon: Integer
         -tongTienThuDuoc: Double
     }
 
-    class HoaDonTrangPhucDTO {
+    class PhieuTrangPhucDTO {
         -maHoaDon: String
         -tenKhachHang: String
         -ngayGioMuon: Date
@@ -64,11 +63,6 @@ classDiagram
         -diaChi: String
     }
 
-    class ChungLoaiTrangPhuc {
-        -maChungLoai: String
-        -tenChungLoai: String
-    }
-
     class TrangPhuc {
         -maTrangPhuc: String
         -tenTrangPhuc: String
@@ -76,7 +70,6 @@ classDiagram
         -soLuong: Integer
         -giaTriGoc: Double
         -giaThue: Double
-        -chungLoai: ChungLoaiTrangPhuc
     }
 
     class PhieuThue {
@@ -122,15 +115,16 @@ classDiagram
 
     ChiTietThueDAO -- ChiTietThue : traVe
     ChiTietThueDAO -- ThongKeTrangPhucDTO : traVe
-    ChiTietThueDAO -- HoaDonTrangPhucDTO : traVe
+    ChiTietThueDAO -- PhieuTrangPhucDTO : traVe
     ChiTietTraDAO -- ChiTietTra : traVe
     ThongKeTrangPhucMuonNhieuController -- ThongKeTrangPhucDTO : tao
-    ThongKeTrangPhucMuonNhieuController -- HoaDonTrangPhucDTO : tao
+    ThongKeTrangPhucMuonNhieuController -- PhieuTrangPhucDTO : tao
 
-    ChungLoaiTrangPhuc "1" -- "0..*" TrangPhuc : chungLoai
     KhachHang "1" -- "0..*" PhieuThue : khachHang
     KhachHang "1" -- "0..*" PhieuTra : khachHang
     PhieuThue "1" o-- "1..*" ChiTietThue : dsChiTietThue
     TrangPhuc "1" -- "0..*" ChiTietThue : trangPhuc
     PhieuTra "1" o-- "1..*" ChiTietTra : dsChiTietTra
     ChiTietThue "1" -- "0..*" ChiTietTra : chiTietThue
+
+

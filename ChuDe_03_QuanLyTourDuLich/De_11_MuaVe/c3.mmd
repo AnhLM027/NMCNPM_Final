@@ -21,6 +21,11 @@ classDiagram
 
     class FrmHoaDonVe {
         -controller: MuaVeController
+        -dotXuatPhat: DotXuatPhat
+        -lblTenTour: Label
+        -lblNoiXuatPhat: Label
+        -lblNoiDen: Label
+        -lblNgayXuatPhat: Label
         -txtTenKhachDaiDien: TextField
         -txtSoID: TextField
         -txtLoaiTheID: TextField
@@ -28,12 +33,9 @@ classDiagram
         -txtSoDienThoai: TextField
         -txtEmail: TextField
         -txtSoLuongKhach: TextField
-        -lblGiaVe: Label
-        -lblTongTien: Label
-        -btnThanhToan: Button
-        +nhapThongTinKhachHang(): void
-        +clickThanhToan(): void
-        +hienThiHoaDonTam(dotXuatPhat: DotXuatPhat, khachHang: KhachHang): void
+        -btnXacNhan: Button
+        +hienThiThongTinTour(dotXuatPhat: DotXuatPhat): void
+        +clickXacNhan(): void
         +hienThiHoaDonVe(hoaDonVe: HoaDonVe): void
         +inVe(hoaDonVe: HoaDonVe): void
         +hienThiThongBao(message: String): void
